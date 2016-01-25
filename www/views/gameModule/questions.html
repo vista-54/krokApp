@@ -1,0 +1,12 @@
+<div>
+    <!--<a ng-click="Getquestion()">GetQue</a>-->
+    <button ng-show="isGetQuestBtnActive" ng-click="Getquestion()">Получить вопрос</button>
+    <div ng-hide="isGetQuestBtnActive">
+        <h1>{{currentQuestion}}</h1>
+        <ul>
+            <li ng-repeat="answer in answeres">
+                <a ng-click="checkAnswer(this)">{{answer.text}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

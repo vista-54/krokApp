@@ -1,0 +1,41 @@
+<div>
+    <span>{{game.host}}</span>
+    <span>-</span>
+    <span>{{game.player2===''?'Случайный игрок':game.player2}}</span>
+<!--{{game.scoreP1r1+game.scoreP1r2+game.scoreP1r3+game.scoreP1r4+game.scoreP1r5+game.scoreP1r6}}-->
+<!--{{game.scoreP2r1+game.scoreP2r2+game.scoreP2r3+game.scoreP2r4+game.scoreP2r5+game.scoreP2r6}}-->
+</div>
+<ul>
+    <li>
+        <span>{{game.scoreP1r1}}</span>
+        <span>РАУНД 1 "Категория" {{game.round1}}</span>
+        <span>{{game.scoreP2r1}}</span>
+    </li>
+    <li>
+        <span>{{game.scoreP1r2}}</span>
+        <span>РАУНД 2 "Категория" {{game.round2}}</span>
+        <span>{{game.scoreP2r2}}</span>
+    </li>
+    <li>
+        <span>{{game.scoreP1r3}}</span>
+        <span>РАУНД 3 "Категория" {{game.round3}}</span>
+        <span>{{game.scoreP2r3}}</span>
+    </li>
+    <li>
+        <span>{{game.scoreP1r4}}</span>
+        <span>РАУНД 4 "Категория" {{game.round4}}</span>
+        <span>{{game.scoreP2r4}}</span>
+    </li>
+    <li>
+        <span>{{game.scoreP1r5}}</span>
+        <span>РАУНД 5 "Категория" {{game.round5}}</span>
+        <span>{{game.scoreP2r5}}</span>
+    </li>
+    <li>
+        <span>{{game.scoreP1r6}}</span>
+        <span>РАУНД 6 "Категория" {{game.round6}}</span>
+        <span>{{game.scoreP2r6}}</span>
+    </li>
+</ul>
+<button ng-show="waitStepSecondPlayer" ng-click="play()">Играть</button>
+<span ng-hide="waitStepSecondPlayer">Ожидание хода 2 игрока</span>

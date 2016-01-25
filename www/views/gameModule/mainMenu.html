@@ -1,0 +1,14 @@
+<div ng-app="gameModule">
+    <div class="mainMenu">
+        <nav>
+            <a ng-click="openMenu()"><i class="fa fa-cog"></i></a>
+            <a><i class="fa fa-list-alt"></i></a>  
+        </nav>
+        <a href="#/newgame">Новая игра</a>
+        <ul>
+            <li ng-repeat="game in gamesHistory">
+                <span>{{game}}</span>
+            </li>
+        </ul>
+    </div>
+</div>

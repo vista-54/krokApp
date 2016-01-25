@@ -1,0 +1,33 @@
+<div>
+    <div class="userinfo">
+        <h1>Введите ваши данные</h1>
+        <h2>Логин:</h2>
+        <input ng-model="login">
+    
+    <div class="selectGender">
+        <input  type="button" value="М" ng-click="ChangeGender('M')"><img ng-show="SelectedImg"  class="galoshka" alt="img" src="img/galochka.png">
+        <span>Пол</span>
+        <input  type="button" value="Ж" ng-click="ChangeGender('F')"><img ng-hide="SelectedImg"  class="galoshka" alt="img" src="img/galochka.png">
+
+    </div>
+    </div>
+    
+    <div class="selectAvatar">
+        <h2>Аватар</h2>
+        <ul>
+            <li><img data-number='1' alt="avatar" src="img/avatar_f_1.png" ng-click="getAvatar($event)"></li>
+            <li><img data-number='2' alt="avatar" src="img/avatar_f_2.png" ng-click="getAvatar($event)"></li>
+            <li><img data-number='3' alt="avatar" src="img/avatar_f_3.png" ng-click="getAvatar($event)"></li>
+            <li><img data-number='4' alt="avatar" src="img/avatar_f_4.png" ng-click="getAvatar($event)"></li>
+            <li><img data-number='5' alt="avatar" src="img/avatar_m_1.png" ng-click="getAvatar($event)"></li>
+            <li><img data-number='6' alt="avatar" src="img/avatar_m_2.png" ng-click="getAvatar($event)"></li>
+            <li><img data-number='7' alt="avatar" src="img/avatar_m_3.png" ng-click="getAvatar($event)"></li>
+            <li><img data-number='8' alt="avatar" src="img/avatar_m_4.png" ng-click="getAvatar($event)"></li>
+        </ul>
+    </div>
+    <div class="footer" >
+        <button ng-click="EndCreateUser()">Далее</button>
+        <span>Данные вы сможете позже изменить в настройках</span>
+    </div>
+    
+</div>
