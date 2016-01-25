@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" id="com.vista.KrokApp" version="1.0.0">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0"  xmlns:gap = "http://phonegap.com/ns/1.0" id="com.vista.KrokApp" version="0.0.1">
     <name>KrokApp</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
@@ -8,6 +8,7 @@
         Apache Cordova Team
     </author>
     <content src="index.html"/>
+    <preference name="phonegap-version" value="3.7.0"/>
     <plugin name="cordova-plugin-whitelist" version="1"/>
     <access origin="*"/>
     <allow-intent href="http://*/*"/>
