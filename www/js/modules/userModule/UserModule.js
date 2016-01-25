@@ -35,13 +35,13 @@ UserModule.controller('AppController', AppController);
 
 function AppController($scope, $location, $http, $rootScope) {
     $rootScope.userData = {};
-    var req = $http.get("http://krockappbackend/index.php?deviceId=testid&action=getLogin");
+    var req = $http.get("http://192.168.0.101/index.php?deviceId=testid&action=getLogin");
     req.success(function (data, status, headers, config) {
         console.log(data);
         if (data.data) {
             window.location = "#/mainmenu";
             $rootScope.userData.login = data.data[0].user_login;
-            $rootScope.userData.id = data.data[0].id;
+            $rootScope.userData.id = data.data[0].user_login;
         }
         else {
             $scope.message = "HomeController";
