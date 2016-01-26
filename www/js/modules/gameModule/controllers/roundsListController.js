@@ -13,7 +13,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
     $scope.gameId = $routeParams.gameId;
 
     $scope.getOpenGames = function () {
-        var req = $http.get("http://krockappbackend/index.php?&action=createRoom?&action=getOpenGames&username=" + $rootScope.userData.login);
+        var req = $http.get("http://192.168.0.101/index.php?&action=createRoom?&action=getOpenGames&username=" + $rootScope.userData.login);
         req.success(function (data, status, headers, config) {
             console.log(data);
             $rootScope.gameData.games = data.data;
@@ -102,7 +102,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
 
     };
     $scope.getCategoriesList = function () {
-        var req = $http.get("http://krockappbackend/index.php?&action=getCategory");
+        var req = $http.get("http://192.168.0.101/index.php?&action=getCategory");
         req.success(function (data, status, headers, config) {
 //            console.log(status, data);
             $rootScope.gameData.games[$scope.SearchGameById($scope.gameId)].EmptyCategoriesList = data.data;

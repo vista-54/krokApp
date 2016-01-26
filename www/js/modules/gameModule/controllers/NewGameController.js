@@ -32,7 +32,7 @@ function NewGameController($scope, $http, $rootScope) {
         else {
             result = "Поражение";
         }
-        var req = $http.get("http://krockappbackend/index.php?&action=gameEnd&idgame=" + $scope.gameId + "&user_id=" + $rootScope.userData.id + "&resultGame=" + result);
+        var req = $http.get("http://192.168.0.101/index.php?&action=gameEnd&idgame=" + $scope.gameId + "&user_id=" + $rootScope.userData.id + "&resultGame=" + result);
         req.success(function (data, status, headers, config) {
             console.log(data);
         });
@@ -72,7 +72,7 @@ function NewGameController($scope, $http, $rootScope) {
     $rootScope.gameData.games = [];
 
     $scope.getOpenGames = function () {
-        var req = $http.get("http://krockappbackend/index.php?&action=getOpenGames&username=" + $rootScope.userData.login);
+        var req = $http.get("http://192.168.0.101/index.php?&action=getOpenGames&username=" + $rootScope.userData.login);
         req.success(function (data, status, headers, config) {
             console.log(data);
             $rootScope.gameData.games = data.data;
@@ -83,7 +83,7 @@ function NewGameController($scope, $http, $rootScope) {
         });
     };
     $scope.getHistory = function () {
-        var req = $http.get("http://krockappbackend/index.php?&action=getHistoryGames&userId=" + $rootScope.userData.id);
+        var req = $http.get("http://192.168.0.101/index.php?&action=getHistoryGames&userId=" + $rootScope.userData.id);
         req.success(function (data, status, headers, config) {
             console.log(data);
 
@@ -100,7 +100,7 @@ function NewGameController($scope, $http, $rootScope) {
         $rootScope.gameData.type = type;
 
         console.log("CategorySelected");
-        var req = $http.get("http://krockappbackend/index.php?&action=createRoom?&action=searchEmptyRoom&username=" + $rootScope.userData.login);
+        var req = $http.get("http://192.168.0.101/index.php?&action=createRoom?&action=searchEmptyRoom&username=" + $rootScope.userData.login);
         req.success(function (data, status, headers, config) {
             console.log(status, data);
 //
