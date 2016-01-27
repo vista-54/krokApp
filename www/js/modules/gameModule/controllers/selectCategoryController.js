@@ -9,15 +9,15 @@ gameModule.controller('selectCategoryController', selectCategoryController);
 function selectCategoryController($scope, $http, $rootScope) {
 
 
-    $scope.SearchGameById = function (id) {
-        for (var i in $rootScope.gameData.games)
-        {
-            var obj = $rootScope.gameData.games[i];
-            if (obj.id === id) {
-                return i;
-            }
-        }
-    };
+//    $scope.SearchGameById = function (id) {
+//        for (var i in $rootScope.gameData.games)
+//        {
+//            var obj = $rootScope.gameData.games[i];
+//            if (obj.id === id) {
+//                return i;
+//            }
+//        }
+//    };
     var game = $rootScope.gameData.games[$scope.SearchGameById($rootScope.CurrentGame.id)];
     $scope.categoryLists = game.EmptyCategoriesList;
 
@@ -27,7 +27,7 @@ function selectCategoryController($scope, $http, $rootScope) {
 //        $rootScope.gameData.games[$scope.SearchGameById($rootScope.CurrentGame.id)].BusyCategoriesList.push(CatId.category);
 //        $rootScope.gameData.category.push(CatId.category._name);
         console.log("CategorySelected");
-        var req = $http.get("http://192.168.1.113/index.php?&action=getQuestions&categotyId=" + CatId.category.id + "&round=" + round + "&idGame=" + game.id);
+        var req = $http.get("http://192.168.0.101/index.php?&action=getQuestions&categotyId=" + CatId.category.id + "&round=" + round + "&idGame=" + game.id);
         req.success(function (data, status, headers, config) {
             console.log(status, data);
             if (data.data) {

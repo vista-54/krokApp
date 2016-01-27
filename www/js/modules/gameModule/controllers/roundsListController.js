@@ -7,48 +7,83 @@
 
 gameModule.controller('roundsListController', roundsListController);
 function roundsListController($scope, $rootScope, $routeParams, $http) {
-
-
-    $rootScope.CurrentGame = {};
-    $scope.gameId = $routeParams.gameId;
-
-    $scope.getOpenGames = function () {
-        var req = $http.get("http://192.168.1.113/index.php?&action=createRoom?&action=getOpenGames&username=" + $rootScope.userData.login);
+    $scope.waitStepSecondPlayer = $rootScope.waitStepSecondPlayer;//чей ход булин
+    $scope.gameId = $routeParams.gameId; //айди текущей игры
+    $scope.game = $rootScope.gameData.games[$rootScope.SearchGameById($scope.gameId)];//текущая игра
+    $rootScope.CurrentGame = {};//объект текущей игры
+    /*Конец игры Бэта*/
+    $rootScope.gameEnd = function (game) {
+//        if (game.host === $rootScope.gameData.login) {
+        var result;
+        var TotalScoreHost = game.scoreP1r1 + game.scoreP1r2 + game.scoreP1r3 + game.scoreP1r4 + game.scoreP1r5 + game.scoreP1r6;
+//        }
+//        else if (game.player2 === $rootScope.gameData.login)
+//        {
+        var TotalScorePlayer2 = game.scoreP2r1 + game.scoreP2r2 + game.scoreP2r3 + game.scoreP2r4 + game.scoreP2r5 + game.scoreP2r6;
+//        }
+        var winner;
+        if (TotalScoreHost > TotalScorePlayer2)
+        {
+            winner = game.host;
+        }
+        else {
+            winner = game.player2;
+        }
+        if (winner === $rootScope.gameData.login)
+        {
+            result = "Победа";
+        }
+        else {
+            result = "Поражение";
+        }
+        var req = $http.get("http://192.168.0.101/index.php?&action=gameEnd&idgame=" + $scope.gameId + "&user_id=" + $rootScope.userData.id + "&resultGame=" + result);
         req.success(function (data, status, headers, config) {
             console.log(data);
-            $rootScope.gameData.games = data.data;
-            $scope.game = $rootScope.gameData.games[$scope.SearchGameById($scope.gameId)];
-            if ($rootScope.checkGameEnd($scope.game)) {
-                $scope.gameEnd($scope.game);
-            }
-            if ($scope.game.status === "2" && $scope.game.host === $rootScope.userData.login) {
-                $scope.waitStepSecondPlayer = false;
-            }
-            else if ($scope.game.status === "1" && $scope.game.host !== $rootScope.userData.login) {
-                $scope.waitStepSecondPlayer = false;
-
-            }
-            else {
-                $scope.waitStepSecondPlayer = true;
-            }
-//            $scope.games = $rootScope.gameData.games;
         });
         req.error(function (data, status, headers, config) {
             console.log(data);
         });
     };
+    /*
+     $scope.getOpenGames = function () {
+     var req = $http.get("http://192.168.0.101/index.php?&action=createRoom?&action=getOpenGames&username=" + $rootScope.userData.login);
+     req.success(function (data, status, headers, config) {
+     console.log(data);
+     $rootScope.gameData.games = data.data;
+     $scope.game = $rootScope.gameData.games[$scope.SearchGameById($scope.gameId)];
+     if ($rootScope.checkGameEnd($scope.game)) {
+     $scope.gameEnd($scope.game);
+     }
+     if ($scope.game.status === "2" && $scope.game.host === $rootScope.userData.login) {
+     $scope.waitStepSecondPlayer = false;
+     
+     }
+     else if ($scope.game.status === "1" && $scope.game.host !== $rootScope.userData.login) {
+     $scope.waitStepSecondPlayer = false;
+     
+     }
+     else {
+     $scope.waitStepSecondPlayer = true;
+     }
+     $rootScope.waitStepSecondPlayer=$scope.waitStepSecondPlayer;
+     //            $scope.games = $rootScope.gameData.games;
+     });
+     req.error(function (data, status, headers, config) {
+     console.log(data);
+     });
+     };
+     */
 
-
-    $scope.getOpenGames();
-    $scope.SearchGameById = function (id) {
-        for (var i in $rootScope.gameData.games)
-        {
-            var obj = $rootScope.gameData.games[i];
-            if (obj.id === id) {
-                return parseInt(i);
-            }
-        }
-    };
+    //$scope.getOpenGames();
+//    $scope.SearchGameById = function (id) {
+//        for (var i in $rootScope.gameData.games)
+//        {
+//            var obj = $rootScope.gameData.games[i];
+//            if (obj.id === id) {
+//                return parseInt(i);
+//            }
+//        }
+//    };
     $scope.isHost = function () {
         if ($scope.currentGame.host === $rootScope.userData.login) {
             $scope.currentRound = $rootScope.CurrentGame.round;
@@ -102,7 +137,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
 
     };
     $scope.getCategoriesList = function () {
-        var req = $http.get("http://192.168.1.113/index.php?&action=getCategory");
+        var req = $http.get("http://192.168.0.101/index.php?&action=getCategory");
         req.success(function (data, status, headers, config) {
 //            console.log(status, data);
             $rootScope.gameData.games[$scope.SearchGameById($scope.gameId)].EmptyCategoriesList = data.data;

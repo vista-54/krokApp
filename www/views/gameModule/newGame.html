@@ -8,8 +8,13 @@
         <a data-number="1" href="">Поиск по имени</a>
     </nav>
     <ul>
+        <li ng-repeat="activegame in activegames">
+            
+        </li>
+    </ul>
+    <ul>
         <li ng-repeat="game in games">
-            <a href="#/newgame/{{game.id}}" >GAME: {{game.id}}</a>
+            <a href="#/newgame/{{game.id}}" >GAME: {{checkHost(game.host)?game.host:game.player2}}</a>
         </li>
     </ul>
         

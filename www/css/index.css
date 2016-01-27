@@ -25,6 +25,8 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
     line-height: 1;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    color:rgb(81, 81, 81);
 }
 ol, ul {
     list-style: none;
@@ -134,17 +136,50 @@ table {
 /*USERMODULE END*/
 
 /*GAMEMODULE START*/
+.newGameBtn{
+    color: rgb(80,80,80);
+    font-size: 25px;
+    font-weight: 600;
+}
 .mainMenu{
     text-align: center;
 }
-.mainMenu a{
+.mainMenu ul li{
+    margin: 20px 0 0 0;
+    overflow: hidden;
+}
+.mainMenu nav{
+    overflow: hidden;
+}
+.opponentNickAndStep{
+    float: left;
     display: block;
 }
+.step{
+    display: block;
+}
+.roundpart{
+    display: block;
+    float: right;
+    padding: 0 40px 0 0;
+}
+.mainMenu nav a:nth-child(2n+1) {
+    display: block;
+    text-decoration: none;
+    float:left;
+    padding: 10px;
+}
+.mainMenu nav a:nth-child(2n+2) {
+    display: block;
+    text-decoration: none;
+    float:right;
+    padding: 10px;
+}
 .mainMenu nav a  i{
-    text-align: center;
+    /*text-align: center;*/
     font-size: 30px;
-    float: left;
-    width: 48%;
+    /*float: left;*/
+    /*width: 48%;*/
 }
 .mainMenu h1{
     text-align: center;
@@ -157,3 +192,4 @@ table {
     text-decoration: none;
 }
 /*GAMEMODULE END*/
+
