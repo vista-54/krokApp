@@ -102,7 +102,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
 
     };
     $scope.getCategoriesList = function () {
-        var req = $http.get("http://192.168.0.101/index.php?&action=getCategory");
+        var req = $http.get("http://192.168.1.113/index.php?&action=getCategory");
         req.success(function (data, status, headers, config) {
 //            console.log(status, data);
             $rootScope.gameData.games[$scope.SearchGameById($scope.gameId)].EmptyCategoriesList = data.data;
