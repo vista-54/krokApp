@@ -11,8 +11,7 @@
         <tr>
             <th>Раунд</th>
             <th>Вы</th>
-            <th>{{checkHost(game.host) ? game.player2:game.host }}</th>
-
+            <th>{{checkHost(game.host) ? game.player2 : game.host}}</th>
         </tr>
         <tr><td class="roundTable">1</td><td>------</td><td>------</td></tr>
         <tr><td class="scoreTable">{{checkHost(game.host) ? (game.scoreP2r1 === null ? '-' : game.scoreP2r1) : (game.scoreP1r1 === null ? '-' : game.scoreP1r1)}}_{{checkHost(game.host) ? (game.scoreP1r1 === null ? '-' : game.scoreP1r1) : (game.scoreP2r1 === null ? '-' : game.scoreP2r1)}}</td></tr>
