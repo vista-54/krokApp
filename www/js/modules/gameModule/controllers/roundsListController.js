@@ -12,6 +12,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
     $scope.game = $rootScope.gameData.games[$rootScope.SearchGameById($scope.gameId)];//текущая игра
     $rootScope.CurrentGame = {};//объект текущей игры
     /*Конец игры Бэта*/
+     $scope.checkHost=$rootScope.checkHost;
     $rootScope.gameEnd = function (game) {
 //        if (game.host === $rootScope.gameData.login) {
         var result;

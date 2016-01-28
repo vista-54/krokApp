@@ -53,8 +53,10 @@ function MainMenuController($scope, $http, $rootScope) {
     };
     $rootScope.gameData = {};
     $rootScope.gameData.games = [];
+    $scope.checkHost=$rootScope.checkHost;
     /*Проверка не мы ли хост*/
-    $scope.checkHost = function (hostNick) {
+    
+    $rootScope.checkHost = function (hostNick) {
         if (hostNick === $rootScope.userData.login) {
             return true;
         }
