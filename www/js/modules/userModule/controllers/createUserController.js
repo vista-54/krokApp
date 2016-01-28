@@ -46,7 +46,7 @@ function CreateUserController($scope, $rootScope, $http) {
         console.log("EndCreateUser");
         $rootScope.userData.login = $scope.login;
         console.log($rootScope.userData);
-        var req = $http.get("http://192.168.0.101/index.php?user_login=" + $rootScope.userData.login + "&user_gender=" + $rootScope.userData.gender + "&deviceId=test&avatar=" + $rootScope.userData.avatar + "&user_language=" + $rootScope.userData.lng + "&action=reg");
+        var req = $http.get($rootScope.mainUrl+"index.php?user_login=" + $rootScope.userData.login + "&user_gender=" + $rootScope.userData.gender + "&deviceId=test&avatar=" + $rootScope.userData.avatar + "&user_language=" + $rootScope.userData.lng + "&action=reg");
         req.success(function (data, status, headers, config) {
             console.log(status, data);
             if (data.data) {

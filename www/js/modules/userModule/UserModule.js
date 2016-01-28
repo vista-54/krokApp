@@ -34,8 +34,9 @@ UserModule.config(['$routeProvider', function ($routeProvide) {
 UserModule.controller('AppController', AppController);
 
 function AppController($scope, $location, $http, $rootScope) {
+    $rootScope.mainUrl = 'http://192.168.0.103/';
     $rootScope.userData = {};
-    var req = $http.get("http://192.168.0.101/index.php?deviceId=test&action=getLogin");
+    var req = $http.get($rootScope.mainUrl + "index.php?deviceId=test&action=getLogin");
     req.success(function (data, status, headers, config) {
         console.log(data);
         if (data.data) {

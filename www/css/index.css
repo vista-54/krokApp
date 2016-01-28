@@ -17,6 +17,7 @@ time, mark, audio, video {
     font-size: 100%;
     font: inherit;
     vertical-align: baseline;
+    text-decoration: none;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
@@ -42,6 +43,7 @@ q:before, q:after {
 table {
     border-collapse: collapse;
     border-spacing: 0;
+    margin: 0 0 0 20px;
 }
 /*USERMODULE START*/
 .inactive{
@@ -190,6 +192,83 @@ table {
 .setting nav a{
     display: block;
     text-decoration: none;
+}
+.battle{
+
+}
+.battle a{
+    float:left;
+    padding: 0 0 0 20px;
+    font-size: 25px;
+    color: rgb(81, 81, 81);
+}
+.battle h1{
+    text-align: center;
+    font-size: 25px;
+}
+.roundTable{
+    padding: 10px 0 0 0;
+    text-align: center;
+}
+.scoreTable{
+    padding: 10px 0 0 0;
+    text-align: center;
+}
+.battle button{
+    margin: 10px 0 0 20px;
+    background: green;
+    border: none;
+    font-size: 25px;
+    color: rgb(255,255,255);
+}
+.selectCategory ul li {
+    /*border: 0;*/
+    margin: 20px 0 0 0;
+}
+.selectCategory ul li button {
+    border: 1px #000 solid;
+    width: 80%;
+    padding: 10px 0 10px 0;
+
+}
+.selectCategory ul li:nth-child(3n+1) button{
+    background: gold;
+}
+.selectCategory ul li:nth-child(3n+2) button{
+    background: greenyellow;
+}
+.selectCategory ul li:nth-child(3n+3) button{
+    background: rosybrown;
+}
+.selectCategory ul{
+    margin: 20px 0 0 0;
+    text-align: center;
+}
+.getQuest{
+    display: block;
+    border: 1px solid rgb(0,0,0);
+    width: 70%;
+    text-align: center;
+    margin: 20px auto;
+    padding: 30px 0 30px 0;
+}
+.questionText{
+    border: 1px solid rgb(0,0,0);
+    margin: 10px auto;
+    width: 70%;
+    display: block;
+    text-align: center;
+}
+.answerText{
+    border: 1px solid rgb(0,0,0);
+    text-align: center;
+    margin: 10px auto 10px auto;
+    padding: 5px 0 5px 0;
+    width: 70%;
+}
+.answerText a{
+    display: block;
+    width: 100%;
 }
 /*GAMEMODULE END*/
 

@@ -42,6 +42,7 @@ gameModule.config(['$routeProvider', function ($routeProvide) {
     }]);
 gameModule.controller('MainMenuController', MainMenuController);
 function MainMenuController($scope, $http, $rootScope) {
+   
     $scope.waitStepSecondPlayer = $rootScope.waitStepSecondPlayer;
     /*Проверка не закончена ли игра*/
     $rootScope.checkGameEnd = function (g) {
@@ -95,7 +96,7 @@ function MainMenuController($scope, $http, $rootScope) {
     $scope.getCurrentRound=$rootScope.getCurrentRound;
     /*Поулчаем список незавершенных нами игр*/
     $rootScope.getOpenGames = function () {
-        var req = $http.get("http://192.168.0.101/index.php?&action=getOpenGames&username=" + $rootScope.userData.login);
+        var req = $http.get($rootScope.mainUrl+"index.php?&action=getOpenGames&username=" + $rootScope.userData.login);
         req.success(function (data, status, headers, config) {
             console.log(data);
             $rootScope.gameData.games = data.data;

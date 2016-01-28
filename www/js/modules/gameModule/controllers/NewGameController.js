@@ -21,7 +21,7 @@ function NewGameController($scope, $http, $rootScope) {
 
 
     $scope.getHistory = function () {
-        var req = $http.get("http://192.168.0.101/index.php?&action=getHistoryGames&userId=" + $rootScope.userData.id);
+        var req = $http.get($rootScope.mainUrl+"index.php?&action=getHistoryGames&userId=" + $rootScope.userData.id);
         req.success(function (data, status, headers, config) {
             console.log(data);
 
@@ -38,7 +38,7 @@ function NewGameController($scope, $http, $rootScope) {
         $rootScope.gameData.type = type;
 
         console.log("CategorySelected");
-        var req = $http.get("http://192.168.0.101/index.php?&action=createRoom?&action=searchEmptyRoom&username=" + $rootScope.userData.login);
+        var req = $http.get($rootScope.mainUrl+"index.php?&action=createRoom?&action=searchEmptyRoom&username=" + $rootScope.userData.login);
         req.success(function (data, status, headers, config) {
             console.log(status, data);
 //

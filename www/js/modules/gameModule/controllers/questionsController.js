@@ -7,6 +7,7 @@
 
 gameModule.controller('questionsController', questionsController);
 function questionsController($scope, $rootScope, $http) {
+    $scope.categoryName=$rootScope.CurrentGame.categoryName;
     $scope.CorrectsAnswerCount = 0;
     $scope.isGetQuestBtnActive = true;
 //    $scope.questions = $rootScope.gameData.questionsArr;
@@ -25,7 +26,8 @@ function questionsController($scope, $rootScope, $http) {
     };
     $scope.Getquestion = function () {
         if ($scope.questCount === 5) {
-            window.location = "#/newgame/" + $rootScope.CurrentGame.id;
+//            window.location = "#/newgame/" + $rootScope.CurrentGame.id;
+            window.location = "#mainmenu";
         }
         $scope.isGetQuestBtnActive = false;
         $scope.answeres = [];
@@ -69,7 +71,7 @@ function questionsController($scope, $rootScope, $http) {
     };
 
     $scope.sendRoundInfo = function () {
-        var req = $http.get("http://192.168.0.101/index.php?&action=RoundEnd&idgame=" + $scope.currentGame.id + "&score=" + $scope.score + "&ishost=" + $scope.isHost() + "&round=" + $scope.currentRound);
+        var req = $http.get($rootScope.mainUrl+"index.php?&action=RoundEnd&idgame=" + $scope.currentGame.id + "&score=" + $scope.score + "&ishost=" + $scope.isHost() + "&round=" + $scope.currentRound);
         req.success(function (data, status, headers, config) {
             console.log(data);
             if (data.data) {

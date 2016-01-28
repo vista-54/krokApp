@@ -36,7 +36,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
         else {
             result = "Поражение";
         }
-        var req = $http.get("http://192.168.0.101/index.php?&action=gameEnd&idgame=" + $scope.gameId + "&user_id=" + $rootScope.userData.id + "&resultGame=" + result);
+        var req = $http.get($rootScope.mainUrl+"index.php?&action=gameEnd&idgame=" + $scope.gameId + "&user_id=" + $rootScope.userData.id + "&resultGame=" + result);
         req.success(function (data, status, headers, config) {
             console.log(data);
         });
@@ -137,7 +137,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
 
     };
     $scope.getCategoriesList = function () {
-        var req = $http.get("http://192.168.0.101/index.php?&action=getCategory");
+        var req = $http.get($rootScope.mainUrl+"index.php?&action=getCategory");
         req.success(function (data, status, headers, config) {
 //            console.log(status, data);
             $rootScope.gameData.games[$scope.SearchGameById($scope.gameId)].EmptyCategoriesList = data.data;
