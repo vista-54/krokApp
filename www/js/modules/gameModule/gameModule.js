@@ -115,18 +115,18 @@ function MainMenuController($scope, $http, $rootScope) {
                     $scope.gameEnd($scope.CurrGame);
                 }
                 if ($scope.CurrGame.status === "2" && $scope.CurrGame.host === $rootScope.userData.login) {
-                    $scope.games.waitStepSecondPlayer = false;
+                    $scope.games[i].waitStepSecondPlayer = false;
                 }
                 else if ($scope.CurrGame.status === "1" && $scope.CurrGame.host !== $rootScope.userData.login) {
-                    $scope.games.waitStepSecondPlayer = false;
+                    $scope.games[i].waitStepSecondPlayer = false;
                 }
                 else if ($scope.CurrGame.status === "0") {
-                    $scope.games.waitStepSecondPlayer = false;
+                    $scope.games[i].waitStepSecondPlayer = false;
                 }
                 else {
-                    $scope.games.waitStepSecondPlayer = true;
+                    $scope.games[i].waitStepSecondPlayer = true;
                 }
-                $rootScope.waitStepSecondPlayer = $scope.games.waitStepSecondPlayer;
+                $rootScope.waitStepSecondPlayer = $scope.games[i].waitStepSecondPlayer;
             }
         });
         req.error(function (data, status, headers, config) {
