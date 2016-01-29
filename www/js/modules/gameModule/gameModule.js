@@ -31,10 +31,10 @@ gameModule.config(['$routeProvider', function ($routeProvide) {
                     templateUrl: 'views/gameModule/selectCategory.html',
                     controller: 'selectCategoryController'
                 })
-//                .when('/roundsList', {
-//                    templateUrl: 'views/gameModule/rounds.html',
-//                    controller: 'roundsListController'
-//                })
+                .when('/history', {
+                    templateUrl: 'views/gameModule/history.html',
+                    controller: 'historyController'
+                })
                 .otherwise({
                     redirectTo: '/'
                 });
@@ -42,7 +42,7 @@ gameModule.config(['$routeProvider', function ($routeProvide) {
     }]);
 gameModule.controller('MainMenuController', MainMenuController);
 function MainMenuController($scope, $http, $rootScope) {
-   
+
     $scope.waitStepSecondPlayer = $rootScope.waitStepSecondPlayer;
     /*Проверка не закончена ли игра*/
     $rootScope.checkGameEnd = function (g) {
@@ -53,9 +53,9 @@ function MainMenuController($scope, $http, $rootScope) {
     };
     $rootScope.gameData = {};
     $rootScope.gameData.games = [];
-    $scope.checkHost=$rootScope.checkHost;
+    $scope.checkHost = $rootScope.checkHost;
     /*Проверка не мы ли хост*/
-    
+
     $rootScope.checkHost = function (hostNick) {
         if (hostNick === $rootScope.userData.login) {
             return true;
@@ -95,11 +95,12 @@ function MainMenuController($scope, $http, $rootScope) {
             return 6;
         }
     };
-    $scope.getCurrentRound=$rootScope.getCurrentRound;
+    $scope.getCurrentRound = $rootScope.getCurrentRound;
     /*Поулчаем список незавершенных нами игр*/
     $rootScope.getOpenGames = function () {
-        var req = $http.get($rootScope.mainUrl+"index.php?&action=getOpenGames&username=" + $rootScope.userData.login);
+        var req = $http.get($rootScope.mainUrl + "index.php?&action=getOpenGames&username=" + $rootScope.userData.login);
         req.success(function (data, status, headers, config) {
+//            $rootScope.getHistoryGames();
             console.log(data);
             $rootScope.gameData.games = data.data;
             $scope.games = $rootScope.gameData.games;
@@ -129,8 +130,10 @@ function MainMenuController($scope, $http, $rootScope) {
         });
 
     };
-
+ 
     $rootScope.getOpenGames();
+    
+    
     console.log("MainMenu Controller");
     /*Функция открытия меню*/
     $scope.openMenu = function () {

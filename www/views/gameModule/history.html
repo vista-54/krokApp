@@ -1,0 +1,22 @@
+<div class="hostyryBattle">
+    <a href="#/mainmenu"><</a><h1>Последние батлы</h1>
+    <div class="historyGames">
+        <ul>
+            <li ng-repeat="game in Hgames">
+                <a href="#/newgame/{{game.id}}" >
+                    <span class="opponentNickAndStep">
+                        <span>{{checkHost(game.host) ? game.player2 : game.host}}</span>
+                        <span>{{getResult(game)}}</span>
+                        <!--<span>{{(}}</span>-->
+<!--(checkHost(game.host)?'Победа':'Поражение'):(checkHost(game.host)?'Поражение':'Победа')--> 
+<!--{{}}-->
+                        <!--                        <span class="step">
+                            {{game.status==='8'?'Ваш ход':(games.waitStepSecondPlayer?'Ваш ход':'Ход соперника')}}
+                        </span>-->
+                    </span>
+                    <!--<span class="roundpart" >Раунд <br>{{getCurrentRound(game)}}</span>-->
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

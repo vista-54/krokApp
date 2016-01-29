@@ -1,11 +1,13 @@
 <div class="newGame">
-<h1>Новая игра</h1>
+     <a href="#/mainmenu"><</a><h1>Новая игра</h1>
+<!--<h1></h1>-->
 <div class="selectSettingGame">
-    <h1>Марафон</h1>
+    <!--<h1>Марафон</h1>-->
     <nav>
         <!--href="#/choisecategoty"-->
-        <a data-number="1"  ng-click="RandomOpponent($event)">Случайный соперник</a>
-        <a data-number="1" href="">Поиск по имени</a>
+        <a data-number="0" class="maraphone" >Марафон</a>
+        <a data-number="1" class="multiPlGame" ng-click="RandomOpponent($event)">Случайный соперник</a>
+        <a data-number="1" class="multiPlGame" href="">Поиск по имени</a>
     </nav>
     <ul>
         <li ng-repeat="activegame in activegames">

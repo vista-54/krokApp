@@ -43,7 +43,7 @@ q:before, q:after {
 table {
     border-collapse: collapse;
     border-spacing: 0;
-       margin: 20px 0 0 20px;
+    margin: 20px 0 0 20px;
 }
 /*USERMODULE START*/
 .inactive{
@@ -206,6 +206,34 @@ table {
     text-align: center;
     font-size: 25px;
 }
+.newGame{
+
+}
+.newGame a{
+    float:left;
+    padding-left: 20px;
+    font-size: 25px;
+    color: rgb(81, 81, 81);
+}
+.newGame h1{
+    text-align: center;
+    font-size: 25px;
+}
+.maraphone{
+    display: block;
+    border-bottom: 1px solid black;
+    width: 100%;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 12px;
+    padding-left: 3px!important;
+}
+.multiPlGame{
+        padding: 17px;
+}
+.selectSettingGame nav{
+    text-align: center;
+}
 .roundTable{
     padding: 10px 0 0 0;
     text-align: center;
@@ -269,6 +297,34 @@ table {
 .answerText a{
     display: block;
     width: 100%;
+}
+.historyCnt{
+    width: 100%;
+    position: fixed;
+    text-align: center;
+    bottom: 0;
+    padding: 0 0 20px 0px;
+}
+.historyBtn{
+    background: #3E813E;
+    color: white;
+    padding: 5px 10px 5px 10px;
+}
+.hostyryBattle{
+
+}
+.hostyryBattle a{
+    float:left;
+    padding: 0 0 0 20px;
+    font-size: 25px;
+    color: rgb(81, 81, 81);
+}
+.hostyryBattle ul{
+    margin: 20px 0 0 0;
+}
+.hostyryBattle h1{
+    text-align: center;
+    font-size: 25px;
 }
 /*GAMEMODULE END*/
 
