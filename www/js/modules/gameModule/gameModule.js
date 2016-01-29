@@ -133,13 +133,16 @@ function MainMenuController($scope, $http, $rootScope) {
             console.log(data);
         });
     };
-//    $rootScope.getOpenGames();
-    $scope.intervalID = setInterval(function () {
-        if (!$rootScope.IntervalStop) {
-            $rootScope.getOpenGames();
-        }
-
-    }, 5000);
+    $rootScope.getOpenGames();
+    $scope.refresh=function(){
+        $rootScope.getOpenGames();
+    }
+//    $scope.intervalID = setInterval(function () {
+//        if (!$rootScope.IntervalStop) {
+//            $rootScope.getOpenGames();
+//        }
+//
+//    }, 5000);
 //    $rootScope.intervalID = $scope.intervalID;
 //    $rootScope.getOpenGames();
 
