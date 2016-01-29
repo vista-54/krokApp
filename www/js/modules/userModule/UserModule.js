@@ -6,9 +6,7 @@
 
 
 var UserModule = angular.module('UserModule', ['ngRoute', 'ngCordova', 'ui.router', 'gameModule']);
-//document.addEventListener("deviceready", function () {
-//    console.log("Device Is ready!!!");
-//}, false);
+
 UserModule.config(['$routeProvider', function ($routeProvide) {
         $routeProvide
                 .when('/', {
@@ -35,28 +33,34 @@ UserModule.controller('AppController', AppController);
 
 function AppController($scope, $location, $http, $rootScope) {
     $rootScope.mainUrl = 'http://192.168.0.103/';
+
     $rootScope.userData = {};
-    var req = $http.get($rootScope.mainUrl + "index.php?deviceId="+device.uuid+"&action=getLogin");
-    req.success(function (data, status, headers, config) {
-        console.log(data);
-        if (data.data) {
-            window.location = "#/mainmenu";
-            $rootScope.userData.login = data.data[0].user_login;
-            $rootScope.userData.id = data.data[0].user_login;
-        }
-        else {
+    document.addEventListener("deviceready", function () {
+        var devId = device.uuid;
+        console.log("Device Is ready!!!");
+        var req = $http.get($rootScope.mainUrl + "index.php?deviceId=" + devId + "&action=getLogin");
+        req.success(function (data, status, headers, config) {
+            console.log(data);
+            if (data.data) {
+                window.location = "#/mainmenu";
+                $rootScope.userData.login = data.data[0].user_login;
+                $rootScope.userData.id = data.data[0].user_login;
+            }
+            else {
+                $scope.message = "HomeController";
+                console.log($scope.message);
+                window.location = "#/selectLng";
+            }
+        });
+        req.error(function (data, status, headers, config) {
+            console.log(data);
+
             $scope.message = "HomeController";
             console.log($scope.message);
             window.location = "#/selectLng";
-        }
-    });
-    req.error(function (data, status, headers, config) {
-        console.log(data);
+        });
 
-        $scope.message = "HomeController";
-        console.log($scope.message);
-        window.location = "#/selectLng";
-    });
+    }, false);
 
 }
 
