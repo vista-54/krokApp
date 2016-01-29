@@ -11,7 +11,7 @@
                     <span class="opponentNickAndStep">
                         <span>{{checkHost(game.host) ? game.player2 : game.host}}</span>
                         <span class="step">
-                            {{game.status==='8'?'Ваш ход':($scope.waitStepSecondPlayer?'Ваш ход':'Ход соперника')}}
+                            {{game.status==='8'?'Ваш ход':(games.waitStepSecondPlayer?'Ваш ход':'Ход соперника')}}
                         </span>
                     </span>
                     <span class="roundpart" >Раунд <br>{{getCurrentRound(game)}}</span>

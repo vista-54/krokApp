@@ -110,17 +110,17 @@ function MainMenuController($scope, $http, $rootScope) {
                     $scope.gameEnd($scope.CurrGame);
                 }
                 if ($scope.CurrGame.status === "2" && $scope.CurrGame.host === $rootScope.userData.login) {
-                    $scope.waitStepSecondPlayer = false;
+                    $scope.games.waitStepSecondPlayer = false;
 
                 }
                 else if ($scope.CurrGame.status === "1" && $scope.CurrGame.host !== $rootScope.userData.login) {
-                    $scope.waitStepSecondPlayer = false;
+                    $scope.games.waitStepSecondPlayer = false;
 
                 }
                 else {
-                    $scope.waitStepSecondPlayer = true;
+                    $scope.games.waitStepSecondPlayer = true;
                 }
-                $rootScope.waitStepSecondPlayer = $scope.waitStepSecondPlayer;
+                $rootScope.waitStepSecondPlayer = $scope.games.waitStepSecondPlayer;
             }
         });
 
