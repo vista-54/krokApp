@@ -15,30 +15,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
     /*Конец игры Бэта*/
     $scope.checkHost = $rootScope.checkHost;
     $rootScope.gameEnd = function (game) {
-//        if (game.host === $rootScope.gameData.login) {
-        var result;
-        var TotalScoreHost = game.scoreP1r1 + game.scoreP1r2 + game.scoreP1r3 + game.scoreP1r4 + game.scoreP1r5 + game.scoreP1r6;
-//        }
-//        else if (game.player2 === $rootScope.gameData.login)
-//        {
-        var TotalScorePlayer2 = game.scoreP2r1 + game.scoreP2r2 + game.scoreP2r3 + game.scoreP2r4 + game.scoreP2r5 + game.scoreP2r6;
-//        }
-        var winner;
-        if (TotalScoreHost > TotalScorePlayer2)
-        {
-            winner = game.host;
-        }
-        else {
-            winner = game.player2;
-        }
-        if (winner === $rootScope.gameData.login)
-        {
-            result = "Победа";
-        }
-        else {
-            result = "Поражение";
-        }
-        var req = $http.get($rootScope.mainUrl + "index.php?&action=gameEnd&idgame=" + $scope.gameId + "&user_id=" + $rootScope.userData.id + "&resultGame=" + result);
+        var req = $http.get($rootScope.mainUrl + "index.php?&action=gameEnd&idgame=" + $scope.gameId);
         req.success(function (data, status, headers, config) {
             console.log(data);
         });

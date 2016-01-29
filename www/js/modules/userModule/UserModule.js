@@ -40,29 +40,29 @@ function AppController($scope, $location, $http, $rootScope) {
     $rootScope.userData = {};
     document.addEventListener("deviceready", function () {
         var devId = device.uuid;
-    console.log("Device Is ready!!!");
-//    var req = $http.get($rootScope.mainUrl + "index.php?deviceId=ded3c217d39e86c1&action=getLogin");
+        console.log("Device Is ready!!!");
+//        var req = $http.get($rootScope.mainUrl + "index.php?deviceId=ded3c217d39e86c1&action=getLogin");
         var req = $http.get($rootScope.mainUrl + "index.php?deviceId=" + devId + "&action=getLogin");
-    req.success(function (data, status, headers, config) {
-        console.log(data);
-        if (data.data) {
-            window.location = "#/mainmenu";
-            $rootScope.userData.login = data.data[0].user_login;
-            $rootScope.userData.id = data.data[0].user_login;
-        }
-        else {
+        req.success(function (data, status, headers, config) {
+            console.log(data);
+            if (data.data) {
+                window.location = "#/mainmenu";
+                $rootScope.userData.login = data.data[0].user_login;
+                $rootScope.userData.id = data.data[0].user_login;
+            }
+            else {
+                $scope.message = "HomeController";
+                console.log($scope.message);
+                window.location = "#/selectLng";
+            }
+        });
+        req.error(function (data, status, headers, config) {
+            console.log(data);
+
             $scope.message = "HomeController";
             console.log($scope.message);
             window.location = "#/selectLng";
-        }
-    });
-    req.error(function (data, status, headers, config) {
-        console.log(data);
-
-        $scope.message = "HomeController";
-        console.log($scope.message);
-        window.location = "#/selectLng";
-    });
+        });
 
     }, false);
 

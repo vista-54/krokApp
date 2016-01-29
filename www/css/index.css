@@ -229,7 +229,7 @@ table {
     padding-left: 3px!important;
 }
 .multiPlGame{
-        padding: 17px;
+    padding: 17px;
 }
 .selectSettingGame nav{
     text-align: center;
@@ -313,18 +313,29 @@ table {
 .hostyryBattle{
 
 }
-.hostyryBattle a{
+.hostyryBattle a.header{
     float:left;
     padding: 0 0 0 20px;
     font-size: 25px;
     color: rgb(81, 81, 81);
 }
 .hostyryBattle ul{
-    margin: 20px 0 0 0;
+
+    margin: 20px 0 0 25%;
+    /*margin: 20px 0 0 0;*/
 }
 .hostyryBattle h1{
     text-align: center;
     font-size: 25px;
+}
+.historyGames ul li{
+    display: block;
+    /*overflow: hidden;*/
+    text-align: left;
+    margin: 20px 0 0 0;
+}
+.opponentNickAndResult{
+
 }
 /*GAMEMODULE END*/
 
