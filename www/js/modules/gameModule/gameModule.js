@@ -121,7 +121,7 @@ function MainMenuController($scope, $http, $rootScope) {
                     $scope.games.waitStepSecondPlayer = false;
                 }
                 else if ($scope.CurrGame.status === "0") {
-                    $scope.games.waitStepSecondPlayer = true;
+                    $scope.games.waitStepSecondPlayer = false;
                 }
                 else {
                     $scope.games.waitStepSecondPlayer = true;
