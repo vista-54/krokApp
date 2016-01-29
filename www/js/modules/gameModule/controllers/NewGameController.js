@@ -8,20 +8,21 @@
 gameModule.controller('NewGameController', NewGameController);
 
 function NewGameController($scope, $http, $rootScope) {
-
+//clearInterval($rootScope.intervalID);
+    $rootScope.IntervalStop = true;
     $rootScope.checkGameEnd = function (g) {
         if (g.scoreP1r6 !== null || g.scoreP2r6 !== null) {
             true;
         }
         return false;
     };
- 
+
 //    $rootScope.gameData = {};
 //    $rootScope.gameData.games = [];
 
 
     $scope.getHistory = function () {
-        var req = $http.get($rootScope.mainUrl+"index.php?&action=getHistoryGames&userId=" + $rootScope.userData.id);
+        var req = $http.get($rootScope.mainUrl + "index.php?&action=getHistoryGames&userId=" + $rootScope.userData.id);
         req.success(function (data, status, headers, config) {
             console.log(data);
 
@@ -38,7 +39,7 @@ function NewGameController($scope, $http, $rootScope) {
         $rootScope.gameData.type = type;
 
         console.log("CategorySelected");
-        var req = $http.get($rootScope.mainUrl+"index.php?&action=createRoom?&action=searchEmptyRoom&username=" + $rootScope.userData.login);
+        var req = $http.get($rootScope.mainUrl + "index.php?&action=createRoom?&action=searchEmptyRoom&username=" + $rootScope.userData.login);
         req.success(function (data, status, headers, config) {
             console.log(status, data);
 //
@@ -48,7 +49,7 @@ function NewGameController($scope, $http, $rootScope) {
 ////                $rootScope.gameData.idGame = data.data.idGame;
 //                var game = {id: data.data.idGame, round: data.data.gameroun, categoryLists: data.data.category};
 //                $rootScope.gameData.games.push(game);
-            $rootScope.getOpenGames();
+//            $rootScope.getOpenGames();
             window.location = "#/mainmenu";
 ////                $rootScope.gameData.games.push($rootScope.gameData.idGame);
 ////                .push($rootScope.gameData.idGame);

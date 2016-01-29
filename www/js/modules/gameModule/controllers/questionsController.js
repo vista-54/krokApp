@@ -27,7 +27,8 @@ function questionsController($scope, $rootScope, $http) {
     $scope.Getquestion = function () {
         if ($scope.questCount === 5) {
 //            window.location = "#/newgame/" + $rootScope.CurrentGame.id;
-            window.location = "#mainmenu";
+            window.location = "#/mainmenu";
+            return false;
         }
         $scope.isGetQuestBtnActive = false;
         $scope.answeres = [];

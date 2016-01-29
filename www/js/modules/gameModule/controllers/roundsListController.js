@@ -7,12 +7,13 @@
 
 gameModule.controller('roundsListController', roundsListController);
 function roundsListController($scope, $rootScope, $routeParams, $http) {
+    $rootScope.IntervalStop = true;
     $scope.waitStepSecondPlayer = $rootScope.waitStepSecondPlayer;//чей ход булин
     $scope.gameId = $routeParams.gameId; //айди текущей игры
     $scope.game = $rootScope.gameData.games[$rootScope.SearchGameById($scope.gameId)];//текущая игра
     $rootScope.CurrentGame = {};//объект текущей игры
     /*Конец игры Бэта*/
-     $scope.checkHost=$rootScope.checkHost;
+    $scope.checkHost = $rootScope.checkHost;
     $rootScope.gameEnd = function (game) {
 //        if (game.host === $rootScope.gameData.login) {
         var result;
@@ -37,7 +38,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
         else {
             result = "Поражение";
         }
-        var req = $http.get($rootScope.mainUrl+"index.php?&action=gameEnd&idgame=" + $scope.gameId + "&user_id=" + $rootScope.userData.id + "&resultGame=" + result);
+        var req = $http.get($rootScope.mainUrl + "index.php?&action=gameEnd&idgame=" + $scope.gameId + "&user_id=" + $rootScope.userData.id + "&resultGame=" + result);
         req.success(function (data, status, headers, config) {
             console.log(data);
         });
@@ -138,7 +139,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
 
     };
     $scope.getCategoriesList = function () {
-        var req = $http.get($rootScope.mainUrl+"index.php?&action=getCategory");
+        var req = $http.get($rootScope.mainUrl + "index.php?&action=getCategory");
         req.success(function (data, status, headers, config) {
 //            console.log(status, data);
             $rootScope.gameData.games[$scope.SearchGameById($scope.gameId)].EmptyCategoriesList = data.data;

@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 var gameModule = angular.module('gameModule', ['ngRoute', 'ngCordova', 'ui.router']);
-
 gameModule.config(['$routeProvider', function ($routeProvide) {
         $routeProvide
                 .when('/mainmenu', {
@@ -38,15 +37,14 @@ gameModule.config(['$routeProvider', function ($routeProvide) {
                 .otherwise({
                     redirectTo: '/'
                 });
-
     }]);
 gameModule.controller('MainMenuController', MainMenuController);
 function MainMenuController($scope, $http, $rootScope) {
-
+    $rootScope.IntervalStop = false;
     $scope.waitStepSecondPlayer = $rootScope.waitStepSecondPlayer;
     /*Проверка не закончена ли игра*/
     $rootScope.checkGameEnd = function (g) {
-        if (g.scoreP1r6 !== null || g.scoreP2r6 !== null) {
+        if (g.scoreP1r6 !== null && g.scoreP2r6 !== null) {
             return  true;
         }
         return false;
@@ -95,12 +93,18 @@ function MainMenuController($scope, $http, $rootScope) {
             return 6;
         }
     };
+//    intervalID='';
     $scope.getCurrentRound = $rootScope.getCurrentRound;
     /*Поулчаем список незавершенных нами игр*/
     $rootScope.getOpenGames = function () {
+//        if (typeof $scope.intervalID !== 'undefined') {
+            clearInterval($scope.intervalID);
+//        }
+
         var req = $http.get($rootScope.mainUrl + "index.php?&action=getOpenGames&username=" + $rootScope.userData.login);
         req.success(function (data, status, headers, config) {
 //            $rootScope.getHistoryGames();
+
             console.log(data);
             $rootScope.gameData.games = data.data;
             $scope.games = $rootScope.gameData.games;
@@ -112,11 +116,12 @@ function MainMenuController($scope, $http, $rootScope) {
                 }
                 if ($scope.CurrGame.status === "2" && $scope.CurrGame.host === $rootScope.userData.login) {
                     $scope.games.waitStepSecondPlayer = false;
-
                 }
                 else if ($scope.CurrGame.status === "1" && $scope.CurrGame.host !== $rootScope.userData.login) {
                     $scope.games.waitStepSecondPlayer = false;
-
+                }
+                else if ($scope.CurrGame.status === "0") {
+                    $scope.games.waitStepSecondPlayer = true;
                 }
                 else {
                     $scope.games.waitStepSecondPlayer = true;
@@ -124,16 +129,21 @@ function MainMenuController($scope, $http, $rootScope) {
                 $rootScope.waitStepSecondPlayer = $scope.games.waitStepSecondPlayer;
             }
         });
-
         req.error(function (data, status, headers, config) {
             console.log(data);
         });
-
     };
- 
-    $rootScope.getOpenGames();
-    
-    
+//    $rootScope.getOpenGames();
+    $scope.intervalID = setInterval(function () {
+        if (!$rootScope.IntervalStop) {
+            $rootScope.getOpenGames();
+        }
+
+    }, 5000);
+//    $rootScope.intervalID = $scope.intervalID;
+//    $rootScope.getOpenGames();
+
+
     console.log("MainMenu Controller");
     /*Функция открытия меню*/
     $scope.openMenu = function () {
