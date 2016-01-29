@@ -3,7 +3,7 @@
     <div class="historyGames">
         <ul>
             <li ng-repeat="game in Hgames">
-                <a href="#/newgame/{{game.id}}" >
+                <a>
                     <span class="opponentNickAndResult">
                         <span>{{checkHost(game.host) ? game.player2 : game.host}}</span>
                         <span>{{getResult(game)}}</span>

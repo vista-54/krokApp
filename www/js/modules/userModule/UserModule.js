@@ -32,7 +32,7 @@ UserModule.config(['$routeProvider', function ($routeProvide) {
 UserModule.controller('AppController', AppController);
 
 function AppController($scope, $location, $http, $rootScope) {
-    $rootScope.mainUrl = 'http://192.168.0.103/';
+    $rootScope.mainUrl = 'http://768646.okonel.web.hosting-test.net/';
 
 //    $rootScope.checkStep=function(){
 //        
