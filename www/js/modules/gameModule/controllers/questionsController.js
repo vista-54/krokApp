@@ -7,7 +7,7 @@
 
 gameModule.controller('questionsController', questionsController);
 function questionsController($scope, $rootScope, $http) {
-    $scope.categoryName=$rootScope.CurrentGame.categoryName;
+    $scope.categoryName = $rootScope.CurrentGame.categoryName;
     $scope.CorrectsAnswerCount = 0;
     $scope.isGetQuestBtnActive = true;
 //    $scope.questions = $rootScope.gameData.questionsArr;
@@ -72,7 +72,14 @@ function questionsController($scope, $rootScope, $http) {
     };
 
     $scope.sendRoundInfo = function () {
-        var req = $http.get($rootScope.mainUrl+"index.php?&action=RoundEnd&idgame=" + $scope.currentGame.id + "&score=" + $scope.score + "&ishost=" + $scope.isHost() + "&round=" + $scope.currentRound);
+        if ($scope.currentRound === 6) {
+            if ($scope.isLastStep) {
+                alert($scope.getResultIfLastStep($scope.currentGame));
+//                return false;
+                window.location = "#/mainmenu";
+            }
+        }
+        var req = $http.get($rootScope.mainUrl + "index.php?&action=RoundEnd&idgame=" + $scope.currentGame.id + "&score=" + $scope.score + "&ishost=" + $scope.isHost() + "&round=" + $scope.currentRound);
         req.success(function (data, status, headers, config) {
             console.log(data);
             if (data.data) {
@@ -82,6 +89,57 @@ function questionsController($scope, $rootScope, $http) {
         req.error(function (data, status, headers, config) {
             console.log(data);
         });
+    };
+    $scope.isLastStep = function () {
+        if ($scope.currentGame.scoreP1r6 === null && $scope.currentGame.scoreP2r6 === null) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    };
+    $scope.getResultIfLastStep = function (game)
+    {
+        var lastScore = parseInt($scope.score);
+        if ($scope.isHost())
+        {
+            var ScoreHost = (parseInt(game.scoreP1r1) + (parseInt(game.scoreP1r2)) + parseInt(game.scoreP1r3) + parseInt(game.scoreP1r4) + parseInt(game.scoreP1r5) + lastScore);
+            var ScorePlayer2 = (parseInt(game.scoreP2r1) + parseInt(game.scoreP2r2) + parseInt(game.scoreP2r3) + parseInt(game.scoreP2r4) + parseInt(game.scoreP2r5) + parseInt(game.scoreP2r6));
+
+        }
+        else {
+            var ScoreHost = (parseInt(game.scoreP1r1) + (parseInt(game.scoreP1r2)) + parseInt(game.scoreP1r3) + parseInt(game.scoreP1r4) + parseInt(game.scoreP1r5) + parseInt(game.scoreP1r6));
+            var ScorePlayer2 = (parseInt(game.scoreP2r1) + parseInt(game.scoreP2r2) + parseInt(game.scoreP2r3) + parseInt(game.scoreP2r4) + parseInt(game.scoreP2r5) + lastScore);
+        }
+        if ($scope.checkHost(game.host)) {
+            if (ScoreHost > ScorePlayer2) {
+                return "Вы победили игрока " + game.player2;
+            }
+            else if (ScoreHost < ScorePlayer2)
+            {
+                return "Вы проиграли игроку " + game.player2;
+            }
+            else if (ScoreHost === ScorePlayer2) {
+                return "Ничья в игре с игроком " + game.player2;
+            }
+        }
+        else {
+            if (ScoreHost > ScorePlayer2) {
+                return "Вы победили игрока " + game.host;
+            } else if (ScoreHost < ScorePlayer2 && !$scope.checkHost(game.host)) {
+                return "Вы проиграли игроку " + game.host;
+            } else if (ScoreHost === ScorePlayer2) {
+                return "Ничья в игре с игроком " + game.host;
+            }
+
+        }
+
+
+
+
+
+
+        console.log("ScoreHost=>" + ScoreHost + "ScorePlayer2=>" + ScorePlayer2);
     };
 
 }

@@ -8,6 +8,7 @@
 gameModule.controller('historyController', historyController);
 function historyController($scope, $http, $rootScope) {
 //    $scope.getHistoryGames = function () {
+    $rootScope.IntervalStop = true;
     var req = $http.get($rootScope.mainUrl + "index.php?&action=getHistoryGames&username=" + $rootScope.userData.login);
     req.success(function (data, status, headers, config) {
         console.log(data);
@@ -47,7 +48,7 @@ function historyController($scope, $http, $rootScope) {
                 return "Поражение";
             } else if (ScoreHost < ScorePlayer2 && !$scope.checkHost(game.host)) {
                 return "Победа";
-            }  else if (ScoreHost === ScorePlayer2) {
+            } else if (ScoreHost === ScorePlayer2) {
                 return "Ничья";
             }
 

@@ -98,7 +98,7 @@ function MainMenuController($scope, $http, $rootScope) {
     /*Поулчаем список незавершенных нами игр*/
     $rootScope.getOpenGames = function () {
 //        if (typeof $scope.intervalID !== 'undefined') {
-            clearInterval($scope.intervalID);
+//            clearInterval($scope.intervalID);
 //        }
 
         var req = $http.get($rootScope.mainUrl + "index.php?&action=getOpenGames&username=" + $rootScope.userData.login);
@@ -136,21 +136,21 @@ function MainMenuController($scope, $http, $rootScope) {
     $rootScope.getOpenGames();
     $scope.refresh=function(){
         $rootScope.getOpenGames();
-    }
-//    $scope.intervalID = setInterval(function () {
-//        if (!$rootScope.IntervalStop) {
-//            $rootScope.getOpenGames();
-//        }
-//
-//    }, 5000);
+    };
+    $scope.intervalID = setInterval(function () {
+        if (!$rootScope.IntervalStop) {
+            $scope.refresh();
+        }
+
+    }, 5000);
 //    $rootScope.intervalID = $scope.intervalID;
 //    $rootScope.getOpenGames();
 
 
     console.log("MainMenu Controller");
     /*Функция открытия меню*/
-    $scope.openMenu = function () {
-        console.log("OpenMenu");
-        window.location = "#/setting";
-    };
+//    $scope.openMenu = function () {
+//        console.log("OpenMenu");
+//        window.location = "#/setting";
+//    };
 }
