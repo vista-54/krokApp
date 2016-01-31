@@ -10,6 +10,7 @@ function questionsController($scope, $rootScope, $http) {
     $scope.categoryName = $rootScope.CurrentGame.categoryName;
     $scope.CorrectsAnswerCount = 0;
     $scope.isGetQuestBtnActive = true;
+    $scope.getQuestionActive = true;
 //    $scope.questions = $rootScope.gameData.questionsArr;
 
 //    $scope.answeres=$rootScope.gameData.answeresArr;
@@ -31,6 +32,7 @@ function questionsController($scope, $rootScope, $http) {
             return false;
         }
         $scope.isGetQuestBtnActive = false;
+        $scope.getQuestionActive = false;
         $scope.answeres = [];
         console.log("getQe");
         $scope.currentQuestion = $rootScope.gameData.games[$scope.SearchGameById($rootScope.CurrentGame.id)].questionsArr[ $scope.questCount].question;
@@ -48,17 +50,34 @@ function questionsController($scope, $rootScope, $http) {
         console.log($scope.answeres);
         $scope.questCount++;
     };
-    $scope.checkAnswer = function (ans) {
-
+    $scope.searchRightAnswer = function () {
+        for (var i in $scope.answeres) {
+            var obj = $scope.answeres[i];
+//            var curQid=$rootScope.gameData.games[$scope.SearchGameById($rootScope.CurrentGame.id)].questionsArr[ $scope.questCount].id;
+            if (obj.status === '1') {
+                return i;
+            }
+        }
+    };
+    $scope.checkAnswer = function (ans, key) {
+        var answ = angular.element(document.getElementsByTagName('li'));
         if (ans.answer.status === "1") {
             $scope.CorrectsAnswerCount++;
+            $(answ[key]).addClass('green');
+//            $scope.isCorrectA = 'green';
+        }
+        else {
+            $(answ[key]).addClass('red');
+
+            $(answ[$scope.searchRightAnswer()]).addClass('green');
         }
 
         $scope.score = $scope.CorrectsAnswerCount;
         if ($scope.questCount === 5) {
             $scope.sendRoundInfo();
         }
-        $scope.isGetQuestBtnActive = true;
+//        $scope.isGetQuestBtnActive = true;
+        $scope.getQuestionActive = true;
         console.log($scope.CorrectsAnswerCount);
 
     };

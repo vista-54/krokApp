@@ -29,10 +29,10 @@ function CreateUserController($scope, $rootScope, $http) {
                     break;
                 }
                 if (obj.attributes['data-number']) {
-                    angular.element(obj).removeClass('green');
+                    angular.element(obj).removeClass('greenAvatar');
                     if (obj.attributes['data-number'].value === dn) {
 //                        console.log(dn);
-                        angular.element(obj).addClass('green');
+                        angular.element(obj).addClass('greenAvatar');
                     }
                 }
              
@@ -46,7 +46,8 @@ function CreateUserController($scope, $rootScope, $http) {
         console.log("EndCreateUser");
         $rootScope.userData.login = $scope.login;
         console.log($rootScope.userData);
-        var devId=device.uuid;
+//        var devId=device.uuid;
+        var devId='testId';
         var req = $http.get($rootScope.mainUrl+"index.php?user_login=" + $rootScope.userData.login + "&user_gender=" + $rootScope.userData.gender + "&deviceId="+devId+"&avatar=" + $rootScope.userData.avatar + "&user_language=" + $rootScope.userData.lng + "&action=reg");
         req.success(function (data, status, headers, config) {
             console.log(status, data);

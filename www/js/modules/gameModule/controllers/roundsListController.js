@@ -63,6 +63,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
 //            }
 //        }
 //    };
+//    $scope.currentRound = $rootScope.getCurrentRound();
     $scope.isHost = function () {
         if ($scope.currentGame.host === $rootScope.userData.login) {
             $scope.currentRound = $rootScope.CurrentGame.round;
@@ -74,6 +75,16 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
         }
     };
     console.log("roundsListController");
+    $scope.getCurrentCategory = function (catId) {
+        var req = $http.get($rootScope.mainUrl + "index.php?&action=getCurrCat&idcat=" + catId);
+        req.success(function (data, status, headers, config) {
+            console.log(data);
+            $rootScope.CurrentGame.categoryName = data.data[0];
+        });
+        req.error(function (data, status, headers, config) {
+            console.log(data);
+        });
+    };
     $scope.play = function () {
         $rootScope.CurrentGame.isCategotySelected = false;
         //проверяем раунд 
@@ -100,6 +111,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
         }
         //берем с раунда катеорию если она не НУЛЛ
         if (res !== null) {
+            $scope.getCurrentCategory(res);
             $rootScope.CurrentGame.category = {
                 id: res
             };

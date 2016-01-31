@@ -28,6 +28,8 @@ body {
     line-height: 1;
     font-family: "Comic Sans MS", cursive, sans-serif;
     color:rgb(81, 81, 81);
+    background: -webkit-linear-gradient(top, rgba(23, 241, 0, 0.31) , rgba(178, 178, 3, 0.34)) no-repeat;
+    height: 100vh;
 }
 ol, ul {
     list-style: none;
@@ -57,13 +59,16 @@ table {
     display: inline-block;
     width: 20px;
 }
+.selectLngPage{
+    margin: 70px 0 0 0;
+}
 .selectLngPage h1{
     font-size: 22px;
     text-align: center;
 }
 .selectLngPage nav{
     text-align: center;
-    margin-top: 30px;
+    margin: 30px 50px 0 0;
 }
 .selectLngPage nav a{
     position: relative;
@@ -73,6 +78,7 @@ table {
 .selectLngPage nav a span{
     top: 8px;
     position: absolute;
+    padding: 0 0 0 5px;
 }
 .selectLngPage nav a img{
     width: 50px;
@@ -80,6 +86,7 @@ table {
 .userinfo{
     text-align: center;
     font-size: 22px;
+    margin: 30px 0 0 0;
 }
 .userinfo input{
 
@@ -99,7 +106,7 @@ table {
     padding: 0 20px 0 20px;
 }
 .selectAvatar ul li{
-    width: 50%;
+    width: 25%;
     float: left;
 }
 .selectAvatar{
@@ -124,15 +131,16 @@ table {
     border: 0;
     font-size: 25px;
     padding: 10px 0;
-    margin: 20px 0 0 0;
+    margin: 20px 0 20px 0;
 }
 .footer span{
     font-weight: 600;
 }
 .selectAvatar ul li img{
     border: 1px solid transparent;
+    width: 70px;
 }
-.green{
+.greenAvatar{
     border: 1px green solid!important;
 }
 /*USERMODULE END*/
@@ -142,6 +150,9 @@ table {
     color: rgb(80,80,80);
     font-size: 25px;
     font-weight: 600;
+    border-bottom: 2px solid;
+    display: block;
+    padding: 0 0 10px 0;
 }
 .mainMenu{
     text-align: center;
@@ -149,6 +160,10 @@ table {
 .mainMenu ul li{
     margin: 20px 0 0 0;
     overflow: hidden;
+    font-size: 22px;
+}
+.mainMenu ul li a{
+    color: rgb(80,80,80);
 }
 .mainMenu nav{
     overflow: hidden;
@@ -156,6 +171,8 @@ table {
 .opponentNickAndStep{
     float: left;
     display: block;
+    margin: 0 0 0 70px;
+    text-align: left;
 }
 .step{
     display: block;
@@ -163,7 +180,7 @@ table {
 .roundpart{
     display: block;
     float: right;
-    padding: 0 40px 0 0;
+    padding: 0 30px 0 0;
 }
 .mainMenu nav a:nth-child(2n+1) {
     display: block;
@@ -335,7 +352,27 @@ table {
     margin: 20px 0 0 0;
 }
 .opponentNickAndResult{
-
+    font-size: 22px;
+}
+.BlockGetQ{
+    height: 107px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+}
+.BlockQuestion{
+    position: absolute;
+    height: 200px;
+    width: 100%;
+}
+.green{
+    background: #0FE50F;
+}
+.red{
+    background: red;
+}
+.pl1res{
+        padding: 0 70px 0 70px;
 }
 /*GAMEMODULE END*/
 

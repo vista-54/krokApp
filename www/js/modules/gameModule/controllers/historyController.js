@@ -53,12 +53,6 @@ function historyController($scope, $http, $rootScope) {
             }
 
         }
-
-
-
-
-
-
         console.log("ScoreHost=>" + ScoreHost + "ScorePlayer2=>" + ScorePlayer2);
     };
 //    };

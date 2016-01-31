@@ -40,6 +40,7 @@ gameModule.config(['$routeProvider', function ($routeProvide) {
     }]);
 gameModule.controller('MainMenuController', MainMenuController);
 function MainMenuController($scope, $http, $rootScope) {
+    $scope.successReq = false;
     $rootScope.IntervalStop = false;
     $scope.waitStepSecondPlayer = $rootScope.waitStepSecondPlayer;
     /*Проверка не закончена ли игра*/
@@ -104,7 +105,7 @@ function MainMenuController($scope, $http, $rootScope) {
         var req = $http.get($rootScope.mainUrl + "index.php?&action=getOpenGames&username=" + $rootScope.userData.login);
         req.success(function (data, status, headers, config) {
 //            $rootScope.getHistoryGames();
-
+            $scope.successReq = true;
             console.log(data);
             $rootScope.gameData.games = data.data;
             $scope.games = $rootScope.gameData.games;
@@ -134,12 +135,16 @@ function MainMenuController($scope, $http, $rootScope) {
         });
     };
     $rootScope.getOpenGames();
-    $scope.refresh=function(){
+    $scope.refresh = function () {
         $rootScope.getOpenGames();
     };
     $scope.intervalID = setInterval(function () {
         if (!$rootScope.IntervalStop) {
-            $scope.refresh();
+            if ($scope.successReq) {
+                 $scope.successReq = false;
+                $scope.refresh();
+                console.log("int");
+            }
         }
 
     }, 5000);
