@@ -236,7 +236,7 @@ table {
     text-align: center;
     font-size: 25px;
 }
-.maraphone{
+/*.maraphone{
     display: block;
     border-bottom: 1px solid black;
     width: 100%;
@@ -244,12 +244,13 @@ table {
     padding-right: 10px;
     padding-bottom: 12px;
     padding-left: 3px!important;
-}
+}*/
 .multiPlGame{
     padding: 17px;
 }
 .selectSettingGame nav{
     text-align: center;
+    margin: 25px 0 0 0;
 }
 .roundTable{
     padding: 10px 0 0 0;
@@ -372,7 +373,115 @@ table {
     background: red;
 }
 .pl1res{
-        padding: 0 70px 0 70px;
+    padding: 0 70px 0 70px;
 }
+.krockPage{
+    float:left;
+    padding: 0 0 0 20px;
+    font-size: 25px;
+    color: rgb(81, 81, 81);
+}
+.krockPage a.header{
+    float:left;
+    padding: 0 0 0 20px;
+    font-size: 25px;
+    color: rgb(81, 81, 81);
+}
+.krockPage h1{
+    text-align: center;
+    font-size: 25px;
+}
+.krockPage ul{
+
+}
+.krockList li{
+    margin: 10px 0 0 0;
+    font-size: 15px;
+}
+.krockList li a{
+    color: rgba(214, 188, 188, 0.76);
+}
+.krockList li span{
+    padding: 0 50px 0 0px;
+}
+.ActiveKrock{
+    color:rgb(81, 81, 81);
+}
+.selectKrock{
+
+    padding: 5px 0 5px 0;
+    border-bottom: 1px solid rgb(81, 81, 81);
+    border-top: 1px solid rgb(81, 81, 81);
+}
+.selectKrock a{
+    color: rgb(81, 81, 81)!important;
+}
+.playClassicBuclet{
+    display: block;
+    font-size: 20px;
+    margin: 20px 0 20px 0;
+    border-bottom: 1px solid;
+}
+.categoryChanger{
+    text-align: left!important;
+    font-weight: 600;
+}
+.krockPage .categories {
+    margin: 0 0 0 20px;
+}
+.krockPage .categories li{
+    margin: 20px 0 0 0;
+}
+.krockPage .categories li a{
+    width: 100%;
+    display: block;
+}
+.isSelectedCat{
+    display: inline-block;  
+    float: right;
+    width: 25px;
+}
+.isUnselectedCat{
+    display: none;
+}
+.btnPlay{
+    background: rgb(33, 110, 44);
+    border: rgb(255,255,255) 1px solid;
+    padding: 5px 15px 5px 15px;
+    font-size: 22px;
+    color: rgb(255,255,255);
+}
+.btnPlayPar{
+    text-align: center;
+    margin: 20px 0 0 0;
+}
+.BlockGetQuestionInMonoPlayer{
+    height: 107px;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    margin: 10px auto;
+}
+.CurrKrock h2{
+    text-align: center;
+}
+.resultKrock a{
+    float:left;
+    padding: 0 0 0 20px;
+    font-size: 25px;
+    color: rgb(81, 81, 81);
+}
+.resultKrock h1{
+    text-align: center;
+    font-size: 25px;
+}
+.resultKrock h2{
+       font-size: 16px;
+    margin: 25px 0 0 0;
+}
+
+/*.selectedCat{
+    background: url('../img/galochka.png');
+}*/
 /*GAMEMODULE END*/
 

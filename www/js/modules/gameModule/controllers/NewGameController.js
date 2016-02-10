@@ -6,7 +6,6 @@
 
 
 gameModule.controller('NewGameController', NewGameController);
-
 function NewGameController($scope, $http, $rootScope) {
 //clearInterval($rootScope.intervalID);
     $rootScope.IntervalStop = true;
@@ -16,7 +15,6 @@ function NewGameController($scope, $http, $rootScope) {
         }
         return false;
     };
-
 //    $rootScope.gameData = {};
 //    $rootScope.gameData.games = [];
 
@@ -25,7 +23,6 @@ function NewGameController($scope, $http, $rootScope) {
         var req = $http.get($rootScope.mainUrl + "index.php?&action=getHistoryGames&userId=" + $rootScope.userData.id);
         req.success(function (data, status, headers, config) {
             console.log(data);
-
             $scope.gamesHistory = data.data;
         });
         req.error(function (data, status, headers, config) {
@@ -34,12 +31,21 @@ function NewGameController($scope, $http, $rootScope) {
     };
 //    $scope.getOpenGames();
 //    $scope.getHistory();
+    $scope.monoPlayer = function () {
+//        $rootScope.krocks={};
+        var req = $http.get($rootScope.mainUrl + "index.php?&action=startKrock");
+        req.success(function (data, status, headers, config) {
+            console.log(status, data);
+            $rootScope.krocks = data.data;
+            window.location = "#/krockList";
+        });
+        console.log("Monoplayer");
+    };
     $scope.RandomOpponent = function (data) {
         var type = data.currentTarget.attributes['data-number'].nodeValue;
         $rootScope.gameData.type = type;
-
         console.log("CategorySelected");
-        var req = $http.get($rootScope.mainUrl + "index.php?&action=createRoom?&action=searchEmptyRoom&username=" + $rootScope.userData.login);
+        var req = $http.get($rootScope.mainUrl + "index.php?action=searchEmptyRoom&username=" + $rootScope.userData.login);
         req.success(function (data, status, headers, config) {
             console.log(status, data);
 //
@@ -64,7 +70,6 @@ function NewGameController($scope, $http, $rootScope) {
         req.error(function (data, status, headers, config) {
             console.log(data);
         });
-
     };
 //        console.log(src);
 

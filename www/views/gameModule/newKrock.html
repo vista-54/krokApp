@@ -1,0 +1,15 @@
+<div class="CurrKrock"> 
+    <!--<a ng-click="Getquestion()">GetQue</a>-->
+    <h2>{{questCount}}/{{totalQuestions}}</h2>
+    <div class='BlockGetQuestionInMonoPlayer' ng-hide="getQuestionActive" ></div>
+
+    <div ng-hide="isGetQuestBtnActive">
+        <div class='BlockQuestion' ng-show="getQuestionActive"></div>
+        <h1 class="questionText"  ng-click="getquestion()">{{currentQuestion.question}}</h1>
+        <ul>
+            <li class="answerText"  ng-repeat="(key,answer) in answeres">
+                <a ng-click="checkAnswer(this, key)">{{answer.text}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

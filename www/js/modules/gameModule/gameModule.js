@@ -34,6 +34,18 @@ gameModule.config(['$routeProvider', function ($routeProvide) {
                     templateUrl: 'views/gameModule/history.html',
                     controller: 'historyController'
                 })
+                .when('/krockList', {
+                    templateUrl: 'views/gameModule/krockList.html',
+                    controller: 'krockListController'
+                })
+                .when('/newKrock', {
+                    templateUrl: 'views/gameModule/newKrock.html',
+                    controller: 'newKrockController'
+                })
+                .when('/resultKrock', {
+                    templateUrl: 'views/gameModule/resultMonoPlayer.html',
+                    controller: 'resultMonoPlayerController'
+                })
                 .otherwise({
                     redirectTo: '/'
                 });
