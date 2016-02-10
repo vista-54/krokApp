@@ -37,7 +37,7 @@ function newKrockController($scope, $rootScope) {
         console.log($scope.answeres);
         $scope.questCount++;
         setTimeout(function () {
-            $('.BlockGetQuestionInMonoPlayer').height($('.questionText').height());
+            $('.BlockGetQuestionInMonoPlayer').height($('.questionText').height()+16);
         }, 300);
     };
     $scope.checkAnswer = function (ans, key) {
