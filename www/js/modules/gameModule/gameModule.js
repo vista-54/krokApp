@@ -150,16 +150,16 @@ function MainMenuController($scope, $http, $rootScope) {
     $scope.refresh = function () {
         $rootScope.getOpenGames();
     };
-    $scope.intervalID = setInterval(function () {
-        if (!$rootScope.IntervalStop) {
-            if ($scope.successReq) {
-                 $scope.successReq = false;
-                $scope.refresh();
-                console.log("int");
-            }
-        }
-
-    }, 5000);
+//    $scope.intervalID = setInterval(function () {
+//        if (!$rootScope.IntervalStop) {
+//            if ($scope.successReq) {
+//                 $scope.successReq = false;
+//                $scope.refresh();
+//                console.log("int");
+//            }
+//        }
+//
+//    }, 5000);
 //    $rootScope.intervalID = $scope.intervalID;
 //    $rootScope.getOpenGames();
 

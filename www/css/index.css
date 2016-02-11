@@ -171,7 +171,7 @@ table {
 .opponentNickAndStep{
     float: left;
     display: block;
-    margin: 0 0 0 70px;
+    margin: 0 0 0 20px;
     text-align: left;
 }
 .step{
