@@ -1,15 +1,23 @@
 <div class="krockPage">
     <a class="header" href="#/mainmenu"><</a><h1>Марафон</h1>
-    <ul class="krockList">
-        <li  ng-repeat="krock in krocks" >
-            <a ng-click="selectKrock(this.krock.id)"><span>Крок {{krock.id}}</span>{{krock.krock}}</a>
-        </li>
-    </ul>
+    <div class="krockAndSpec">
+        <ul class="krockList">
+            <li  ng-repeat="krock in krocks" >
+                <a ng-click="selectKrock(this.krock.id)">{{krock.krock}}</a>
+            </li>
+            <!--<span>Крок {{krock.id}}</span>-->
+        </ul>
+        <ul class="specList">
+            <li name="spec" ng-repeat="spec in specs">
+                <a  ng-click="selectSpec(this.spec.id)">{{spec.name}}</a>
+            </li>
+        </ul>
+    </div>
     <a class="playClassicBuclet">Играть классический набор</a>
     <h1 class="categoryChanger">Выбор категорий:</h1>
     <ul ng-show="isKrockSelected" class="categories">
         <li  ng-repeat="(key,cat) in categories">
-            <a data-number="{{this.cat.id}}" ng-click="setCategory(this.key)">{{cat._name}}<img name="category" class="isUnselectedCat" alt="isSelect" src="img/galochka.png"></a>
+            <a data-number="{{this.cat.id}}" ng-click="setCategory(this.key)">{{cat.name}}<img name="category" class="isUnselectedCat" alt="isSelect" src="img/galochka.png"></a>
         </li>
     </ul>
     <div class="btnPlayPar">

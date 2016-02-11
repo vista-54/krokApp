@@ -38,17 +38,18 @@ function AppController($scope, $location, $http, $rootScope) {
 //        
 //    };
     $rootScope.userData = {};
-//    document.addEventListener("deviceready", function () {
-//        var devId = device.uuid;
+    document.addEventListener("deviceready", function () {
+        var devId = device.uuid;
         console.log("Device Is ready!!!");
-        var req = $http.get($rootScope.mainUrl + "index.php?deviceId=ded3c217d39e86c1&action=getLogin");
-//        var req = $http.get($rootScope.mainUrl + "index.php?deviceId=" + devId + "&action=getLogin");
+//        var req = $http.get($rootScope.mainUrl + "index.php?deviceId=ded3c217d39e86c1&action=getLogin");
+        var req = $http.get($rootScope.mainUrl + "index.php?deviceId=" + devId + "&action=getLogin");
         req.success(function (data, status, headers, config) {
             console.log(data);
             if (data.data) {
                 window.location = "#/mainmenu";
                 $rootScope.userData.login = data.data[0].user_login;
                 $rootScope.userData.id = data.data[0].user_login;
+                $rootScope.userData.lng = data.data[0].user_language;
             }
             else {
                 $scope.message = "HomeController";
@@ -64,7 +65,7 @@ function AppController($scope, $location, $http, $rootScope) {
             window.location = "#/selectLng";
         });
 
-//    }, false);
+    }, false);
 
 }
 

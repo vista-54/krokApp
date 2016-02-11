@@ -376,8 +376,9 @@ table {
     padding: 0 70px 0 70px;
 }
 .krockPage{
-    float:left;
-    padding: 0 0 0 20px;
+    display: block;
+
+    padding: 0 10px 0 10px;
     font-size: 25px;
     color: rgb(81, 81, 81);
 }
@@ -392,7 +393,12 @@ table {
     font-size: 25px;
 }
 .krockPage ul{
-
+    /*width: 20%;*/
+}
+.krockPage ul:after{
+    display: block;
+    content:'';
+    clear: both;
 }
 .krockList li{
     margin: 10px 0 0 0;
@@ -403,6 +409,32 @@ table {
 }
 .krockList li span{
     padding: 0 50px 0 0px;
+}
+.krockAndSpec{
+    overflow: hidden;
+    width: 100%;
+}
+.krockList{
+    float:left;
+}
+.specList{
+    float: left;
+    margin: 0 0 0 20px;
+}
+.specList li{
+    margin: 10px 0 0 0;
+    font-size: 15px;
+}
+.specList li a{
+    color: rgba(214, 188, 188, 0.76);
+}
+.selectSpec {
+    padding: 5px 0 5px 0;
+    border-bottom: 1px solid rgb(81, 81, 81);
+    border-top: 1px solid rgb(81, 81, 81);
+}
+.selectSpec a{
+ color: rgb(81, 81, 81)!important;
 }
 .ActiveKrock{
     color:rgb(81, 81, 81);

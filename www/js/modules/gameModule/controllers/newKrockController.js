@@ -7,10 +7,11 @@
 
 gameModule.controller('newKrockController', newKrockController);
 function newKrockController($scope, $rootScope) {
+ 
     $scope.totalQuestions = $rootScope.monoPlayer.questions.length;
     $scope.questCount = 0;
     $scope.score = 0;
-     $scope.CorrectsAnswerCount=0;
+    $scope.CorrectsAnswerCount = 0;
     $scope.getquestion = function () {
         if ($scope.questCount === $scope.totalQuestions) {
             $rootScope.monoPlayer.result = {};
@@ -37,7 +38,7 @@ function newKrockController($scope, $rootScope) {
         console.log($scope.answeres);
         $scope.questCount++;
         setTimeout(function () {
-            $('.BlockGetQuestionInMonoPlayer').height($('.questionText').height()+16);
+            $('.BlockGetQuestionInMonoPlayer').height($('.questionText').height() + 16);
         }, 300);
     };
     $scope.checkAnswer = function (ans, key) {
