@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0"  xmlns:gap = "http://phonegap.com/ns/1.0" id="com.vista.KrokApp" version="0.1.11">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0"  xmlns:gap = "http://phonegap.com/ns/1.0" id="com.vista.KrokApp" version="0.1.12">
     <name>KrokApp</name>
     <description>
-            Одиночная игра готова.
+            Одиночный режим+Мультиплеер с поправкой на язык.
     </description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">
         Apache Cordova Team
