@@ -76,7 +76,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
     };
     console.log("roundsListController");
     $scope.getCurrentCategory = function (catId) {
-        var req = $http.get($rootScope.mainUrl + "index.php?&action=getCurrCat&idcat=" + catId);
+        var req = $http.get($rootScope.mainUrl + "index.php?&action=getCurrCat&idcat=" + catId+"&lng="+$rootScope.userData.lng);
         req.success(function (data, status, headers, config) {
             console.log(data);
             $rootScope.CurrentGame.categoryName = data.data[0];

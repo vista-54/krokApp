@@ -1,7 +1,7 @@
 <div>
     <!--<a ng-click="Getquestion()">GetQue</a>-->
     <div class='BlockGetQ' ng-hide="getQuestionActive" ></div>
-    <button class="getQuest"  ng-click="Getquestion()">{{categoryName}}</button>
+    <button class="getQuest"  ng-click="Getquestion()">{{categoryName.name}}</button>
     <div ng-hide="isGetQuestBtnActive">
         <div class='BlockQuestion' ng-show="getQuestionActive"></div>
         <h1 class="questionText">{{currentQuestion}}</h1>
