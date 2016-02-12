@@ -8,6 +8,8 @@
 gameModule.controller('resultMonoPlayerController', resultMonoPlayerController);
 function resultMonoPlayerController($rootScope,$scope) {
     $scope.CorrectsAnswerCount=$rootScope.monoPlayer.result.correctAnsweres;
+
     $scope.totalQues=$rootScope.monoPlayer.result.totalQuestions;
+   
     console.log('resultMonoPlayerController');
 }

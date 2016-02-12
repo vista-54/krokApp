@@ -434,7 +434,7 @@ table {
     border-top: 1px solid rgb(81, 81, 81);
 }
 .selectSpec a{
- color: rgb(81, 81, 81)!important;
+    color: rgb(81, 81, 81)!important;
 }
 .ActiveKrock{
     color:rgb(81, 81, 81);
@@ -492,10 +492,15 @@ table {
     width: 100%;
     position: absolute;
     top: 0;
-    margin: 10px auto;
+    margin: 20px auto;
 }
 .CurrKrock h2{
     text-align: center;
+    padding: 5px 0 0 10px;
+}
+.CurrKrock span{
+    float: right;
+    padding: 0 10px 0 0;
 }
 .resultKrock a{
     float:left;

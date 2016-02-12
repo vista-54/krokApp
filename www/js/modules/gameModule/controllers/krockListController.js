@@ -67,24 +67,7 @@ function krockListController($rootScope, $scope, $http) {
         }
         console.log(num);
     };
-       $scope.shuffle = function (array) {
-        var currentIndex = array.length, temporaryValue, randomIndex;
-
-        // While there remain elements to shuffle...
-        while (0 !== currentIndex) {
-
-            // Pick a remaining element...
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-
-            // And swap it with the current element.
-            temporaryValue = array[currentIndex];
-            array[currentIndex] = array[randomIndex];
-            array[randomIndex] = temporaryValue;
-        }
-
-        return array;
-    };
+ 
     $scope.playCrock = function () {
         var cat = angular.element(document.getElementsByName('category'));
         var arrSelectedCat = [];
@@ -101,8 +84,8 @@ function krockListController($rootScope, $scope, $http) {
         var req = $http.get($rootScope.mainUrl + "index.php?&action=getQuestionsByMonoPlayer&cats=" + arrSelectedCat+"&lng=" + $rootScope.userData.lng);
         req.success(function (data, status, headers, config) {
             console.log(data);
-            $rootScope.monoPlayer.questions = $scope.shuffle(data.data.questions);
-            $rootScope.monoPlayer.answeres = $scope.shuffle(data.data.answeres);
+            $rootScope.monoPlayer.questions = $rootScope.shuffle(data.data.questions);
+            $rootScope.monoPlayer.answeres = $rootScope.shuffle(data.data.answeres);
             window.location = "#/newKrock";
         });
         req.error(function (data, status, headers, config) {

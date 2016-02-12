@@ -52,6 +52,24 @@ gameModule.config(['$routeProvider', function ($routeProvide) {
     }]);
 gameModule.controller('MainMenuController', MainMenuController);
 function MainMenuController($scope, $http, $rootScope) {
+    $rootScope.shuffle = function (array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (0 !== currentIndex) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+        }
+
+        return array;
+    };
     $scope.successReq = false;
     $rootScope.IntervalStop = false;
     $scope.waitStepSecondPlayer = $rootScope.waitStepSecondPlayer;
@@ -150,16 +168,16 @@ function MainMenuController($scope, $http, $rootScope) {
     $scope.refresh = function () {
         $rootScope.getOpenGames();
     };
-//    $scope.intervalID = setInterval(function () {
-//        if (!$rootScope.IntervalStop) {
-//            if ($scope.successReq) {
-//                 $scope.successReq = false;
-//                $scope.refresh();
-//                console.log("int");
-//            }
-//        }
-//
-//    }, 5000);
+    $scope.intervalID = setInterval(function () {
+        if (!$rootScope.IntervalStop) {
+            if ($scope.successReq) {
+                $scope.successReq = false;
+                $scope.refresh();
+                console.log("int");
+            }
+        }
+
+    }, 5000);
 //    $rootScope.intervalID = $scope.intervalID;
 //    $rootScope.getOpenGames();
 
