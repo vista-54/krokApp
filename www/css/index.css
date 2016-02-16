@@ -1,3 +1,10 @@
+@font-face {
+    font-family: Toms; /* Имя шрифта */
+    src: url(../fonts/toms/280747_0_0.ttf); /* Путь к файлу со шрифтом */
+    src: url(../fonts/toms/280747_0_0.eot); /* Путь к файлу со шрифтом */
+    src: url(../fonts/toms/280747_0_0.woff); /* Путь к файлу со шрифтом */
+   }
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -18,7 +25,9 @@ time, mark, audio, video {
     font: inherit;
     vertical-align: baseline;
     text-decoration: none;
+    /*font-family: Toms;*/
 }
+ 
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
@@ -26,7 +35,8 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
     line-height: 1;
-    font-family: "Comic Sans MS", cursive, sans-serif;
+    /*font-family: "Comic Sans MS", cursive, sans-serif;*/
+    font-family: Toms;
     color:rgb(81, 81, 81);
     background: -webkit-linear-gradient(top, rgba(23, 241, 0, 0.31) , rgba(178, 178, 3, 0.34)) no-repeat;
     height: 100vh;
