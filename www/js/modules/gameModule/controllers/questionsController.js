@@ -8,6 +8,9 @@
 gameModule.controller('questionsController', questionsController);
 function questionsController($scope, $rootScope, $http) {
     $scope.categoryName = $rootScope.CurrentGame.categoryName;
+    if (typeof ($scope.categoryName.name) !== "undefined") {
+        $scope.categoryName=$scope.categoryName.name;
+    }
     $scope.CorrectsAnswerCount = 0;
     $scope.isGetQuestBtnActive = true;
     $scope.getQuestionActive = true;

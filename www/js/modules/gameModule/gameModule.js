@@ -52,6 +52,7 @@ gameModule.config(['$routeProvider', function ($routeProvide) {
     }]);
 gameModule.controller('MainMenuController', MainMenuController);
 function MainMenuController($scope, $http, $rootScope) {
+    $('.mainMenu ul').height($(window).height() - $('.mainMenu nav').height() - $('.newGameBtn').height() - $('.historyCnt').height() - 30);
     $rootScope.shuffle = function (array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
 

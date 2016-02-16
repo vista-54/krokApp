@@ -81,6 +81,9 @@ function krockListController($rootScope, $scope, $http) {
 
         }
         console.log(arrSelectedCat);
+        if(arrSelectedCat.length===0){
+            return false;
+        }
         var req = $http.get($rootScope.mainUrl + "index.php?&action=getQuestionsByMonoPlayer&cats=" + arrSelectedCat+"&lng=" + $rootScope.userData.lng);
         req.success(function (data, status, headers, config) {
             console.log(data);

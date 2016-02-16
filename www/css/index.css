@@ -84,12 +84,25 @@ table {
     width: 50px;
 }
 .userinfo{
-    text-align: center;
+    text-align: left;
     font-size: 22px;
-    margin: 30px 0 0 0;
+    margin: 30px 0 0 20px;
 }
 .userinfo input{
 
+}
+.userinfo h2{
+    text-align: center;
+    margin: 27px 0 5px 0;
+}
+.loginsymb{
+    font-size: 18px;
+}
+.loginInpt{
+
+    width: 90%;
+    height: 25px;
+    font-size: 25px;
 }
 .selectGender{
     padding: 20px;
@@ -97,10 +110,11 @@ table {
     text-align: center;
 }
 .selectGender input{
-    border: 0;
-    background: rgb(92, 175, 98);
+    border: 3px solid rgb(255,255,255);
+    background: rgb(48, 96, 52);
     padding: 5px 10px;
     color: rgb(255,255,255);
+    border-radius: 6px;
 }
 .selectGender span{
     padding: 0 20px 0 20px;
@@ -125,10 +139,10 @@ table {
     text-align: center;
 }
 .footer button{
-    background: rgb(92, 175, 98);
+    background: rgb(48, 96, 52);
     color: rgb(255,255,255);
     width: 90%;
-    border: 0;
+    border: 3px solid rgb(255,255,255);
     font-size: 25px;
     padding: 10px 0;
     margin: 20px 0 20px 0;
@@ -155,18 +169,28 @@ table {
     padding: 0 0 10px 0;
 }
 .mainMenu{
+
     text-align: center;
 }
+.mainMenu ul{
+    height: 400px;
+    overflow: scroll;
+}
 .mainMenu ul li{
-    margin: 20px 0 0 0;
+    width: 80%;
+    margin: 20px auto;
     overflow: hidden;
     font-size: 22px;
 }
 .mainMenu ul li a{
+    font-size: 15px;
     color: rgb(80,80,80);
 }
 .mainMenu nav{
     overflow: hidden;
+}
+.mainMenu nav i{
+    color: rgb(0,0,0);
 }
 .opponentNickAndStep{
     float: left;
@@ -211,7 +235,7 @@ table {
     text-decoration: none;
 }
 .battle{
-
+    margin: 10px 0 0 0;
 }
 .battle a{
     float:left;
@@ -224,13 +248,18 @@ table {
     font-size: 25px;
 }
 .newGame{
-
+    margin: 10px 0 0 0;
 }
 .newGame a{
     float:left;
     padding-left: 20px;
     font-size: 25px;
     color: rgb(81, 81, 81);
+}
+.newGame a i{
+    font-size: 28px;
+    color: rgb(0,0,0);
+    padding: 0 10px 0 0px;
 }
 .newGame h1{
     text-align: center;
@@ -255,6 +284,10 @@ table {
 .roundTable{
     padding: 10px 0 0 0;
     text-align: center;
+}
+.imgOpp{
+    width: 32px;
+    float: left;
 }
 .scoreTable{
     padding: 10px 0 0 0;
@@ -324,12 +357,19 @@ table {
     padding: 0 0 20px 0px;
 }
 .historyBtn{
+    border: 3px solid rgb(255,255,255);
     background: #3E813E;
+    width: 90%;
     color: white;
-    padding: 5px 10px 5px 10px;
+    padding: 10px 10px 10px 10px;
+    display: block;
+    margin: 0 auto;
+}
+.headerNick{
+    font-size: 20px;
 }
 .hostyryBattle{
-
+    margin: 10px 0 0 0;
 }
 .hostyryBattle a.header{
     float:left;
@@ -377,7 +417,7 @@ table {
 }
 .krockPage{
     display: block;
-
+    margin: 10px 0 0 0;
     padding: 0 10px 0 10px;
     font-size: 25px;
     color: rgb(81, 81, 81);
@@ -402,7 +442,7 @@ table {
 }
 .krockList li{
     margin: 10px 0 0 0;
-    font-size: 15px;
+    font-size: 25px;
 }
 .krockList li a{
     color: rgba(214, 188, 188, 0.76);
@@ -416,14 +456,15 @@ table {
 }
 .krockList{
     float:left;
+    margin-top: 10px;
 }
 .specList{
     float: left;
-    margin: 0 0 0 20px;
+    margin: 10px 0 0 50px;
 }
 .specList li{
     margin: 10px 0 0 0;
-    font-size: 15px;
+    font-size: 25px;
 }
 .specList li a{
     color: rgba(214, 188, 188, 0.76);

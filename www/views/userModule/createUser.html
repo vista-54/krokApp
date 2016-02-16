@@ -1,8 +1,8 @@
 <div>
     <div class="userinfo">
         <h1>Введите ваши данные</h1>
-        <h2>Логин:</h2>
-        <input ng-model="login">
+        <h2>Логин <span class="loginsymb">(A-Z,a-z,0-9) 3-12 смвл</span></h2>
+        <input class="loginInpt" ng-model="login">
     
     <div class="selectGender">
         <input  type="button" value="М" ng-click="ChangeGender('M')"><img ng-show="SelectedImg"  class="galoshka" alt="img" src="img/galochka.png">
