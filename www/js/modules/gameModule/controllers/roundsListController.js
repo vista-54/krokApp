@@ -9,11 +9,14 @@ gameModule.controller('roundsListController', roundsListController);
 function roundsListController($scope, $rootScope, $routeParams, $http) {
     $rootScope.IntervalStop = true;
     $scope.waitStepSecondPlayer = $rootScope.waitStepSecondPlayer;//чей ход булин
+//    $scope.PlayButton='';
+//    $scope.waitStep=' '
     $scope.gameId = $routeParams.gameId; //айди текущей игры
     $scope.game = $rootScope.gameData.games[$rootScope.SearchGameById($scope.gameId)];//текущая игра
     $rootScope.CurrentGame = {};//объект текущей игры
     /*Конец игры Бэта*/
     $scope.checkHost = $rootScope.checkHost;
+    $scope.CurRoundGet=$rootScope.getCurrentRound($scope.game);
     $rootScope.gameEnd = function (game) {
         var req = $http.get($rootScope.mainUrl + "index.php?&action=gameEnd&idgame=" + $scope.gameId);
         req.success(function (data, status, headers, config) {
@@ -23,6 +26,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
             console.log(data);
         });
     };
+//    $scope.currentRound=1;
     /*
      $scope.getOpenGames = function () {
      var req = $http.get("http://192.168.0.101/index.php?&action=createRoom?&action=getOpenGames&username=" + $rootScope.userData.login);
@@ -74,6 +78,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
             return false;
         }
     };
+//    $scope.isHost();
     console.log("roundsListController");
     $scope.getCurrentCategory = function (catId) {
         var req = $http.get($rootScope.mainUrl + "index.php?&action=getCurrCat&idcat=" + catId+"&lng="+$rootScope.userData.lng);
