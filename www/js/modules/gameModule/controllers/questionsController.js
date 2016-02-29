@@ -9,8 +9,11 @@ gameModule.controller('questionsController', questionsController);
 function questionsController($scope, $rootScope, $http) {
     $scope.categoryName = $rootScope.CurrentGame.categoryName;
     if (typeof ($scope.categoryName.name) !== "undefined") {
-        $scope.categoryName=$scope.categoryName.name;
+        $scope.categoryName = $scope.categoryName.name;
     }
+    $scope.userAnsweres = {};
+    $scope.userAnsweres.right = [];
+    $scope.userAnsweres.userans = [];
     $scope.CorrectsAnswerCount = 0;
     $scope.isGetQuestBtnActive = true;
     $scope.getQuestionActive = true;
@@ -64,6 +67,8 @@ function questionsController($scope, $rootScope, $http) {
     };
     $scope.checkAnswer = function (ans, key) {
         var answ = angular.element(document.getElementsByTagName('li'));
+        var curRoundInf = {'question': $scope.currentQuestion, 'userAnswer': ans.answer, 'rightAnswer': $scope.answeres[$scope.searchRightAnswer()]};
+        $scope.userAnsweres.right.push(curRoundInf);
         if (ans.answer.status === "1") {
             $scope.CorrectsAnswerCount++;
             $(answ[key]).addClass('green');
@@ -73,8 +78,10 @@ function questionsController($scope, $rootScope, $http) {
             $(answ[key]).addClass('red');
 
             $(answ[$scope.searchRightAnswer()]).addClass('green');
-        }
 
+
+        }
+        console.log($scope.userAnsweres);
         $scope.score = $scope.CorrectsAnswerCount;
         if ($scope.questCount === 5) {
             $scope.sendRoundInfo();
@@ -101,7 +108,10 @@ function questionsController($scope, $rootScope, $http) {
                 window.location = "#/mainmenu";
             }
         }
-        var req = $http.get($rootScope.mainUrl + "index.php?&action=RoundEnd&idgame=" + $scope.currentGame.id + "&score=" + $scope.score + "&ishost=" + $scope.isHost() + "&round=" + $scope.currentRound);
+        $scope.old = $rootScope.CurrentGame.lastAnsH;
+        var roundResultAnsweres = JSON.stringify($scope.userAnsweres.right);
+//        var lastResultAnsweres = $scope.old.game;
+        var req = $http.get($rootScope.mainUrl + "index.php?&action=RoundEnd&idgame=" + $scope.currentGame.id + "&score=" + $scope.score + "&ishost=" + $scope.isHost() + "&round=" + $scope.currentRound + "&answeres=" + roundResultAnsweres);
         req.success(function (data, status, headers, config) {
             console.log(data);
             if (data.data) {

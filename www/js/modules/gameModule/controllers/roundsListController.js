@@ -8,56 +8,167 @@
 gameModule.controller('roundsListController', roundsListController);
 function roundsListController($scope, $rootScope, $routeParams, $http) {
     $rootScope.IntervalStop = true;
-    $scope.waitStepSecondPlayer = $rootScope.waitStepSecondPlayer;//чей ход булин
-//    $scope.PlayButton='';
-//    $scope.waitStep=' '
+    $rootScope.CurrentGame = {};//объект текущей игры
     $scope.gameId = $routeParams.gameId; //айди текущей игры
     $scope.game = $rootScope.gameData.games[$rootScope.SearchGameById($scope.gameId)];//текущая игра
-    $rootScope.CurrentGame = {};//объект текущей игры
-    /*Конец игры Бэта*/
-    $scope.checkHost = $rootScope.checkHost;
-    $scope.CurRoundGet=$rootScope.getCurrentRound($scope.game);
-    $rootScope.gameEnd = function (game) {
-        var req = $http.get($rootScope.mainUrl + "index.php?&action=gameEnd&idgame=" + $scope.gameId);
+    $scope.waitStepSecondPlayer = $rootScope.waitStepSecondPlayer;//чей ход булин
+    $scope.CurRoundGet = $rootScope.getCurrentRound($scope.game);
+    //Подтягиваем с базы информацию о прошлых раундах
+    $scope.getRoundStatistic = function () {
+        var req = $http.get($rootScope.mainUrl + "index.php?&action=getRoundStatistic&id_game=" + $scope.gameId);
         req.success(function (data, status, headers, config) {
-            console.log(data);
+            console.log(status, data);
+            for (var i in data.data) {
+                var obj = data.data[i];
+                if (obj.ishost === "true" && $rootScope.checkHost) {
+                    $scope.roundsP1 = obj;
+                    $rootScope.CurrentGame.lastAnsH = obj;
+                    $scope.Anyfnt();
+//                    $scope.ready = true;
+//                    $scope.$apply();
+                }
+                else {
+                    $scope.roundsP2 = obj;
+                }
+            }
+//            console.log($scope.roundsP1 + " => " + $scope.roundsP2);
+
         });
         req.error(function (data, status, headers, config) {
             console.log(data);
         });
     };
-//    $scope.currentRound=1;
-    /*
-     $scope.getOpenGames = function () {
-     var req = $http.get("http://192.168.0.101/index.php?&action=createRoom?&action=getOpenGames&username=" + $rootScope.userData.login);
-     req.success(function (data, status, headers, config) {
-     console.log(data);
-     $rootScope.gameData.games = data.data;
-     $scope.game = $rootScope.gameData.games[$scope.SearchGameById($scope.gameId)];
-     if ($rootScope.checkGameEnd($scope.game)) {
-     $scope.gameEnd($scope.game);
-     }
-     if ($scope.game.status === "2" && $scope.game.host === $rootScope.userData.login) {
-     $scope.waitStepSecondPlayer = false;
-     
-     }
-     else if ($scope.game.status === "1" && $scope.game.host !== $rootScope.userData.login) {
-     $scope.waitStepSecondPlayer = false;
-     
-     }
-     else {
-     $scope.waitStepSecondPlayer = true;
-     }
-     $rootScope.waitStepSecondPlayer=$scope.waitStepSecondPlayer;
-     //            $scope.games = $rootScope.gameData.games;
-     });
-     req.error(function (data, status, headers, config) {
-     console.log(data);
-     });
-     };
-     */
+    $scope.getRoundStatistic();
+        /*Конец игры Бэта*/
+        $scope.checkHost = $rootScope.checkHost;
+        
+        $rootScope.gameEnd = function (game) {
+            var req = $http.get($rootScope.mainUrl + "index.php?&action=gameEnd&idgame=" + $scope.gameId);
+            req.success(function (data, status, headers, config) {
+                console.log(data);
+            });
+            req.error(function (data, status, headers, config) {
+                console.log(data);
+            });
+        };
+              $scope.isHost = function () {
+            if ($scope.currentGame.host === $rootScope.userData.login) {
+                $scope.currentRound = $rootScope.CurrentGame.round;
+                return true;
+            }
+            else {
+                $scope.currentRound = $rootScope.CurrentGame.round - 1;
+                return false;
+            }
+        };
+//    $scope.isHost();
+        console.log("roundsListController");
+        $scope.getCurrentCategory = function (catId) {
+            var req = $http.get($rootScope.mainUrl + "index.php?&action=getCurrCat&idcat=" + catId + "&lng=" + $rootScope.userData.lng);
+            req.success(function (data, status, headers, config) {
+                console.log(data);
+                $rootScope.CurrentGame.categoryName = data.data[0];
+            });
+            req.error(function (data, status, headers, config) {
+                console.log(data);
+            });
+        };
+        $scope.play = function () {
+            $rootScope.CurrentGame.isCategotySelected = false;
+            //проверяем раунд 
+            switch ($rootScope.getCurrentRound($scope.game)) {
+                case 1:
+                    res = $scope.game.round1;
+                    break;
+                case 2:
+                    res = $scope.game.round2;
+                    break;
+                case 3:
+                    res = $scope.game.round3;
+                    break;
+                case 4:
+                    res = $scope.game.round4;
+                    break;
+                case 5:
+                    res = $scope.game.round5;
+                    break;
+                case 6:
+                    res = $scope.game.round6;
+                    break;
 
-    //$scope.getOpenGames();
+            }
+            //берем с раунда катеорию если она не НУЛЛ
+            if (res !== null) {
+                $scope.getCurrentCategory(res);
+                $rootScope.CurrentGame.category = {
+                    id: res
+                };
+                $rootScope.CurrentGame.isCategotySelected = true;
+                window.location = "#/choisecategoty";
+            }
+            //Если нул получаем список с сервера
+            else {
+                $scope.getCategoriesList();
+            }
+
+            $rootScope.CurrentGame.id = $scope.gameId;
+
+
+        };
+        $scope.getCategoriesList = function () {
+            var req = $http.get($rootScope.mainUrl + "index.php?&action=getCategory&lng=" + $rootScope.userData.lng);
+            req.success(function (data, status, headers, config) {
+//            console.log(status, data);
+                $rootScope.gameData.games[$scope.SearchGameById($scope.gameId)].EmptyCategoriesList = data.data;
+                $rootScope.gameData.games[$scope.SearchGameById($scope.gameId)].BusyCategoriesList = [];
+                window.location = "#/choisecategoty";
+            });
+            req.error(function (data, status, headers, config) {
+                console.log(data);
+            });
+        };
+
+    $scope.Anyfnt = function () {
+        
+//        $scope.ready = false;
+        
+//    $scope.PlayButton='';
+//    $scope.waitStep=' '
+
+
+    
+//    $scope.currentRound=1;
+        /*
+         $scope.getOpenGames = function () {
+         var req = $http.get("http://192.168.0.101/index.php?&action=createRoom?&action=getOpenGames&username=" + $rootScope.userData.login);
+         req.success(function (data, status, headers, config) {
+         console.log(data);
+         $rootScope.gameData.games = data.data;
+         $scope.game = $rootScope.gameData.games[$scope.SearchGameById($scope.gameId)];
+         if ($rootScope.checkGameEnd($scope.game)) {
+         $scope.gameEnd($scope.game);
+         }
+         if ($scope.game.status === "2" && $scope.game.host === $rootScope.userData.login) {
+         $scope.waitStepSecondPlayer = false;
+         
+         }
+         else if ($scope.game.status === "1" && $scope.game.host !== $rootScope.userData.login) {
+         $scope.waitStepSecondPlayer = false;
+         
+         }
+         else {
+         $scope.waitStepSecondPlayer = true;
+         }
+         $rootScope.waitStepSecondPlayer=$scope.waitStepSecondPlayer;
+         //            $scope.games = $rootScope.gameData.games;
+         });
+         req.error(function (data, status, headers, config) {
+         console.log(data);
+         });
+         };
+         */
+
+        //$scope.getOpenGames();
 //    $scope.SearchGameById = function (id) {
 //        for (var i in $rootScope.gameData.games)
 //        {
@@ -68,80 +179,37 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
 //        }
 //    };
 //    $scope.currentRound = $rootScope.getCurrentRound();
-    $scope.isHost = function () {
-        if ($scope.currentGame.host === $rootScope.userData.login) {
-            $scope.currentRound = $rootScope.CurrentGame.round;
-            return true;
-        }
-        else {
-            $scope.currentRound = $rootScope.CurrentGame.round - 1;
-            return false;
-        }
-    };
-//    $scope.isHost();
-    console.log("roundsListController");
-    $scope.getCurrentCategory = function (catId) {
-        var req = $http.get($rootScope.mainUrl + "index.php?&action=getCurrCat&idcat=" + catId+"&lng="+$rootScope.userData.lng);
-        req.success(function (data, status, headers, config) {
-            console.log(data);
-            $rootScope.CurrentGame.categoryName = data.data[0];
-        });
-        req.error(function (data, status, headers, config) {
-            console.log(data);
-        });
-    };
-    $scope.play = function () {
-        $rootScope.CurrentGame.isCategotySelected = false;
-        //проверяем раунд 
-        switch ($rootScope.getCurrentRound($scope.game)) {
-            case 1:
-                res = $scope.game.round1;
-                break;
-            case 2:
-                res = $scope.game.round2;
-                break;
-            case 3:
-                res = $scope.game.round3;
-                break;
-            case 4:
-                res = $scope.game.round4;
-                break;
-            case 5:
-                res = $scope.game.round5;
-                break;
-            case 6:
-                res = $scope.game.round6;
-                break;
-
-        }
-        //берем с раунда катеорию если она не НУЛЛ
-        if (res !== null) {
-            $scope.getCurrentCategory(res);
-            $rootScope.CurrentGame.category = {
-                id: res
-            };
-            $rootScope.CurrentGame.isCategotySelected = true;
-            window.location = "#/choisecategoty";
-        }
-        //Если нул получаем список с сервера
-        else {
-            $scope.getCategoriesList();
-        }
-
-        $rootScope.CurrentGame.id = $scope.gameId;
+  
 
 
-    };
-    $scope.getCategoriesList = function () {
-        var req = $http.get($rootScope.mainUrl + "index.php?&action=getCategory&lng="+$rootScope.userData.lng);
-        req.success(function (data, status, headers, config) {
-//            console.log(status, data);
-            $rootScope.gameData.games[$scope.SearchGameById($scope.gameId)].EmptyCategoriesList = data.data;
-            $rootScope.gameData.games[$scope.SearchGameById($scope.gameId)].BusyCategoriesList = [];
-            window.location = "#/choisecategoty";
-        });
-        req.error(function (data, status, headers, config) {
-            console.log(data);
-        });
+
+        $scope.getRoundStat = function (Round_num, p) {
+            var count = 0;
+            if (p === 'host') {
+                var g = JSON.parse($scope.roundsP1.game);
+                var game = g.ans;
+                for (var i in game) {
+                    var obj = game[i];
+                    if (obj.user_ans_status === "1") {
+                        count++;
+                    }
+
+                }
+
+//          console.log(count);
+            }
+            else {
+                var g = JSON.parse($scope.roundsP2.game);
+                var game = g.ans;
+                for (var i in game) {
+                    var obj = game[i];
+                    if (obj.user_ans_status === "1") {
+                        count++;
+                    }
+
+                }
+            }
+            return count;
+        };
     };
 }
