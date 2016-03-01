@@ -577,7 +577,21 @@ td i{
     font-size: 16px;
     margin: 25px 0 0 20px;
 }
-
+.pl1res img{
+    width: 15px;
+    padding: 0 0 0 5px;
+}
+.pl2res img{
+    width: 15px;
+    padding: 0 0 0 5px;
+}
+.imgParBlock{
+    text-align: center;
+}
+.columScore{
+    margin: -30px 0 0 0;
+    display: flex;
+}
 /*.selectedCat{
     background: url('../img/galochka.png');
 }*/
