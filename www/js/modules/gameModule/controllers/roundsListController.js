@@ -188,7 +188,13 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
 //    $scope.currentRound = $rootScope.getCurrentRound();
 
 
-
+        $scope.ShowInfoForMarker = function (e) {
+            var que = e.currentTarget.attributes['data-question'].nodeValue;
+            var answ = e.currentTarget.attributes['data-useranswer'].nodeValue;
+            var coransw = e.currentTarget.attributes['data-correctanswer'].nodeValue;
+            alert("Вопрос: " + que + " Ваш ответ: " + answ + " Правильный ответ: " + coransw);
+            console.log("test");
+        };
 
         $scope.getRoundStat = function (Round_num, p) {
             var answeresUser, dn;
@@ -242,8 +248,14 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
                             if (obj1.user_ans_status === '0') {
 //                                if (obj.children[j].localName !== "br") {
                                 $(chArr[j]).attr('src', 'img/krestik.png');
+
 //                                }
                             }
+//                            $(chArr[j]).attr('ng-click', 'ShowInfoForMarker()');
+                            $(chArr[j]).attr('data-question', obj1.question);
+                            $(chArr[j]).attr('data-userAnswer', obj1.user_ans);
+                            $(chArr[j]).attr('data-correctAnswer', obj1.right_ans);
+
                         }
                     }
                 }
@@ -298,15 +310,21 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
                             if (obj1.user_ans_status === '0') {
 //                                if (obj.children[j].localName !== "br") {
                                 $(chArr[j]).attr('src', 'img/krestik.png');
+
+//                                $(chArr[j]).attr('data-correctAnswer', obj1.right_ans);
 //                                }
                             }
+//                            $(chArr[j]).attr('ng-click', 'ShowInfoForMarker()');
+                            $(chArr[j]).attr('data-question', obj1.question);
+                            $(chArr[j]).attr('data-userAnswer', obj1.user_ans);
+                            $(chArr[j]).attr('data-correctAnswer', obj1.right_ans);
                         }
                     }
                 }
             }
 
 
-
+            $scope.apply();
         };
     }
     ;
