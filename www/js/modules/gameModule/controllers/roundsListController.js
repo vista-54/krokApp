@@ -18,8 +18,9 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
         var req = $http.get($rootScope.mainUrl + "index.php?&action=getRoundStatistic&id_game=" + $scope.gameId);
         req.success(function (data, status, headers, config) {
             console.log(status, data);
-            $scope.Anyfnt();
             $scope.rs = data.data[0];
+            $scope.Anyfnt();
+            
 //            for (var i in $scope.rs) {
 //                console.log(i);
 //            }
@@ -45,6 +46,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
             console.log(data);
         });
     };
+    
     $scope.getRoundStatistic();
     /*Конец игры Бэта*/
     $scope.checkHost = $rootScope.checkHost;
@@ -197,8 +199,9 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
         };
 
         $scope.getRoundStat = function (Round_num, p) {
+            
             var answeresUser, dn;
-            if (p) {
+            if (p&&typeof $scope.rs!=='undefined' ) {
                 switch (Round_num) {
                     case 1:
                         answeresUser = $scope.rs.r1p1;

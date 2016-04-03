@@ -253,6 +253,7 @@ td i{
     font-size: 23px!important;
 }
 .battle{
+    height: 100vh;
     margin: 10px 0 0 0;
 }
 .battle a{
@@ -453,7 +454,9 @@ td i{
     background: red;
 }
 .pl1res{
-    padding: 0 70px 0 70px;
+    
+    /*width: 25px;*/
+    padding: 0 58px 0 29px;
 }
 .krockPage{
     display: block;
@@ -610,11 +613,11 @@ td i{
     margin: 25px 0 0 20px;
 }
 .pl1res img{
-    width: 15px;
+    width: 25px;
     padding: 0 0 0 5px;
 }
 .pl2res img{
-    width: 15px;
+    width: 25px;
     padding: 0 0 0 5px;
 }
 .imgParBlock{
