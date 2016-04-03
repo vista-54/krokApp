@@ -8,8 +8,8 @@
             <!--<span>Крок {{krock.id}}</span>-->
         </ul>
         <ul class="specList">
-            <li name="spec" ng-repeat="spec in specs">
-                <a  ng-click="selectSpec(this.spec.id)">{{spec.name}}</a>
+            <li name="spec" ng-repeat="(key,spec) in specs">
+                <a  ng-click="selectSpec(this.spec.id,key)">{{spec.name}}</a>
             </li>
         </ul>
     </div>

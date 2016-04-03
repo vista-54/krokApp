@@ -38,8 +38,9 @@ body {
     /*font-family: "Comic Sans MS", cursive, sans-serif;*/
     font-family: Toms;
     color:rgb(81, 81, 81);
-    background: -webkit-linear-gradient(top, rgba(23, 241, 0, 0.31) , rgba(178, 178, 3, 0.34)) no-repeat;
-    height: 100vh;
+    background: -webkit-linear-gradient(top, rgba(127, 242, 172, 1) , rgba(155, 242, 127, 1)) no-repeat;
+    /*background: -webkit-linear-gradient(top, rgba(23, 241, 0, 0.31) , rgba(178, 178, 3, 0.34)) no-repeat;*/
+    /*height: 100vh;*/
 }
 ol, ul {
     list-style: none;
@@ -173,14 +174,14 @@ table {
 /*GAMEMODULE START*/
 .newGameBtn{
     color: rgb(80,80,80);
-    font-size: 25px;
+    font-size: 50px;
     font-weight: 600;
     border-bottom: 2px solid;
     display: block;
     padding: 0 0 10px 0;
 }
 .mainMenu{
-
+    height: 100vh;
     text-align: center;
 }
 .mainMenu ul{
@@ -211,11 +212,13 @@ table {
 }
 .step{
     display: block;
+    font-size: 25px;
 }
 .roundpart{
     display: block;
     float: right;
     padding: 0 30px 0 0;
+    font-size: 25px;
 }
 .mainMenu nav a:nth-child(2n+1) {
     display: block;
@@ -255,20 +258,23 @@ td i{
 .battle a{
     float:left;
     padding: 0 0 0 20px;
-    font-size: 25px;
+    font-size: 30px;
     color: rgb(81, 81, 81);
+    position: absolute;
 }
 .battle h1{
     text-align: center;
-    font-size: 25px;
+    font-size: 50px;
 }
 .newGame{
     margin: 10px 0 0 0;
+    height: 100vh;
 }
 .newGame a{
     float:left;
     padding-left: 20px;
-    font-size: 25px;
+    /*font-size: 25px;*/
+    font-size: 43px;
     color: rgb(81, 81, 81);
 }
 .newGame a i{
@@ -278,7 +284,12 @@ td i{
 }
 .newGame h1{
     text-align: center;
-    font-size: 25px;
+    font-size: 50px;
+}
+.backButton{
+    position: absolute;
+    font-size: 30px;
+    margin: 11px 0 0 0;
 }
 /*.maraphone{
     display: block;
@@ -303,7 +314,8 @@ td i{
     text-align: center;
 }
 .imgOpp{
-    width: 32px;
+    width: 40px;
+    margin: 10px 0 0 0;
     float: left;
 }
 .scoreTable{
@@ -312,11 +324,13 @@ td i{
 }
 .battle button{
     margin: 10px 0 0 20px;
-    background: green;
-    border: none;
-    font-size: 20px;
     color: rgb(255,255,255);
     font-family: Toms;
+    border: 2px solid rgb(255,255,255);
+    background: #3E813E;
+    width: 90%;
+    display: block;
+    font-size: 25px;
 }
 .selectCategory ul li {
     /*border: 0;*/
@@ -350,18 +364,25 @@ td i{
     padding: 30px 0 30px 0;
 }
 .questionText{
-    border: 1px solid rgb(0,0,0);
     margin: 10px auto;
-    width: 70%;
+    width: 85%;
     display: block;
+    font-size: 25px;
     text-align: center;
+    background: rgba(169, 246, 190, 1);
+    color: black;
+    border: 1px solid rgb(206, 183, 183);
 }
 .answerText{
-    border: 1px solid rgb(0,0,0);
-    text-align: center;
-    margin: 10px auto 10px auto;
     padding: 5px 0 5px 0;
-    width: 70%;
+    border: 1px solid rgb(206, 183, 183);
+    margin: 10px auto;
+    width: 85%;
+    display: block;
+    font-size: 25px;
+    text-align: center;
+    color: black;
+    background: rgba(169, 246, 190, 1);
 }
 .answerText a{
     display: block;
@@ -382,9 +403,10 @@ td i{
     padding: 10px 10px 10px 10px;
     display: block;
     margin: 0 auto;
+    font-size: 25px;
 }
 .headerNick{
-    font-size: 20px;
+    font-size: 30px;
 }
 .hostyryBattle{
     margin: 10px 0 0 0;
@@ -425,7 +447,7 @@ td i{
     width: 100%;
 }
 .green{
-    background: #0FE50F;
+    background: rgb(88,213,75);
 }
 .red{
     background: red;
@@ -439,16 +461,18 @@ td i{
     padding: 0 10px 0 10px;
     font-size: 25px;
     color: rgb(81, 81, 81);
+    height: 100vh;
 }
 .krockPage a.header{
-    float:left;
-    padding: 0 0 0 20px;
-    font-size: 25px;
+    float: left;
+    padding: 6px 0 0 20px;
+    font-size: 40px;
     color: rgb(81, 81, 81);
+    position: absolute;
 }
 .krockPage h1{
     text-align: center;
-    font-size: 25px;
+    font-size: 50px;
 }
 .krockPage ul{
     /*width: 20%;*/
@@ -516,6 +540,7 @@ td i{
 .categoryChanger{
     text-align: left!important;
     font-weight: 600;
+    font-size: 30px!important;
 }
 .krockPage .categories {
     margin: 0 0 0 20px;
@@ -537,12 +562,15 @@ td i{
     display: none;
 }
 .btnPlay{
-    background: rgb(33, 110, 44);
-    border: rgb(255,255,255) 2px solid;
-    padding: 5px 15px 5px 15px;
-    font-size: 22px;
-    color: rgb(255,255,255);
+    border: 3px solid rgb(255,255,255);
+    background: #3E813E;
     width: 90%;
+    color: white;
+    padding: 10px 10px 10px 10px;
+    display: block;
+    margin: 0 auto;
+    font-size: 25px;
+    font-family: 'Toms';
 }
 .btnPlayPar{
     text-align: center;
@@ -558,6 +586,10 @@ td i{
 .CurrKrock h2{
     text-align: center;
     padding: 5px 0 0 10px;
+    font-size: 25px;
+}
+.CurrKrock{
+    height: 100vh;
 }
 .CurrKrock span{
     float: right;

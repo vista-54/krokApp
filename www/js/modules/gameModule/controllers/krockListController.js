@@ -33,12 +33,13 @@ function krockListController($rootScope, $scope, $http) {
         });
 
     };
-    $scope.selectSpec = function (num) {
+    $scope.selectSpec = function (num,key) {
+        $('.krockPage').css({'height':'initial'});
         var spec = angular.element(document.getElementsByName('spec'));
         for (var i = 0; i < spec.length; i++) {
             $(spec[i]).removeClass('selectSpec');
         }
-        $(spec[num - 1]).addClass('selectSpec');
+        $(spec[key]).addClass('selectSpec');
         $scope.isKrockSelected = true;
         console.log(num);
         var req = $http.get($rootScope.mainUrl + "index.php?&action=getCategoryForKrock&spec_id=" + num+"&lng=" + $rootScope.userData.lng);
