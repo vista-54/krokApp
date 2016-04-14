@@ -28,7 +28,7 @@ function selectCategoryController($scope, $http, $rootScope) {
 //        $rootScope.gameData.category.push(CatId.category._name);
         console.log("CategorySelected");
         $rootScope.CurrentGame.categoryName = CatId.category.name;
-        $rootScope.gameData.games[$scope.SearchGameById($scope.gameId)].BusyCategoriesList.push($rootScope.CurrentGame.categoryName);
+        $rootScope.gameData.games[$scope.SearchGameById(game.id)].BusyCategoriesList.push($rootScope.CurrentGame.categoryName);
         var req = $http.get($rootScope.mainUrl + "index.php?&action=getQuestions&categotyId=" + CatId.category.id + "&round=" + round + "&idGame=" + game.id + "&lng=" + $rootScope.userData.lng);
         req.success(function (data, status, headers, config) {
             console.log(status, data);
