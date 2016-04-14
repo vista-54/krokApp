@@ -5,6 +5,7 @@
  */
 UserModule.controller('CreateUserController', CreateUserController);
 function CreateUserController($scope, $rootScope, $http) {
+    $scope.setting = $rootScope.setting.openProfile;
     console.log("CreateUserController started");
     $rootScope.userData.gender = 'F';
     $scope.ChangeGender = function (gender) {
@@ -19,13 +20,13 @@ function CreateUserController($scope, $rootScope, $http) {
         var dn = data.currentTarget.dataset.number;
         activeAvata(dn);
         function activeAvata(dn) {
-            
+
 //            var el = angular.element(document.querySelector("[data-number='" + dn + "']"));
 //            el.addClass('green');
             var elms = angular.element(document.getElementsByTagName('img'));
             for (var i in elms) {
                 var obj = elms[i];
-                   if(isNaN(parseInt(i))){
+                if (isNaN(parseInt(i))) {
                     break;
                 }
                 if (obj.attributes['data-number']) {
@@ -35,7 +36,7 @@ function CreateUserController($scope, $rootScope, $http) {
                         angular.element(obj).addClass('greenAvatar');
                     }
                 }
-             
+
             }
         }
         $rootScope.userData.avatar = src;
@@ -46,9 +47,9 @@ function CreateUserController($scope, $rootScope, $http) {
         console.log("EndCreateUser");
         $rootScope.userData.login = $scope.login;
         console.log($rootScope.userData);
-        var devId=device.uuid;
+        var devId = device.uuid;
 //        var devId='ded3c217d39e86c1';
-        var req = $http.get($rootScope.mainUrl+"index.php?user_login=" + $rootScope.userData.login + "&user_gender=" + $rootScope.userData.gender + "&deviceId="+devId+"&avatar=" + $rootScope.userData.avatar + "&user_language=" + $rootScope.userData.lng + "&action=reg");
+        var req = $http.get($rootScope.mainUrl + "index.php?user_login=" + $rootScope.userData.login + "&user_gender=" + $rootScope.userData.gender + "&deviceId=" + devId + "&avatar=" + $rootScope.userData.avatar + "&user_language=" + $rootScope.userData.lng + "&action=reg");
         req.success(function (data, status, headers, config) {
             console.log(status, data);
             if (data.data) {

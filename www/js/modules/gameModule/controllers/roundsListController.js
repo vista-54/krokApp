@@ -20,7 +20,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
             console.log(status, data);
             $scope.rs = data.data[0];
             $scope.Anyfnt();
-            
+
 //            for (var i in $scope.rs) {
 //                console.log(i);
 //            }
@@ -46,7 +46,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
             console.log(data);
         });
     };
-    
+
     $scope.getRoundStatistic();
     /*Конец игры Бэта*/
     $scope.checkHost = $rootScope.checkHost;
@@ -124,12 +124,35 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
 
 
     };
+//    $rootScope.gameData.busyCat=[];
+    $rootScope.gameData.games[$scope.SearchGameById($scope.gameId)].BusyCategoriesList = [];
     $scope.getCategoriesList = function () {
         var req = $http.get($rootScope.mainUrl + "index.php?&action=getCategory&lng=" + $rootScope.userData.lng);
         req.success(function (data, status, headers, config) {
 //            console.log(status, data);
-            $rootScope.gameData.games[$scope.SearchGameById($scope.gameId)].EmptyCategoriesList = data.data;
-            $rootScope.gameData.games[$scope.SearchGameById($scope.gameId)].BusyCategoriesList = [];
+            var arr = [];
+
+            for (var i in data.data) {
+                var obj = data.data[i];
+                var count = 0;
+                for (var i in $rootScope.gameData.games[$scope.SearchGameById($scope.gameId)].BusyCategoriesList)
+                {
+                    var o2 = $rootScope.gameData.games[$scope.SearchGameById($scope.gameId)].BusyCategoriesList[i];
+                    if (obj.name !== o2)
+                    {
+                        count++;
+                    }
+
+                }
+                if ((count === 0) && (arr.length !== 3)) {
+                    arr.push(obj);
+                }
+
+
+            }
+            $rootScope.gameData.games[$scope.SearchGameById($scope.gameId)].EmptyCategoriesList = arr;
+
+
             window.location = "#/choisecategoty";
         });
         req.error(function (data, status, headers, config) {
@@ -146,7 +169,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
 
 
 
-//    $scope.currentRound=1;
+        //    $scope.currentRound=1;
         /*
          $scope.getOpenGames = function () {
          var req = $http.get("http://192.168.0.101/index.php?&action=createRoom?&action=getOpenGames&username=" + $rootScope.userData.login);
@@ -187,7 +210,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
 //            }
 //        }
 //    };
-//    $scope.currentRound = $rootScope.getCurrentRound();
+        //    $scope.currentRound = $rootScope.getCurrentRound();
 
 
         $scope.ShowInfoForMarker = function (e) {
@@ -199,9 +222,9 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
         };
 
         $scope.getRoundStat = function (Round_num, p) {
-            
+
             var answeresUser, dn;
-            if (p&&typeof $scope.rs!=='undefined' ) {
+            if (p && typeof $scope.rs !== 'undefined') {
                 switch (Round_num) {
                     case 1:
                         answeresUser = $scope.rs.r1p1;
@@ -249,12 +272,12 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
                         for (var j in $scope.CurrAnswUser) {
                             var obj1 = $scope.CurrAnswUser[j];
                             if (obj1.user_ans_status === '0') {
-//                                if (obj.children[j].localName !== "br") {
+                                //                                if (obj.children[j].localName !== "br") {
                                 $(chArr[j]).attr('src', 'img/krestik.png');
 
-//                                }
+                                //                                }
                             }
-//                            $(chArr[j]).attr('ng-click', 'ShowInfoForMarker()');
+                            //                            $(chArr[j]).attr('ng-click', 'ShowInfoForMarker()');
                             $(chArr[j]).attr('data-question', obj1.question);
                             $(chArr[j]).attr('data-userAnswer', obj1.user_ans);
                             $(chArr[j]).attr('data-correctAnswer', obj1.right_ans);
@@ -311,13 +334,13 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
                         for (var j in $scope.CurrAnswUser) {
                             var obj1 = $scope.CurrAnswUser[j];
                             if (obj1.user_ans_status === '0') {
-//                                if (obj.children[j].localName !== "br") {
+                                //                                if (obj.children[j].localName !== "br") {
                                 $(chArr[j]).attr('src', 'img/krestik.png');
 
 //                                $(chArr[j]).attr('data-correctAnswer', obj1.right_ans);
-//                                }
+                                //                                }
                             }
-//                            $(chArr[j]).attr('ng-click', 'ShowInfoForMarker()');
+                            //                            $(chArr[j]).attr('ng-click', 'ShowInfoForMarker()');
                             $(chArr[j]).attr('data-question', obj1.question);
                             $(chArr[j]).attr('data-userAnswer', obj1.user_ans);
                             $(chArr[j]).attr('data-correctAnswer', obj1.right_ans);

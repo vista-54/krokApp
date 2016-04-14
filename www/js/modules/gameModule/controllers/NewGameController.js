@@ -7,6 +7,9 @@
 
 gameModule.controller('NewGameController', NewGameController);
 function NewGameController($scope, $http, $rootScope) {
+
+
+ 
 //clearInterval($rootScope.intervalID);
     $rootScope.IntervalStop = true;
     $rootScope.checkGameEnd = function (g) {

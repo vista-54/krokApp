@@ -202,7 +202,7 @@ table {
     overflow: hidden;
 }
 .mainMenu nav i{
-    color: rgb(0,0,0);
+    color: rgb(80,80,80);
 }
 .opponentNickAndStep{
     float: left;
@@ -242,11 +242,16 @@ table {
     text-align: center;
 }
 .setting nav {
-    text-align: center;
+    display: block;
+    /* text-align: center; */
+    margin: 0 0 0 30%;
 }
 .setting nav a{
+    width: 100%;
     display: block;
     text-decoration: none;
+    float: left;
+    position: static;
 }
 td i{
     color: rgb(0,0,0)!important;
@@ -454,7 +459,7 @@ td i{
     background: red;
 }
 .pl1res{
-    
+
     /*width: 25px;*/
     padding: 0 58px 0 29px;
 }
@@ -620,6 +625,9 @@ td i{
     width: 25px;
     padding: 0 0 0 5px;
 }
+.selectCategory{
+    height: 100vh;
+}
 .imgParBlock{
     text-align: center;
 }
@@ -632,3 +640,6 @@ td i{
 }*/
 /*GAMEMODULE END*/
 
+.questPage{
+    height: 100vh;
+}

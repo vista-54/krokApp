@@ -5,6 +5,18 @@
  */
 
 gameModule.controller('SettingController', SettingController);
-function SettingController() {
- console.log("SettingController");
+function SettingController($scope,$rootScope) {
+    $rootScope.setting={};
+   
+    console.log("SettingController");
+    $scope.openProfile = function () {
+         $rootScope.setting.openProfile=1;
+        console.log('open profile');
+        window.location = '#/createuser';
+    };
+    $scope.changeLang = function () {
+         $rootScope.setting.selectLng=1;
+        console.log('changeLang');
+        window.location = '#/selectLng';
+    };
 }

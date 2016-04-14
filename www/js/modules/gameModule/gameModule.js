@@ -46,6 +46,11 @@ gameModule.config(['$routeProvider', function ($routeProvide) {
                     templateUrl: 'views/gameModule/resultMonoPlayer.html',
                     controller: 'resultMonoPlayerController'
                 })
+                .when('/statistic', {
+                    templateUrl: 'views/gameModule/statistic.html',
+                    controller: 'statisticController'
+                })
+                       
                 .otherwise({
                     redirectTo: '/'
                 });
@@ -185,8 +190,12 @@ function MainMenuController($scope, $http, $rootScope) {
 
     console.log("MainMenu Controller");
     /*Функция открытия меню*/
-//    $scope.openMenu = function () {
-//        console.log("OpenMenu");
-//        window.location = "#/setting";
-//    };
+    $scope.openMenu = function () {
+        console.log("OpenMenu");
+        window.location = "#/setting";
+    };
+    $scope.openStatistic = function () {
+        console.log('statistic open');
+        window.location='#/statistic';
+    };
 }
