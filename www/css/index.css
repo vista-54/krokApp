@@ -270,7 +270,7 @@ td i{
 }
 .battle h1{
     text-align: center;
-    font-size: 50px;
+    font-size: 40px;
 }
 .newGame{
     margin: 10px 0 0 0;
@@ -285,7 +285,7 @@ td i{
 }
 .newGame a i{
     font-size: 28px;
-    color: rgb(0,0,0);
+    color: rgb(81, 81, 81);
     padding: 0 10px 0 0px;
 }
 .newGame h1{
