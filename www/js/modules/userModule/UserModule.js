@@ -46,7 +46,7 @@ function AppController($scope, $location, $http, $rootScope) {
         var devId = device.uuid;
         console.log("Device Is ready!!!");
 //    var req = $http.get($rootScope.mainUrl + "users/login?deviceId=ded3c217d39e86c2");
-        var req = $http.get($rootScope.mainUrl + "index.php?deviceId=" + devId + "&action=getLogin");
+        var req = $http.get($rootScope.mainUrl + "users/login?deviceId=" + devId + "&action=getLogin");
         req.success(function (data, status, headers, config) {
             console.log(data);
             if (data) {

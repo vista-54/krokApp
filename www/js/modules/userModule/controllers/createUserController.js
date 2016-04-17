@@ -47,7 +47,7 @@ function CreateUserController($scope, $rootScope, $http) {
         console.log($rootScope.userData);
         var devId = device.uuid;
 //        var devId = 'ded3c217d39e86c2';
-        var req = $http.get($rootScope.mainUrl + "index.php?user_login=" + $rootScope.userData.login + "&user_gender=" + $rootScope.userData.gender + "&deviceId=" + devId + "&avatar=" + $rootScope.userData.avatar + "&user_language=" + $rootScope.userData.lng + "&action=reg");
+        var req = $http.get($rootScope.mainUrl + "users/create?user_login=" + $rootScope.userData.login + "&user_gender=" + $rootScope.userData.gender + "&deviceId=" + devId + "&avatar=" + $rootScope.userData.avatar + "&user_language=" + $rootScope.userData.lng + "&action=reg");
 //        var req = $http.get($rootScope.mainUrl + "users/create?user_login=" + $rootScope.userData.login + "&user_gender=" + $rootScope.userData.gender + "&deviceId=" + devId + "&avatar=" + $rootScope.userData.avatar + "&user_language=" + $rootScope.userData.lng + "&userId=" + $rootScope.userData.id);
         req.success(function (data, status, headers, config) {
             console.log(status, data);
