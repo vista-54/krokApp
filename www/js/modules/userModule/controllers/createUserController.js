@@ -11,8 +11,6 @@ function CreateUserController($scope, $rootScope, $http) {
     $scope.ChangeGender = function (gender) {
         $scope.SelectedImg = $scope.SelectedImg ? false : true;
         $rootScope.userData.gender = gender;
-
-
     };
     $scope.isSelected = false;
     $scope.getAvatar = function (data) {
@@ -48,15 +46,18 @@ function CreateUserController($scope, $rootScope, $http) {
         $rootScope.userData.login = $scope.login;
         console.log($rootScope.userData);
         var devId = device.uuid;
-//        var devId='ded3c217d39e86c1';
+//        var devId = 'ded3c217d39e86c2';
         var req = $http.get($rootScope.mainUrl + "index.php?user_login=" + $rootScope.userData.login + "&user_gender=" + $rootScope.userData.gender + "&deviceId=" + devId + "&avatar=" + $rootScope.userData.avatar + "&user_language=" + $rootScope.userData.lng + "&action=reg");
+//        var req = $http.get($rootScope.mainUrl + "users/create?user_login=" + $rootScope.userData.login + "&user_gender=" + $rootScope.userData.gender + "&deviceId=" + devId + "&avatar=" + $rootScope.userData.avatar + "&user_language=" + $rootScope.userData.lng + "&userId=" + $rootScope.userData.id);
         req.success(function (data, status, headers, config) {
             console.log(status, data);
-            if (data.data) {
+            //проверяем пришла цифра или нет
+            if (!isNaN(data)) {
+                $rootScope.userData.id = data;
                 window.location = "#/mainmenu";
             }
             else {
-
+                console.log('ошибка');
             }
         });
         req.error(function (data, status, headers, config) {

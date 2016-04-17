@@ -449,7 +449,7 @@ td i{
 }
 .BlockQuestion{
     position: absolute;
-    height: 200px;
+    height: 100%;
     width: 100%;
 }
 .green{
@@ -552,6 +552,8 @@ td i{
 }
 .krockPage .categories {
     margin: 0 0 0 20px;
+    overflow: scroll;
+    height: 200px;
 }
 .krockPage .categories li{
     margin: 20px 0 0 0;
@@ -642,4 +644,22 @@ td i{
 
 .questPage{
     height: 100vh;
+}
+.statistica{
+
+}
+.statistica li{
+    text-align: left;
+    margin: 10px 0 0 20%;
+}
+.statistica li img{
+    width: 30px;
+}
+.statistica li span{
+    font-size: 30px;
+    padding: 0 5px;
+}
+.score{
+    float: right;
+    padding-right: 20%!important;
 }

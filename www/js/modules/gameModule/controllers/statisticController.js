@@ -7,5 +7,9 @@
 
 gameModule.controller('statisticController', statisticController);
 function statisticController($rootScope, $scope, $http) {
-    
+    $http.get($rootScope.mainUrl+'multiplayer/get-statistic').success(function(result){
+        console.log(result);
+        $scope.statistica=result;
+        
+    });
 }

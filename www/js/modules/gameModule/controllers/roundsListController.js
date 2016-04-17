@@ -10,37 +10,17 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
     $rootScope.IntervalStop = true;
     $rootScope.CurrentGame = {};//объект текущей игры
     $scope.gameId = $routeParams.gameId; //айди текущей игры
-    $scope.game = $rootScope.gameData.games[$rootScope.SearchGameById($scope.gameId)];//текущая игра
+    $scope.game = $rootScope.gameData.games[$rootScope.SearchGameById(parseInt($scope.gameId))];//текущая игра
     $scope.waitStepSecondPlayer = $rootScope.waitStepSecondPlayer;//чей ход булин
     $scope.CurRoundGet = $rootScope.getCurrentRound($scope.game);
     //Подтягиваем с базы информацию о прошлых раундах
     $scope.getRoundStatistic = function () {
-        var req = $http.get($rootScope.mainUrl + "index.php?&action=getRoundStatistic&id_game=" + $scope.gameId);
+        var req = $http.get($rootScope.mainUrl + "multiplayer/get-round-statistic?id_game=" + $scope.gameId);
         req.success(function (data, status, headers, config) {
             console.log(status, data);
-            $scope.rs = data.data[0];
+            $scope.rs = data;
             $scope.Anyfnt();
-
-//            for (var i in $scope.rs) {
-//                console.log(i);
-//            }
             console.log($scope.rs);
-            /* for (var i in data.data) {
-             var obj = data.data[i];
-             if ($rootScope.checkHost) {
-             $scope.host = obj;
-             //                    $rootScope.CurrentGame.lastAnsH = obj;
-             
-             //                    $scope.ready = true;
-             //                    $scope.$apply();
-             }
-             else {
-             $scope.p2 = obj;
-             }
-             
-             }*/
-//            console.log($scope.roundsP1 + " => " + $scope.roundsP2);
-
         });
         req.error(function (data, status, headers, config) {
             console.log(data);
@@ -52,7 +32,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
     $scope.checkHost = $rootScope.checkHost;
     $scope.myNick = $rootScope.userData.login;
     $rootScope.gameEnd = function (game) {
-        var req = $http.get($rootScope.mainUrl + "index.php?&action=gameEnd&idgame=" + $scope.gameId);
+        var req = $http.get($rootScope.mainUrl + "multiplayer/game-end?idgame=" + $scope.gameId);
         req.success(function (data, status, headers, config) {
             console.log(data);
         });
@@ -73,10 +53,21 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
 //    $scope.isHost();
     console.log("roundsListController");
     $scope.getCurrentCategory = function (catId) {
-        var req = $http.get($rootScope.mainUrl + "index.php?&action=getCurrCat&idcat=" + catId + "&lng=" + $rootScope.userData.lng);
+        var req = $http.get($rootScope.mainUrl + "multiplayer/get-category?id=" + catId + "&lng=" + $rootScope.userData.lng);
         req.success(function (data, status, headers, config) {
             console.log(data);
-            $rootScope.CurrentGame.categoryName = data.data[0];
+            switch ($rootScope.userData.lng) {
+                case 'UA':
+                    data.name = data.name_ukr;
+                    break;
+                case 'EN':
+                    data.name = data.name_eng;
+                    break;
+                case 'RU':
+                    data.name = data.name_rus;
+                    break;
+            }
+            $rootScope.CurrentGame.categoryName = data.name;
         });
         req.error(function (data, status, headers, config) {
             console.log(data);
@@ -109,6 +100,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
         //берем с раунда катеорию если она не НУЛЛ
         if (res !== null) {
             $scope.getCurrentCategory(res);
+            $rootScope.CurrentGame.isSecond = true;//вы второй игрок, категория уже выбрана
             $rootScope.CurrentGame.category = {
                 id: res
             };
@@ -117,6 +109,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
         }
         //Если нул получаем список с сервера
         else {
+            $rootScope.CurrentGame.isSecond = false;
             $scope.getCategoriesList();
         }
 
@@ -125,19 +118,31 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
 
     };
 //    $rootScope.gameData.busyCat=[];
-    $rootScope.gameData.games[$scope.SearchGameById($scope.gameId)].BusyCategoriesList = [];
+    $rootScope.gameData.games[$scope.SearchGameById(parseInt($scope.gameId))].BusyCategoriesList = [];
     $scope.getCategoriesList = function () {
-        var req = $http.get($rootScope.mainUrl + "index.php?&action=getCategory&lng=" + $rootScope.userData.lng);
+        var req = $http.get($rootScope.mainUrl + "multiplayer/get-category?id=undefined&lng=" + $rootScope.userData.lng);
         req.success(function (data, status, headers, config) {
 //            console.log(status, data);
             var arr = [];
 
-            for (var i in data.data) {
-                var obj = data.data[i];
+            for (var i in data) {
+                var obj = data[i];
+                switch ($rootScope.userData.lng) {
+                    case 'UA':
+                        data[i].name = obj.name_ukr;
+                        break;
+                    case 'EN':
+                        data[i].name = obj.name_eng;
+                        break;
+                    case 'RU':
+                        data[i].name = obj.name_rus;
+                        break;
+                }
+
                 var count = 0;
-                for (var i in $rootScope.gameData.games[$scope.SearchGameById($scope.gameId)].BusyCategoriesList)
+                for (var i in $rootScope.gameData.games[$scope.SearchGameById(parseInt($scope.gameId))].BusyCategoriesList)
                 {
-                    var o2 = $rootScope.gameData.games[$scope.SearchGameById($scope.gameId)].BusyCategoriesList[i];
+                    var o2 = $rootScope.gameData.games[$scope.SearchGameById(parseInf($scope.gameId))].BusyCategoriesList[i];
                     if (obj.name !== o2)
                     {
                         count++;
@@ -150,7 +155,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
 
 
             }
-            $rootScope.gameData.games[$scope.SearchGameById($scope.gameId)].EmptyCategoriesList = arr;
+            $rootScope.gameData.games[$scope.SearchGameById(parseInt($scope.gameId))].EmptyCategoriesList = arr;
 
 
             window.location = "#/choisecategoty";
@@ -161,58 +166,6 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
     };
 
     $scope.Anyfnt = function () {
-
-//        $scope.ready = false;
-
-//    $scope.PlayButton='';
-//    $scope.waitStep=' '
-
-
-
-        //    $scope.currentRound=1;
-        /*
-         $scope.getOpenGames = function () {
-         var req = $http.get("http://192.168.0.101/index.php?&action=createRoom?&action=getOpenGames&username=" + $rootScope.userData.login);
-         req.success(function (data, status, headers, config) {
-         console.log(data);
-         $rootScope.gameData.games = data.data;
-         $scope.game = $rootScope.gameData.games[$scope.SearchGameById($scope.gameId)];
-         if ($rootScope.checkGameEnd($scope.game)) {
-         $scope.gameEnd($scope.game);
-         }
-         if ($scope.game.status === "2" && $scope.game.host === $rootScope.userData.login) {
-         $scope.waitStepSecondPlayer = false;
-         
-         }
-         else if ($scope.game.status === "1" && $scope.game.host !== $rootScope.userData.login) {
-         $scope.waitStepSecondPlayer = false;
-         
-         }
-         else {
-         $scope.waitStepSecondPlayer = true;
-         }
-         $rootScope.waitStepSecondPlayer=$scope.waitStepSecondPlayer;
-         //            $scope.games = $rootScope.gameData.games;
-         });
-         req.error(function (data, status, headers, config) {
-         console.log(data);
-         });
-         };
-         */
-
-        //$scope.getOpenGames();
-//    $scope.SearchGameById = function (id) {
-//        for (var i in $rootScope.gameData.games)
-//        {
-//            var obj = $rootScope.gameData.games[i];
-//            if (obj.id === id) {
-//                return parseInt(i);
-//            }
-//        }
-//    };
-        //    $scope.currentRound = $rootScope.getCurrentRound();
-
-
         $scope.ShowInfoForMarker = function (e) {
             var que = e.currentTarget.attributes['data-question'].nodeValue;
             var answ = e.currentTarget.attributes['data-useranswer'].nodeValue;
@@ -224,7 +177,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
         $scope.getRoundStat = function (Round_num, p) {
 
             var answeresUser, dn;
-            if (p && typeof $scope.rs !== 'undefined') {
+            if ((p) && ($scope.rs.length !== 0)) {
                 switch (Round_num) {
                     case 1:
                         answeresUser = $scope.rs.r1p1;
@@ -271,7 +224,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
 
                         for (var j in $scope.CurrAnswUser) {
                             var obj1 = $scope.CurrAnswUser[j];
-                            if (obj1.user_ans_status === '0') {
+                            if (obj1.rightAnswer !== obj1.userAnswer) {
                                 //                                if (obj.children[j].localName !== "br") {
                                 $(chArr[j]).attr('src', 'img/krestik.png');
 
@@ -313,7 +266,14 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
                         dn = 'r6p2';
                         break;
                 }
-                $scope.CurrAnswUser = JSON.parse(answeresUser);
+                if (typeof answeresUser !== 'undefined') {
+                    $scope.CurrAnswUser = JSON.parse(answeresUser);
+                }
+                else {
+                    $scope.CurrAnswUser = '';
+                }
+
+
                 var images = angular.element(document.querySelectorAll('[data-round]'));
 
                 for (var i in images) {

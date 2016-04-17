@@ -5,15 +5,18 @@
  */
 UserModule.controller('selectLngController', selectLngController);
 
-function selectLngController($scope, $state, $rootScope, $location) {
+function selectLngController($scope, $state, $rootScope, $location, $http) {
     $scope.lng = $rootScope.setting.selectLng;
     console.log("selectLngController start");
-    $scope.selectLang = function (lng) {
-        
-        $rootScope.userData = {};
+    $scope.selectLang = function (lng, k) {
+        if (k !== 1) {
+            $rootScope.userData = {};
+           
+        }
         $rootScope.userData.lng = lng;
         console.log($rootScope.userData);
         window.location = "#/createuser";
+
     };
 
 

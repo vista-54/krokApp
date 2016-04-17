@@ -38,6 +38,7 @@ function newKrockController($scope, $rootScope) {
         for (var i in $scope.currentAnsweres) {
             var obj = $scope.currentAnsweres[i];
             if (obj.id_question === $scope.currentQuestion.id) {
+                
                 $scope.answeres.push(obj);
             }
         }

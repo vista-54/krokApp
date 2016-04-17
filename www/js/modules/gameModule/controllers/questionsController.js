@@ -41,15 +41,16 @@ function questionsController($scope, $rootScope, $http) {
         $scope.getQuestionActive = false;
         $scope.answeres = [];
         console.log("getQe");
-        $scope.currentQuestion = $rootScope.gameData.games[$scope.SearchGameById($rootScope.CurrentGame.id)].questionsArr[ $scope.questCount].question;
-        $scope.currentAnsweres = $rootScope.gameData.games[$scope.SearchGameById($rootScope.CurrentGame.id)].answeresArr;
+        $scope.currentQuestion = $rootScope.gameData.games[$scope.SearchGameById(parseInt($rootScope.CurrentGame.id))].questionsArr[ $scope.questCount].question;
+        $scope.currentQuestionId = $rootScope.gameData.games[$scope.SearchGameById(parseInt($rootScope.CurrentGame.id))].questionsArr[ $scope.questCount].id;
+        $scope.currentAnsweres = $rootScope.gameData.games[$scope.SearchGameById(parseInt($rootScope.CurrentGame.id))].answeresArr;
 
 
-        $scope.currentGame = $rootScope.gameData.games[$scope.SearchGameById($rootScope.CurrentGame.id)];
+        $scope.currentGame = $rootScope.gameData.games[$scope.SearchGameById(parseInt($rootScope.CurrentGame.id))];
         $scope.currentRound = $rootScope.getCurrentRound($scope.currentGame);
         for (var i in $scope.currentAnsweres) {
             var obj = $scope.currentAnsweres[i];
-            if (obj.id_question === $rootScope.gameData.games[$scope.SearchGameById($rootScope.CurrentGame.id)].questionsArr[ $scope.questCount].id) {
+            if (obj.id_question === $rootScope.gameData.games[$scope.SearchGameById(parseInt($rootScope.CurrentGame.id))].questionsArr[$scope.questCount].id) {
                 $scope.answeres.push(obj);
             }
         }
@@ -60,16 +61,16 @@ function questionsController($scope, $rootScope, $http) {
         for (var i in $scope.answeres) {
             var obj = $scope.answeres[i];
 //            var curQid=$rootScope.gameData.games[$scope.SearchGameById($rootScope.CurrentGame.id)].questionsArr[ $scope.questCount].id;
-            if (obj.status === '1') {
+            if (obj.status === 1) {
                 return i;
             }
         }
     };
     $scope.checkAnswer = function (ans, key) {
         var answ = angular.element(document.getElementsByTagName('li'));
-        var curRoundInf = {'question': $scope.currentQuestion, 'userAnswer': ans.answer, 'rightAnswer': $scope.answeres[$scope.searchRightAnswer()]};
+        var curRoundInf = {'question': $scope.currentQuestionId, 'userAnswer': ans.answer.id, 'rightAnswer': $scope.answeres[$scope.searchRightAnswer()].id};
         $scope.userAnsweres.right.push(curRoundInf);
-        if (ans.answer.status === "1") {
+        if (ans.answer.status === 1) {
             $scope.CorrectsAnswerCount++;
             $(answ[key]).addClass('green');
 //            $scope.isCorrectA = 'green';
@@ -78,8 +79,6 @@ function questionsController($scope, $rootScope, $http) {
             $(answ[key]).addClass('red');
 
             $(answ[$scope.searchRightAnswer()]).addClass('green');
-
-
         }
         console.log($scope.userAnsweres);
         $scope.score = $scope.CorrectsAnswerCount;
@@ -108,15 +107,13 @@ function questionsController($scope, $rootScope, $http) {
                 window.location = "#/mainmenu";
             }
         }
-        $scope.old = $rootScope.CurrentGame.lastAnsH;
+//        $scope.old = $rootScope.CurrentGame.lastAnsH;
         var roundResultAnsweres = JSON.stringify($scope.userAnsweres.right);
 //        var lastResultAnsweres = $scope.old.game;
-        var req = $http.get($rootScope.mainUrl + "index.php?&action=RoundEnd&idgame=" + $scope.currentGame.id + "&score=" + $scope.score + "&ishost=" + $scope.isHost() + "&round=" + $scope.currentRound + "&answeres=" + roundResultAnsweres);
+        var req = $http.get($rootScope.mainUrl + "multiplayer/round-end?idgame=" + $scope.currentGame.id + "&score=" + $scope.score + "&ishost=" + $scope.isHost() + "&round=" + $scope.currentRound + "&answeres=" + roundResultAnsweres);
         req.success(function (data, status, headers, config) {
             console.log(data);
-            if (data.data) {
-
-            }
+   
         });
         req.error(function (data, status, headers, config) {
             console.log(data);

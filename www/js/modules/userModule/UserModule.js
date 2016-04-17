@@ -32,7 +32,8 @@ UserModule.config(['$routeProvider', function ($routeProvide) {
 UserModule.controller('AppController', AppController);
 
 function AppController($scope, $location, $http, $rootScope) {
-    $rootScope.mainUrl = 'http://768646.okonel.web.hosting-test.net/';
+//    $rootScope.mainUrl = 'http://768646.okonel.web.hosting-test.net/';
+    $rootScope.mainUrl = 'http://krock/api/web/v1/';
     $rootScope.setting = {};
     $rootScope.setting.openProfile = 0;
     $rootScope.setting.selectLng = 0;
@@ -43,15 +44,15 @@ function AppController($scope, $location, $http, $rootScope) {
     document.addEventListener("deviceready", function () {
         var devId = device.uuid;
         console.log("Device Is ready!!!");
-//    var req = $http.get($rootScope.mainUrl + "index.php?deviceId=ded3c217d39e86c1&action=getLogin");
+//    var req = $http.get($rootScope.mainUrl + "users/login?deviceId=ded3c217d39e86c2");
         var req = $http.get($rootScope.mainUrl + "index.php?deviceId=" + devId + "&action=getLogin");
         req.success(function (data, status, headers, config) {
             console.log(data);
-            if (data.data) {
+            if (data) {
                 window.location = "#/mainmenu";
-                $rootScope.userData.login = data.data[0].user_login;
-                $rootScope.userData.id = data.data[0].user_login;
-                $rootScope.userData.lng = data.data[0].user_language;
+                $rootScope.userData.login = data.user_login;
+                $rootScope.userData.id = data.id;
+                $rootScope.userData.lng = data.user_language;
             }
             else {
                 $scope.message = "HomeController";

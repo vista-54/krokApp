@@ -36,10 +36,10 @@ function NewGameController($scope, $http, $rootScope) {
 //    $scope.getHistory();
     $scope.monoPlayer = function () {
 //        $rootScope.krocks={};
-        var req = $http.get($rootScope.mainUrl + "index.php?&action=startKrock");
+        var req = $http.get($rootScope.mainUrl + "monoplayer/create");
         req.success(function (data, status, headers, config) {
             console.log(status, data);
-            $rootScope.krocks = data.data;
+            $rootScope.krocks = data;
             window.location = "#/krockList";
         });
         console.log("Monoplayer");
@@ -48,27 +48,16 @@ function NewGameController($scope, $http, $rootScope) {
         var type = data.currentTarget.attributes['data-number'].nodeValue;
         $rootScope.gameData.type = type;
         console.log("CategorySelected");
-        var req = $http.get($rootScope.mainUrl + "index.php?action=searchEmptyRoom&username=" + $rootScope.userData.login);
+        var req = $http.get($rootScope.mainUrl + "multiplayer/create?&username=" + $rootScope.userData.login);
         req.success(function (data, status, headers, config) {
             console.log(status, data);
-//
-//            if (typeof (data.data) === "object") {
-////                $rootScope.gameData.categoryLists = data.data.category;
-////                $rootScope.gameData.round = data.data.gameround;
-////                $rootScope.gameData.idGame = data.data.idGame;
-//                var game = {id: data.data.idGame, round: data.data.gameroun, categoryLists: data.data.category};
-//                $rootScope.gameData.games.push(game);
-//            $rootScope.getOpenGames();
-            window.location = "#/mainmenu";
-////                $rootScope.gameData.games.push($rootScope.gameData.idGame);
-////                .push($rootScope.gameData.idGame);
-////                window.location = "#/mainmenu";
-////                $scope.categoryLists = data.data;
-//                console.log($scope.games);
-////            }
-//            else if (data.data) {
-//                console.log(data);
-//            }
+            if(!isNaN(data)){
+                window.location = "#/mainmenu";
+            }
+            else{
+                alert('Неизвесная ошибка');
+            }
+            
         });
         req.error(function (data, status, headers, config) {
             console.log(data);

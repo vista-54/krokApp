@@ -18,7 +18,7 @@ function selectCategoryController($scope, $http, $rootScope) {
 //            }
 //        }
 //    };
-    var game = $rootScope.gameData.games[$scope.SearchGameById($rootScope.CurrentGame.id)];
+    var game = $rootScope.gameData.games[$scope.SearchGameById(parseInt($rootScope.CurrentGame.id))];
     $scope.categoryLists = game.EmptyCategoriesList;
 
     $scope.categorySelected = function (CatId) {
@@ -28,19 +28,51 @@ function selectCategoryController($scope, $http, $rootScope) {
 //        $rootScope.gameData.category.push(CatId.category._name);
         console.log("CategorySelected");
         $rootScope.CurrentGame.categoryName = CatId.category.name;
+        if(typeof $rootScope.gameData.games[$scope.SearchGameById(game.id)].BusyCategoriesList==='undefined'){
+            $rootScope.gameData.games[$scope.SearchGameById(game.id)].BusyCategoriesList=[];
+        }
         $rootScope.gameData.games[$scope.SearchGameById(game.id)].BusyCategoriesList.push($rootScope.CurrentGame.categoryName);
-        var req = $http.get($rootScope.mainUrl + "index.php?&action=getQuestions&categotyId=" + CatId.category.id + "&round=" + round + "&idGame=" + game.id + "&lng=" + $rootScope.userData.lng);
+        var req = $http.get($rootScope.mainUrl + "multiplayer/get-questions?categotyId=" + CatId.category.id + "&round=" + round + "&idGame=" + game.id + "&lng=" + $rootScope.userData.lng + "&issecond=" + $rootScope.CurrentGame.isSecond);
         req.success(function (data, status, headers, config) {
             console.log(status, data);
-            if (data.data) {
-                $rootScope.gameData.games[$scope.SearchGameById($rootScope.CurrentGame.id)].questionsArr = $rootScope.shuffle(data.data.questions);
-                $rootScope.gameData.games[$scope.SearchGameById($rootScope.CurrentGame.id)].answeresArr = $rootScope.shuffle(data.data.answeres);
-                window.location = "#/newgame/" + game.id + "/game";
-                console.log(data);
-            }
-            else {
+            for (var i in data.questions) {
+                var obj = data.questions[i];
+                switch ($rootScope.userData.lng) {
+                    case 'UA':
+                        data.questions[i].question = obj.question_ukr;
+                        break;
+                    case 'EN':
+                        data.questions[i].question = obj.question_ukr;
+                        break;
+                    case 'RU':
+                        data.questions[i].question = obj.question_ukr;
+                        break;
+                }
 
             }
+            $rootScope.gameData.games[$scope.SearchGameById(parseInt($rootScope.CurrentGame.id))].questionsArr = $rootScope.shuffle(data.questions);
+            for (var i in data.answeres) {
+                var obj = data.answeres[i];
+                switch ($rootScope.userData.lng) {
+                    case 'UA':
+                        data.answeres[i].text = obj.text_ukr;
+                        break;
+                    case 'EN':
+                        data.answeres[i].text = obj.text_ukr;
+                        break;
+                    case 'RU':
+                        data.answeres[i].text = obj.text_ukr;
+                        break;
+                }
+
+            }
+
+
+            $rootScope.gameData.games[$scope.SearchGameById(parseInt($rootScope.CurrentGame.id))].answeresArr = $rootScope.shuffle(data.answeres);
+            window.location = "#/newgame/" + game.id + "/game";
+            console.log(data);
+
+
         });
         req.error(function (data, status, headers, config) {
             console.log(data);
