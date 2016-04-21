@@ -113,6 +113,7 @@ function krockListController($rootScope, $scope, $http) {
         if (arrSelectedCat.length === 0) {
             return false;
         }
+//        $rootScope.monoPlayer.arrSelectedCat=arrSelectedCat;
         var req = $http.get($rootScope.mainUrl + "monoplayer/get-questions?&cats=" + arrSelectedCat + "&lng=" + $rootScope.userData.lng);
         req.success(function (data, status, headers, config) {
             console.log(data);

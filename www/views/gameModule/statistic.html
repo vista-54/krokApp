@@ -1,8 +1,13 @@
 <div class="battle">
-    <a class="backButton" href="#/mainmenu"><</a><h1>Статистика игроков</h1>
-    <ul class="statistica">
+    <a class="backButton" href="#/mainmenu"><</a><h1>Резюме</h1>
+    <div>
+        <span>Логин:{{user}}</span><br>
+        <span>Место в рейтинге:#{{rating}}</span><br>
+        <span>Очки:{{score}}</span>
+    </div>
+<!--    <ul class="statistica">
         <li ng-repeat="user in statistica"> 
             <img src="{{user.avatar}}" alt="avatar"><span>{{user.user}}</span><span class="score">{{user.score}}</span>
         </li>
-    </ul>
+    </ul>-->
 </div>
