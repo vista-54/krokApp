@@ -2,17 +2,20 @@
 
 <div class="battle" >
     <a class="header" href="#/newgame"><</a><h1>Найти игрока</h1>
-    <div style="text-align: center;">
+    <div style="text-align: center;
+    padding: 35px 0 0 0px;">
 
 
-        <input ng-model="nick" placeholder="Введите ник друга"> 
-        <button ng-click="searchFriend(nick)">Найти</button>
+        <input ng-model="nick" placeholder="Введите ник друга" style="width: 50%;
+    margin: 0 0 10px 0;
+    height: 25px;"> 
+        <button ng-click="searchFriend(nick)" style="width: 50%;margin: 0 auto;">Найти</button>
 
         <div class="userInfo" ng-show="isSearched">
-            <div><img style="width: 30px;" src="{{user.avatar}}" alt="img"><span>{{user.user_login}}</span></div>
-            <div>
+            <div><img style="width: 30px;" src="{{user.avatar}}" alt="img"><span>{{user.user_login}}</span> Вызов брошен</div>
+<!--            <div>
                 <h1>Вызов брошен</h1>
-            </div>
+            </div>-->
         </div>
     </div>
 </div>
