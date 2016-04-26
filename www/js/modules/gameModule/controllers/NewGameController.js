@@ -8,8 +8,11 @@
 gameModule.controller('NewGameController', NewGameController);
 function NewGameController($scope, $http, $rootScope) {
 
+    $scope.SearcByName = function () {
+        window.location = '#/versus';
+        console.log('searchByName');
+    };
 
- 
 //clearInterval($rootScope.intervalID);
     $rootScope.IntervalStop = true;
     $rootScope.checkGameEnd = function (g) {
@@ -51,13 +54,13 @@ function NewGameController($scope, $http, $rootScope) {
         var req = $http.get($rootScope.mainUrl + "multiplayer/create?&username=" + $rootScope.userData.login);
         req.success(function (data, status, headers, config) {
             console.log(status, data);
-            if(!isNaN(data)){
+            if (!isNaN(data)) {
                 window.location = "#/mainmenu";
             }
-            else{
+            else {
                 alert('Неизвесная ошибка');
             }
-            
+
         });
         req.error(function (data, status, headers, config) {
             console.log(data);
@@ -67,4 +70,5 @@ function NewGameController($scope, $http, $rootScope) {
 
 
     console.log("NewGameController");
+ 
 }

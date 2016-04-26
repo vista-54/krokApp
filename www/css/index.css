@@ -663,3 +663,52 @@ td i{
     float: right;
     padding-right: 20%!important;
 }
+.shortStat{
+    font-size: 30px;
+    border-bottom: 1px solid;
+    overflow: hidden;
+    margin: 0 20px 0 20px;
+    padding: 0 0 15px 0;
+}
+.shortStat .place{
+    float: right;
+    text-align: center;
+}
+
+.shortStat .login{
+    float:left;
+    text-align: center;
+}
+.statForCategoryBtn{
+    width: 100%;
+}
+.statForCategoryBtn a{
+    float: none;
+    position: static;
+    /* margin: 0 auto; */
+    border: 3px solid rgb(255,255,255);
+    background: #3E813E;
+    width: 90%;
+    color: white;
+    padding: 10px 10px 10px 10px;
+    display: block;
+    margin: 15px auto;
+    font-size: 25px;
+    text-align: center
+}
+td{
+
+}
+
+.userInfo{
+    text-align: center;
+    font-size: 30px;
+    padding: 10px 0 0 0;
+}
+
+.opponent{
+    font-size: 24px;
+    font-weight: 600;
+    float: left;
+    width: 33%;
+}

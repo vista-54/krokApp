@@ -50,6 +50,18 @@ gameModule.config(['$routeProvider', function ($routeProvide) {
                     templateUrl: 'views/gameModule/statistic.html',
                     controller: 'statisticController'
                 })
+                .when('/globalrating', {
+                    templateUrl: 'views/gameModule/globalrating.html',
+                    controller: 'globalratingController'
+                })
+                .when('/statisticForCategories', {
+                    templateUrl: 'views/gameModule/statisticForCategories.html',
+                    controller: 'statisticForCategoriesController'
+                })
+                .when('/versus', {
+                    templateUrl: 'views/gameModule/versus.html',
+                    controller: 'versusController'
+                })
 
                 .otherwise({
                     redirectTo: '/'
@@ -57,6 +69,8 @@ gameModule.config(['$routeProvider', function ($routeProvide) {
     }]);
 gameModule.controller('MainMenuController', MainMenuController);
 function MainMenuController($scope, $http, $rootScope) {
+
+
     $('.mainMenu ul').height($(window).height() - $('.mainMenu nav').height() - $('.newGameBtn').height() - $('.historyCnt').height() - 30);
     $rootScope.shuffle = function (array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
@@ -149,8 +163,9 @@ function MainMenuController($scope, $http, $rootScope) {
 //            $rootScope.getHistoryGames();
             $scope.successReq = true;
             console.log(data);
-            $rootScope.gameData.games = data;
+            $rootScope.gameData.games = data.opengames;
             $scope.games = $rootScope.gameData.games;
+            $scope.versus = data.versus;
 //            $scope.CurrGame = $rootScope.gameData.games[$rootScope.SearchGameById($scope.gameId)];
             for (var i in $scope.games) {
                 $scope.CurrGame = $scope.games[i];
@@ -203,5 +218,25 @@ function MainMenuController($scope, $http, $rootScope) {
     $scope.openStatistic = function () {
         console.log('statistic open');
         window.location = '#/statistic';
+    };
+    $scope.accept = function (id,host,p2) {
+        $http.get($rootScope.mainUrl + 'versus/accept?id=' + id+'&host='+host+'&p2='+p2)
+                .success(function (result) {
+                    console.log(result);
+                })
+                .error(function (result) {
+                    console.log(result);
+                });
+        console.log(id);
+    };
+    $scope.reject = function (id) {
+        $http.get($rootScope.mainUrl + 'versus/reject?id=' + id)
+                .success(function (result) {
+                    console.log(result);
+                })
+                .error(function (result) {
+                    console.log(result);
+                });
+        console.log(id);
     };
 }

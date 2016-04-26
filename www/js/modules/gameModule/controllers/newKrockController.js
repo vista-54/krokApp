@@ -37,7 +37,8 @@ function newKrockController($scope, $rootScope, $http) {
         $scope.currentQuestion = $rootScope.monoPlayer.questions[$scope.questCount];
         $scope.currentAnsweres = $rootScope.monoPlayer.answeres;
         $rootScope.currentCategory = $scope.currentQuestion.category_id;
-
+       
+            
         for (var i in $scope.currentAnsweres) {
             var obj = $scope.currentAnsweres[i];
             if (obj.id_question === $scope.currentQuestion.id) {
@@ -67,7 +68,7 @@ function newKrockController($scope, $rootScope, $http) {
         var categories = $scope.checkMonoplayerCAtegoriesArr($rootScope.currentCategory);
         if (!categories) {
             var isNew = true;
-            var categories = {correct: 0, count: 0, category: $rootScope.currentCategory};
+            var categories = {correct: 0, count: 0, category: $rootScope.currentCategory, spec: $rootScope.currentSpec};
         }
 
 

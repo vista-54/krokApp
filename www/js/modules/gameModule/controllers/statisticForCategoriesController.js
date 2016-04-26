@@ -4,11 +4,17 @@
  * and open the template in the editor.
  */
 
-
-gameModule.controller('krockListController', krockListController);
-function krockListController($rootScope, $scope, $http) {
+gameModule.controller('statisticForCategoriesController', statisticForCategoriesController);
+function statisticForCategoriesController($scope, $rootScope, $http) {
     $rootScope.monoPlayer = {};
-    $scope.krocks = $rootScope.krocks;
+    var req = $http.get($rootScope.mainUrl + "monoplayer/create");
+    req.success(function (data, status, headers, config) {
+        console.log(status, data);
+        $scope.krocks = data;
+        
+    });
+    console.log("Monoplayer");
+//    $scope.krocks = $rootScope.krocks;
     console.log('krockListController');
     $scope.isKrockSelected = false;
     $scope.selectKrock = function (num) {
@@ -57,26 +63,10 @@ function krockListController($rootScope, $scope, $http) {
         }
         $(spec[key]).addClass('selectSpec');
         $scope.isKrockSelected = true;
-        $rootScope.currentSpec=num;
         console.log(num);
-        var req = $http.get($rootScope.mainUrl + "monoplayer/get-categories?spec_id=" + num + "&lng=" + $rootScope.userData.lng);
+        var req = $http.get($rootScope.mainUrl + "monoplayer/get-statistic?spec_id=" + num + "&lng=" + $rootScope.userData.lng);
         req.success(function (data, status, headers, config) {
             console.log(data);
-            for (var i in data) {
-                var obj = data[i];
-                switch ($rootScope.userData.lng) {
-                    case 'UA':
-                        data[i].name = obj.name_ukr;
-                        break;
-                    case 'EN':
-                        data[i].name = obj.name_eng;
-                        break;
-                    case 'RU':
-                        data[i].name = obj.name_rus;
-                        break;
-                }
-
-            }
             $scope.categories = data;
         });
         req.error(function (data, status, headers, config) {
@@ -125,7 +115,7 @@ function krockListController($rootScope, $scope, $http) {
                         data.questions[i].question = obj.question_ukr;
                         break;
                     case 'EN':
-                       data.questions[i].question = obj.question_ukr;
+                        data.questions[i].question = obj.question_ukr;
                         break;
                     case 'RU':
                         data.questions[i].question = obj.question_ukr;
@@ -140,7 +130,7 @@ function krockListController($rootScope, $scope, $http) {
                         data.answeres[i].text = obj.text_ukr;
                         break;
                     case 'EN':
-                       data.answeres[i].text = obj.text_ukr;
+                        data.answeres[i].text = obj.text_ukr;
                         break;
                     case 'RU':
                         data.answeres[i].text = obj.text_ukr;
@@ -156,4 +146,5 @@ function krockListController($rootScope, $scope, $http) {
             console.log(data);
         });
     };
+    console.log('statisticForCategoriesController');
 }

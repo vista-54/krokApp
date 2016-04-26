@@ -7,7 +7,7 @@
             <!--href="#/choisecategoty"-->
             <a data-number="0" class="multiPlGame" ng-click="monoPlayer()"><i class="fa fa-user"></i>Марафон</a>
             <a data-number="1" class="multiPlGame" ng-click="RandomOpponent($event)"><i class="fa fa-flag-o"></i>Случайный соперник</a>
-            <!--<a data-number="1" class="multiPlGame" href="">Поиск по имени</a>-->
+            <a data-number="2" class="multiPlGame" ng-click="SearcByName()" href=""><i class="fa fa-binoculars" ></i>Поиск по имени</a>
         </nav>
         <ul>
             <li ng-repeat="activegame in activegames">
@@ -19,7 +19,7 @@
                 <a href="#/newgame/{{game.id}}" >GAME: {{checkHost(game.host) ? game.host : game.player2}}</a>
             </li>
         </ul>
-
+     
 
     </div>
 </div>

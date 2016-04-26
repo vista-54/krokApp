@@ -1,0 +1,18 @@
+
+
+<div class="battle" >
+    <a class="header" href="#/newgame"><</a><h1>Найти игрока</h1>
+    <div style="text-align: center;">
+
+
+        <input ng-model="nick" placeholder="Введите ник друга"> 
+        <button ng-click="searchFriend(nick)">Найти</button>
+
+        <div class="userInfo" ng-show="isSearched">
+            <div><img style="width: 30px;" src="{{user.avatar}}" alt="img"><span>{{user.user_login}}</span></div>
+            <div>
+                <h1>Вызов брошен</h1>
+            </div>
+        </div>
+    </div>
+</div>

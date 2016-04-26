@@ -33,9 +33,9 @@ UserModule.controller('AppController', AppController);
 
 function AppController($scope, $location, $http, $rootScope) {
 //    $rootScope.mainUrl = 'http://768646.okonel.web.hosting-test.net/';
-    $rootScope.mainUrl = 'http://192.168.0.104/api/web/v1/';
+//    $rootScope.mainUrl = 'http://192.168.0.119/api/web/v1/';
 //    $rootScope.mainUrl = 'http://krock/api/web/v1/';
-//    $rootScope.mainUrl = 'http://768646.okonel.web.hosting-test.net/api/web/v1/';
+    $rootScope.mainUrl = 'http://768646.okonel.web.hosting-test.net/api/web/v1/';
     $rootScope.setting = {};
     $rootScope.setting.openProfile = 0;
     $rootScope.setting.selectLng = 0;

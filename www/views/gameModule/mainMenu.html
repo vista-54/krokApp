@@ -17,7 +17,15 @@
                     <span class="roundpart" ><span class="headerNick">{{getCurrentRound(game)}}</span> <br>Раунд</span>
                 </a>
             </li>
+            <ul>
+                <li ng-repeat="vers in versus">
+                    <span class="opponent" ng-click="accept(this.vers.id,this.vers.host,this.vers.p2)">Принять</span><span class="opponent"> Вызов от <br>{{vers.host}}</span><span class="opponent" ng-click="reject(this.vers.id)">Отклонить</span>
+                </li>
+            </ul>   
         </ul>
+        <div>
+
+        </div>
         <div class="historyCnt">
             <!--<a class="historyBtn" ng-click="refresh()">Обновить</a>-->
             <a class="historyBtn" href="#/history">История</a>

@@ -1,13 +1,34 @@
 <div class="battle">
     <a class="backButton" href="#/mainmenu"><</a><h1>Резюме</h1>
     <div>
-        <span>Логин:{{user}}</span><br>
-        <span>Место в рейтинге:#{{rating}}</span><br>
-        <span>Очки:{{score}}</span>
+        <div class="shortStat">
+            <span class="login">Логин<br>{{user}}</span>
+            <span class="place" ng-click="globalRating()">Место в рейтинге:<br>#{{rating}}<br>Очки {{score}}</span>
+        </div>
+        <div class="shortStat">
+            <h1>Общее</h1>
+            <div>
+                <span class="login">Вопросов <br>{{totalQuestions}}</span>
+                <span class="place">Правильных ответов<br>{{monoplayer.percent}}</span>
+            </div>
+        </div>
+        <div class="shortStat">
+            <h1>Схватки</h1>
+            <div>
+                <span class="login">К-во <br>{{totalBattlesMulti}}</span>
+                <span class="place">Побед/Ничьи/Поражения<br>{{multistat.win}}/{{multistat.draw}}/{{multistat.lose}}</span>
+            </div>
+        </div>
+        <div class="shortStat">
+            <h1>Марафон</h1>
+            <div>
+                <span class="login">Вопросов <br>{{totalQuestions}}</span>
+                <span class="place">Правильных ответов<br>{{monoplayer.percent}}</span>        
+            </div>
+        </div>
+        <div class="statForCategoryBtn">
+            <a href="#/statisticForCategories">Статистика по категориям</a>
+        </div>
     </div>
-<!--    <ul class="statistica">
-        <li ng-repeat="user in statistica"> 
-            <img src="{{user.avatar}}" alt="avatar"><span>{{user.user}}</span><span class="score">{{user.score}}</span>
-        </li>
-    </ul>-->
+  
 </div>

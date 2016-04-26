@@ -1,0 +1,20 @@
+<div class="battle">
+    <a class="backButton" href="#/statistic"><</a><h1>Рейтинг</h1>
+    <h1>Вы #{{rating}} Очки {{score}}</h1>
+    <table border="1" style="font-size: 25px;    margin: 0 auto;border-spacing: 30px 0px;
+           border-collapse: separate;"> 
+
+        <tr>
+            <th>Место</th>
+            <th style="border-left: 1px solid rgb(88,88,88);">Игрок</th>
+            <th style="border-left: 1px solid rgb(88,88,88);">Очки</th>
+        </tr>
+        <tr ng-repeat="(key,user) in statistica"><td>{{key + 1}}</td><td style="border-left: 1px solid rgb(88,88,88);"><img style="width: 25px" src="{{user.avatar}}" alt="avatar">{{user.user}}</td><td style="border-left: 1px solid rgb(88,88,88);">{{user.score}}</td>
+        </tr>
+    </table>
+    <!--    <ul class="statistica" ng-repeat="(key,user) in statistica">
+            <li > 
+                <span style="float: left;">{{key + 1}}</span><img src="{{user.avatar}}" alt="avatar"><span>{{user.user}}</span><span class="score">{{user.score}}</span>
+            </li>
+        </ul>-->
+</div>
