@@ -69,8 +69,16 @@ gameModule.config(['$routeProvider', function ($routeProvide) {
     }]);
 gameModule.controller('MainMenuController', MainMenuController);
 function MainMenuController($scope, $http, $rootScope) {
-
-
+    $rootScope.gameEnd = function (game) {
+        var req = $http.get($rootScope.mainUrl + "multiplayer/game-end?idgame=" + $scope.gameId);
+        req.success(function (data, status, headers, config) {
+            console.log(data);
+        });
+        req.error(function (data, status, headers, config) {
+            console.log(data);
+        });
+    };
+    $scope.gameEnd=$rootScope.gameEnd;
     $('.mainMenu ul').height($(window).height() - $('.mainMenu nav').height() - $('.newGameBtn').height() - $('.historyCnt').height() - 30);
     $rootScope.shuffle = function (array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
@@ -239,4 +247,5 @@ function MainMenuController($scope, $http, $rootScope) {
                 });
         console.log(id);
     };
+    
 }

@@ -102,7 +102,8 @@ function questionsController($scope, $rootScope, $http) {
     $scope.sendRoundInfo = function () {
         if ($scope.currentRound === 6) {
             if ($scope.isLastStep) {
-                alert($scope.getResultIfLastStep($scope.currentGame));
+                
+//                alert($scope.getResultIfLastStep($scope.currentGame));
 //                return false;
                 window.location = "#/mainmenu";
             }
@@ -113,7 +114,6 @@ function questionsController($scope, $rootScope, $http) {
         var req = $http.get($rootScope.mainUrl + "multiplayer/round-end?idgame=" + $scope.currentGame.id + "&score=" + $scope.score + "&ishost=" + $scope.isHost() + "&round=" + $scope.currentRound + "&answeres=" + roundResultAnsweres);
         req.success(function (data, status, headers, config) {
             console.log(data);
-   
         });
         req.error(function (data, status, headers, config) {
             console.log(data);

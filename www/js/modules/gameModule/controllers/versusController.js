@@ -15,6 +15,10 @@ function versusController($scope, $rootScope, $http) {
                     if (typeof result === 'object') {
                         $scope.isSearched = true;
                     }
+                    if(result===22){
+                        $scope.isSearched = false;
+                        alert('У вас уже есть активный вызов этому игроку');
+                    }
                     console.log(result);
                 })
                 .error(function (error) {

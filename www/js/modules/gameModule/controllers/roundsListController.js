@@ -31,15 +31,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
     /*Конец игры Бэта*/
     $scope.checkHost = $rootScope.checkHost;
     $scope.myNick = $rootScope.userData.login;
-    $rootScope.gameEnd = function (game) {
-        var req = $http.get($rootScope.mainUrl + "multiplayer/game-end?idgame=" + $scope.gameId);
-        req.success(function (data, status, headers, config) {
-            console.log(data);
-        });
-        req.error(function (data, status, headers, config) {
-            console.log(data);
-        });
-    };
+
     $scope.isHost = function () {
         if ($scope.currentGame.host === $rootScope.userData.login) {
             $scope.currentRound = $rootScope.CurrentGame.round;
