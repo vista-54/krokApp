@@ -43,7 +43,7 @@ function AppController($scope, $location, $http, $rootScope) {
 //        
 //    };
     $rootScope.userData = {};
-//    document.addEventListener("deviceready", function () {
+    document.addEventListener("deviceready", function () {
         var devId = device.uuid;
         console.log("Device Is ready!!!");
 //    var req = $http.get($rootScope.mainUrl + "users/login?deviceId=ded3c217d39e86c2");
@@ -70,7 +70,7 @@ function AppController($scope, $location, $http, $rootScope) {
             window.location = "#/selectLng";
         });
 
-//    }, false);
+    }, false);
 
 }
 
