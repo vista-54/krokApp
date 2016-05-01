@@ -78,7 +78,7 @@ function MainMenuController($scope, $http, $rootScope) {
             console.log(data);
         });
     };
-    $scope.gameEnd=$rootScope.gameEnd;
+    $scope.gameEnd = $rootScope.gameEnd;
     $('.mainMenu ul').height($(window).height() - $('.mainMenu nav').height() - $('.newGameBtn').height() - $('.historyCnt').height() - 30);
     $rootScope.shuffle = function (array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
@@ -171,6 +171,24 @@ function MainMenuController($scope, $http, $rootScope) {
 //            $rootScope.getHistoryGames();
             $scope.successReq = true;
             console.log(data);
+            if (data.winner !== null) {
+                if (data.winner.winner === $rootScope.userData.login) {
+                    if ($rootScope.userData.login === data.winner.host) {
+                        alert('Вы победили игрока ' + data.winner.p2);
+                    }
+                    else {
+                        alert('Вы победили игрока ' + data.winner.host);
+                    }
+                }
+                else if (data.winner.winner !== $rootScope.userData.login) {
+                    if ($rootScope.userData.login === data.winner.host) {
+                        alert('Вы проиграли игроку ' + data.winner.p2);
+                    }
+                    else {
+                        alert('Вы проиграли игроку ' + data.winner.host);
+                    }
+                }
+            }
             $rootScope.gameData.games = data.opengames;
             $scope.games = $rootScope.gameData.games;
             $scope.versus = data.versus;
@@ -227,8 +245,8 @@ function MainMenuController($scope, $http, $rootScope) {
         console.log('statistic open');
         window.location = '#/statistic';
     };
-    $scope.accept = function (id,host,p2) {
-        $http.get($rootScope.mainUrl + 'versus/accept?id=' + id+'&host='+host+'&p2='+p2)
+    $scope.accept = function (id, host, p2) {
+        $http.get($rootScope.mainUrl + 'versus/accept?id=' + id + '&host=' + host + '&p2=' + p2)
                 .success(function (result) {
                     console.log(result);
                 })
@@ -247,5 +265,5 @@ function MainMenuController($scope, $http, $rootScope) {
                 });
         console.log(id);
     };
-    
+
 }
