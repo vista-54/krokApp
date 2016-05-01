@@ -6,7 +6,7 @@
     <div ng-hide="isGetQuestBtnActive">
         <div class='BlockQuestion' ng-show="getQuestionActive"></div>
         <h1 class="questionText"  ng-click="getquestion()">{{currentQuestion.question}}</h1>
-        <ul>
+        <ul style="border-top: solid 1px rgb(0,0,0);">
             <li class="answerText"  ng-repeat="(key,answer) in answeres">
                 <a ng-click="checkAnswer(this, key)">{{answer.text}}</a>
             </li>

@@ -54,6 +54,10 @@ gameModule.config(['$routeProvider', function ($routeProvide) {
                     templateUrl: 'views/gameModule/globalrating.html',
                     controller: 'globalratingController'
                 })
+                .when('/help', {
+                    templateUrl: 'views/gameModule/help.html',
+                    controller: 'helpController'
+                })
                 .when('/statisticForCategories', {
                     templateUrl: 'views/gameModule/statisticForCategories.html',
                     controller: 'statisticForCategoriesController'

@@ -173,10 +173,10 @@ table {
 
 /*GAMEMODULE START*/
 .newGameBtn{
-    color: rgb(80,80,80);
+    color: rgb(57, 40, 189);
     font-size: 50px;
     font-weight: 600;
-    border-bottom: 2px solid;
+    border-bottom: 2px solid rgb(0,0,0);
     display: block;
     padding: 0 0 10px 0;
 }
@@ -373,7 +373,9 @@ td i{
     margin: 10px auto;
     width: 85%;
     display: block;
-    font-size: 25px;
+    /*font-size: 25px;*/
+    font-size: 20px;
+    font-family: serif;
     text-align: center;
     background: rgba(169, 246, 190, 1);
     color: black;
@@ -385,7 +387,9 @@ td i{
     margin: 10px auto;
     width: 85%;
     display: block;
-    font-size: 25px;
+    /*font-size: 25px;*/
+    font-size: 20px;
+    font-family: serif;
     text-align: center;
     color: black;
     background: rgba(169, 246, 190, 1);
