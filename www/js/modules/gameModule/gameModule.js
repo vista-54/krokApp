@@ -70,7 +70,7 @@ gameModule.config(['$routeProvider', function ($routeProvide) {
 gameModule.controller('MainMenuController', MainMenuController);
 function MainMenuController($scope, $http, $rootScope) {
     $rootScope.gameEnd = function (game) {
-        var req = $http.get($rootScope.mainUrl + "multiplayer/game-end?idgame=" + $scope.gameId);
+        var req = $http.get($rootScope.mainUrl + "multiplayer/game-end?idgame=" + game.id);
         req.success(function (data, status, headers, config) {
             console.log(data);
         });
