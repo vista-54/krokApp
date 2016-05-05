@@ -342,6 +342,13 @@ td i{
     /*border: 0;*/
     margin: 20px 0 0 0;
 }
+.selectCategory ul li:nth-child(2n+1){
+        transform: rotate(4deg);
+}
+.selectCategory ul li:nth-child(2n+2){
+    transform: rotate(-4deg);
+}
+
 .selectCategory ul li button {
     border: 1px #000 solid;
     width: 80%;
