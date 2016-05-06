@@ -6,7 +6,8 @@
 
 
 gameModule.controller('questionsController', questionsController);
-function questionsController($scope, $rootScope, $http) {
+function questionsController($scope, $rootScope, $http, $interval) {
+    var time = undefined;
     $scope.categoryName = $rootScope.CurrentGame.categoryName;
     if (typeof ($scope.categoryName.name) !== "undefined") {
         $scope.categoryName = $scope.categoryName.name;
@@ -32,6 +33,26 @@ function questionsController($scope, $rootScope, $http) {
         }
     };
     $scope.Getquestion = function () {
+        $scope.line = {'background': '-webkit-linear-gradient(right, rgb( 224, 10, 10) ' + 0 + '%, rgb(48, 216, 84)' + 0 + '%)'};//наша линия времени
+        $scope.timeLine = 0;
+        if (angular.isDefined(time)) {
+            $interval.cancel(time);
+            time = undefined;
+        }
+        /*запускаем таймер 20 сек*/
+
+        $scope.changeLine = function () {
+            $scope.timeLine += 5;
+            console.log($scope.timeLine);
+            $scope.line = {'background': '-webkit-linear-gradient(right, rgb( 224, 10, 10) ' + $scope.timeLine + '%, rgb(48, 216, 84)' + $scope.timeLine + '%)'};//наша линия времени
+            if ($scope.timeLine > 100) {
+                $interval.cancel(time);
+                time = undefined;
+                $scope.checkAnswer('none', 'none');
+            }
+        };
+        time = $interval($scope.changeLine, 1000);
+        /**/
         if ($scope.questCount === 5) {
 //            window.location = "#/newgame/" + $rootScope.CurrentGame.id;
             window.location = "#/mainmenu";
@@ -67,17 +88,36 @@ function questionsController($scope, $rootScope, $http) {
         }
     };
     $scope.checkAnswer = function (ans, key) {
+        var isNone = false;
+        if (ans === 'none') {
+            var ans = {answer: {status: 0}};
+//           $interval.cancel(time);
+//                time = undefined;
+            isNone = true;
+
+        }
+        if (angular.isDefined(time)) {
+            $interval.cancel(time);
+            time = undefined;
+//            return false;
+        }
         var answ = angular.element(document.getElementsByTagName('li'));
-        var curRoundInf = {'question': $scope.currentQuestionId, 'userAnswer': ans.answer.id, 'rightAnswer': $scope.answeres[$scope.searchRightAnswer()].id};
-        $scope.userAnsweres.right.push(curRoundInf);
+        if (!isNone) {
+            
+            var curRoundInf = {'question': $scope.currentQuestionId, 'userAnswer': ans.answer.id, 'rightAnswer': $scope.answeres[$scope.searchRightAnswer()].id};
+            $scope.userAnsweres.right.push(curRoundInf);
+        }
+
+
         if (ans.answer.status === 1) {
             $scope.CorrectsAnswerCount++;
             $(answ[key]).addClass('green');
 //            $scope.isCorrectA = 'green';
         }
         else {
-            $(answ[key]).addClass('red');
-
+            if (!isNone) {
+                $(answ[key]).addClass('red');
+            }
             $(answ[$scope.searchRightAnswer()]).addClass('green');
         }
         console.log($scope.userAnsweres);
@@ -102,7 +142,7 @@ function questionsController($scope, $rootScope, $http) {
     $scope.sendRoundInfo = function () {
         if ($scope.currentRound === 6) {
             if ($scope.isLastStep) {
-                
+
 //                alert($scope.getResultIfLastStep($scope.currentGame));
 //                return false;
                 window.location = "#/mainmenu";

@@ -343,16 +343,18 @@ td i{
     margin: 20px 0 0 0;
 }
 .selectCategory ul li:nth-child(2n+1){
-        transform: rotate(4deg);
+    transform: rotate(4deg);
 }
 .selectCategory ul li:nth-child(2n+2){
     transform: rotate(-4deg);
 }
 
 .selectCategory ul li button {
-    border: 1px #000 solid;
+    /*border: 1px #000 solid;*/
     width: 80%;
-    padding: 10px 0 10px 0;
+    padding: 15px 0;
+    font-family: Toms;
+    font-size: 35px;
 
 }
 .selectCategory ul li:nth-child(3n+1) button{
@@ -365,7 +367,7 @@ td i{
     background: rosybrown;
 }
 .selectCategory ul{
-    margin: 20px 0 0 0;
+    margin: 30% 0 0 0;
     text-align: center;
 }
 .getQuest{
@@ -386,7 +388,7 @@ td i{
     text-align: center;
     background: rgba(169, 246, 190, 1);
     color: black;
-    border: 1px solid rgb(206, 183, 183);
+    /*border: 1px solid rgb(206, 183, 183);*/
 }
 .answerText{
     padding: 5px 0 5px 0;
@@ -722,4 +724,27 @@ td{
     font-weight: 600;
     float: left;
     width: 33%;
+}
+
+/**/
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: table;
+}
+.clearfix:after {
+    clear: both;
+}
+
+/* для IE6-7 */
+.clearfix {
+    zoom: 1;
+}
+
+/**/
+.timeLine{
+    display: block;
+    width: 100%;
+    height: 3px;
+
 }
