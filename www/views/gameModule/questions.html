@@ -1,7 +1,7 @@
 <div class="questPage">
     <!--<a ng-click="Getquestion()">GetQue</a>-->
     <div class='BlockGetQ' ng-hide="getQuestionActive" ></div>
-    <button class="getQuest"  ng-click="Getquestion()">{{categoryName}}</button>
+    <div style="padding: 20px 0 0 0;text-align: center;"> <button class="getQuest"  ng-click="Getquestion()">{{categoryName}}</button></div>
     <div ng-hide="isGetQuestBtnActive">
         <div class='BlockQuestion' ng-show="getQuestionActive"></div>
         <h1 class="questionText">{{currentQuestion}}</h1>

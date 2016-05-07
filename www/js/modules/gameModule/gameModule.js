@@ -66,6 +66,10 @@ gameModule.config(['$routeProvider', function ($routeProvide) {
                     templateUrl: 'views/gameModule/versus.html',
                     controller: 'versusController'
                 })
+                .when('/mail', {
+                    templateUrl: 'views/gameModule/mail.html',
+                    controller: 'mailController'
+                })
 
                 .otherwise({
                     redirectTo: '/'
@@ -83,7 +87,7 @@ function MainMenuController($scope, $http, $rootScope) {
         });
     };
     $scope.gameEnd = $rootScope.gameEnd;
-    $('.mainMenu ul').height($(window).height() - $('.mainMenu nav').height() - $('.newGameBtn').height() - $('.historyCnt').height() - 30);
+//    $('.versusList').height($(window).height() - $('.mainMenu nav').height() - $('.newGameBtn').height() - $('.historyCnt').height() - 30);
     $rootScope.shuffle = function (array) {
         var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -195,6 +199,9 @@ function MainMenuController($scope, $http, $rootScope) {
             }
             $rootScope.gameData.games = data.opengames;
             $scope.games = $rootScope.gameData.games;
+//            if (data.versus.length > 0) {
+//                $('.versusList').css({'display': 'block'});
+//            }
             $scope.versus = data.versus;
 //            $scope.CurrGame = $rootScope.gameData.games[$rootScope.SearchGameById($scope.gameId)];
             for (var i in $scope.games) {

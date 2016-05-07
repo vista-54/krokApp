@@ -19,6 +19,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
         req.success(function (data, status, headers, config) {
             console.log(status, data);
             $scope.rs = data;
+            $scope.myNick = $scope.checkHost($scope.game.host) ? $scope.game.player2 : $scope.game.host;
             $scope.Anyfnt();
             console.log($scope.rs);
         });
@@ -162,44 +163,85 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
             var que = e.currentTarget.attributes['data-question'].nodeValue;
             var answ = e.currentTarget.attributes['data-useranswer'].nodeValue;
             var coransw = e.currentTarget.attributes['data-correctanswer'].nodeValue;
-            alert("Вопрос: " + que + " Ваш ответ: " + answ + " Правильный ответ: " + coransw);
+            $http.get($rootScope.mainUrl + 'multiplayer/get-full-info?que=' + que + '&answ=' + answ + '&coransw=' + coransw)
+                    .success(function (result) {
+                        console.log(result);
+//                        for (var i in result) {
+                        var obj = result;
+                        switch ($rootScope.userData.lng) {
+                            case 'UA':
+                                quest = obj.que.question_ukr;
+                                answ = obj.ans.text_ukr;
+                                coransw = obj.coransw.text_ukr;
+                                break;
+                            case 'EN':
+                                quest = obj.question_eng;
+                                answ = obj.text_eng;
+                                coransw = obj.coransw.text_eng;
+                                break;
+                            case 'RU':
+                                quest = obj.question_rus;
+                                answ = obj.text_rus;
+                                coransw = obj.coransw.text_rus;
+                                break;
+                        }
+
+//                        }
+                        alert("Вопрос: " + quest + " Ваш ответ: " + answ + " Правильный ответ: " + coransw);
+                    })
+                    .error(function (error) {
+                        console.log(error);
+                    });
+
+
             console.log("test");
         };
 
-        $scope.getRoundStat = function (Round_num, p) {
-
-            var answeresUser, dn;
+        $scope.getRoundStat = function (Round_num, p, position) {
+            var answeresUser, dn, pl;
+            if (position === 'f') {
+                pl = 'p1';
+            }
+            else {
+                pl = 'p2';
+            }
             if ((p) && ($scope.rs.length !== 0)) {
                 switch (Round_num) {
                     case 1:
                         answeresUser = $scope.rs.r1p1;
-                        dn = 'r1p1';
+                        dn = 'r1';
                         break;
                     case 2:
                         answeresUser = $scope.rs.r2p1;
-                        dn = 'r2p1';
+                        dn = 'r2';
                         break;
                     case 3:
                         answeresUser = $scope.rs.r3p1;
-                        dn = 'r3p1';
+                        dn = 'r3';
                         break;
                     case 4:
                         answeresUser = $scope.rs.r4p1;
-                        dn = 'r4p1';
+                        dn = 'r4';
                         break;
                     case 5:
                         answeresUser = $scope.rs.r5p1;
-                        dn = 'r5p1';
+                        dn = 'r5';
                         break;
                     case 6:
                         answeresUser = $scope.rs.r6p1;
-                        dn = 'r6p1';
+                        dn = 'r6';
                         break;
                 }
-                $scope.CurrAnswUser = JSON.parse(answeresUser);
+                dn += pl;
+                if ((typeof answeresUser !== 'undefined') && (answeresUser !== '')) {
+                    $scope.CurrAnswUser = JSON.parse(answeresUser);
+                }
+                else {
+                    $scope.CurrAnswUser = '';
+                }
                 var images = angular.element(document.querySelectorAll('[data-round]'));
 
-                for (var i in images) {
+                for (var i = 0; i < images.length; i++) {
 
                     var obj = images[i];
                     var chArr = [];
@@ -224,8 +266,8 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
                             }
                             //                            $(chArr[j]).attr('ng-click', 'ShowInfoForMarker()');
                             $(chArr[j]).attr('data-question', obj1.question);
-                            $(chArr[j]).attr('data-userAnswer', obj1.user_ans);
-                            $(chArr[j]).attr('data-correctAnswer', obj1.right_ans);
+                            $(chArr[j]).attr('data-userAnswer', obj1.userAnswer);
+                            $(chArr[j]).attr('data-correctAnswer', obj1.rightAnswer);
 
                         }
                     }
@@ -235,30 +277,31 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
                 switch (Round_num) {
                     case 1:
                         answeresUser = $scope.rs.r1p2;
-                        dn = 'r1p2';
+                        dn = 'r1';
                         break;
                     case 2:
                         answeresUser = $scope.rs.r2p2;
-                        dn = 'r2p2';
+                        dn = 'r2';
                         break;
                     case 3:
                         answeresUser = $scope.rs.r3p2;
-                        dn = 'r3p2';
+                        dn = 'r3';
                         break;
                     case 4:
                         answeresUser = $scope.rs.r4p2;
-                        dn = 'r4p2';
+                        dn = 'r4';
                         break;
                     case 5:
                         answeresUser = $scope.rs.r5p2;
-                        dn = 'r5p2';
+                        dn = 'r5';
                         break;
                     case 6:
                         answeresUser = $scope.rs.r6p2;
-                        dn = 'r6p2';
+                        dn = 'r6';
                         break;
                 }
-                if (typeof answeresUser !== 'undefined') {
+                dn += pl;
+                if ((typeof answeresUser !== 'undefined') && (answeresUser !== '')) {
                     $scope.CurrAnswUser = JSON.parse(answeresUser);
                 }
                 else {
@@ -268,7 +311,7 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
 
                 var images = angular.element(document.querySelectorAll('[data-round]'));
 
-                for (var i in images) {
+                for (var i = 0; i < images.length; i++) {
 
                     var obj = images[i];
                     var chArr = [];
@@ -285,24 +328,24 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
 
                         for (var j in $scope.CurrAnswUser) {
                             var obj1 = $scope.CurrAnswUser[j];
-                            if (obj1.user_ans_status === '0') {
-                                //                                if (obj.children[j].localName !== "br") {
+                            if (obj1.rightAnswer !== obj1.userAnswer) {
+//                                if (obj.children[j].localName !== "br") {
                                 $(chArr[j]).attr('src', 'img/krestik.png');
 
-//                                $(chArr[j]).attr('data-correctAnswer', obj1.right_ans);
                                 //                                }
                             }
                             //                            $(chArr[j]).attr('ng-click', 'ShowInfoForMarker()');
                             $(chArr[j]).attr('data-question', obj1.question);
-                            $(chArr[j]).attr('data-userAnswer', obj1.user_ans);
-                            $(chArr[j]).attr('data-correctAnswer', obj1.right_ans);
+                            $(chArr[j]).attr('data-userAnswer', obj1.userAnswer);
+                            $(chArr[j]).attr('data-correctAnswer', obj1.rightAnswer);
+
                         }
                     }
                 }
             }
 
 
-            $scope.apply();
+//            $scope.apply();
         };
     }
     ;

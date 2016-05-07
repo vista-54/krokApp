@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0"  xmlns:gap = "http://phonegap.com/ns/1.0" id="com.vista.KrokUP" version="0.1.13">
+<widget xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0"  xmlns:gap = "http://phonegap.com/ns/1.0" id="com.vista.KrokUP" version="1.0.0">
     <name>KrokApp</name>
     <description>
             Одиночный режим+Мультиплеер с поправкой на язык.
@@ -8,9 +8,10 @@
         Apache Cordova Team
     </author>
     <content src="index.html"/>
-    <preference name="phonegap-version" value="3.7.0"/>
+    <preference name="phonegap-version" value="4.1.1"/>
     <plugin name="cordova-plugin-whitelist" version="1"/>
     <access origin="*"/>
+    
     <allow-intent href="http://*/*"/>
     <allow-intent href="https://*/*"/>
     <allow-intent href="tel:*"/>
@@ -25,6 +26,5 @@
     <platform name="ios">
         <allow-intent href="itms:*"/>
         <allow-intent href="itms-apps:*"/>
-    </platform>
-     
+    </platform>  
 </widget>

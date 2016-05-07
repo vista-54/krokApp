@@ -32,6 +32,7 @@ function questionsController($scope, $rootScope, $http, $interval) {
             }
         }
     };
+    $('.BlockQuestion').height($(window).height()-140);
     $scope.Getquestion = function () {
         $scope.line = {'background': '-webkit-linear-gradient(right, rgb( 224, 10, 10) ' + 0 + '%, rgb(48, 216, 84)' + 0 + '%)'};//наша линия времени
         $scope.timeLine = 0;

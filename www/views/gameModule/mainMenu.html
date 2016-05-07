@@ -5,7 +5,7 @@
             <a ng-click="openStatistic()"><i class="fa fa-list-alt"></i></a>  
         </nav>
         <a class="newGameBtn" href="#/newgame">> Новая игра <</a>
-        <ul>
+        <ul class="openGamesList">
             <li ng-repeat="game in games">
                 <img alt="img" class="imgOpp" src="img/avatar_m_2.png"> <a href="#/newgame/{{game.id}}" >
                     <span class="opponentNickAndStep">
@@ -17,7 +17,7 @@
                     <span class="roundpart" ><span class="headerNick">{{getCurrentRound(game)}}</span> <br>Раунд</span>
                 </a>
             </li>
-            <ul>
+            <ul class="versusList">
                 <li ng-repeat="vers in versus">
                     <span class="opponent" ng-click="accept(this.vers.id,this.vers.host,this.vers.p2)">Принять</span><span class="opponent"> Вызов от <br>{{vers.host}}</span><span class="opponent" ng-click="reject(this.vers.id)">Отклонить</span>
                 </li>

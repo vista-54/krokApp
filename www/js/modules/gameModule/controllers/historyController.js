@@ -9,11 +9,11 @@ gameModule.controller('historyController', historyController);
 function historyController($scope, $http, $rootScope) {
 //    $scope.getHistoryGames = function () {
     $rootScope.IntervalStop = true;
-    var req = $http.get($rootScope.mainUrl + "index.php?&action=getHistoryGames&username=" + $rootScope.userData.login);
+    var req = $http.get($rootScope.mainUrl + "users/get-history?&username=" + $rootScope.userData.login);
     req.success(function (data, status, headers, config) {
         console.log(data);
 //            $rootScope.gameData.games = data.data;
-        $scope.Hgames = data.data;
+        $scope.Hgames = data;
 //            $scope.CurrGame = $rootScope.gameData.games[$rootScope.SearchGameById($scope.gameId)];
     });
     req.error(function (data, status, headers, config) {
