@@ -8,6 +8,9 @@ function CreateUserController($scope, $rootScope, $http) {
     $scope.setting = $rootScope.setting.openProfile;
     console.log("CreateUserController started");
     $rootScope.userData.gender = 'F';
+    if(typeof $rootScope.userData.login!=='undefined'){
+        $scope.login=$rootScope.userData.login;
+    }
     $scope.ChangeGender = function (gender) {
         $scope.SelectedImg = $scope.SelectedImg ? false : true;
         $rootScope.userData.gender = gender;
