@@ -42,10 +42,10 @@ function selectCategoryController($scope, $http, $rootScope) {
                         data.questions[i].question = obj.question_ukr;
                         break;
                     case 'EN':
-                        data.questions[i].question = obj.question_ukr;
+                        data.questions[i].question = obj.question_eng;
                         break;
                     case 'RU':
-                        data.questions[i].question = obj.question_ukr;
+                        data.questions[i].question = obj.question_rus;
                         break;
                 }
 
@@ -58,10 +58,10 @@ function selectCategoryController($scope, $http, $rootScope) {
                         data.answeres[i].text = obj.text_ukr;
                         break;
                     case 'EN':
-                        data.answeres[i].text = obj.text_ukr;
+                        data.answeres[i].text = obj.text_eng;
                         break;
                     case 'RU':
-                        data.answeres[i].text = obj.text_ukr;
+                        data.answeres[i].text = obj.text_rus;
                         break;
                 }
 

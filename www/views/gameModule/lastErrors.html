@@ -1,0 +1,11 @@
+<div class="battle" style="overflow: scroll">
+    <div >
+        <a  class="backButton" href="#/setting"><</a><h1>Неправильные ответы</h1>
+    </div> 
+    <ul>
+        <li  class="lastErrorsLi" ng-repeat="question in questions" ng-click="openQuestion(this.question.id)">
+            <span  >{{question.question}}</span>
+        </li>
+    </ul>
+
+</div>

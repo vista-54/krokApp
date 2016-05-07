@@ -70,6 +70,14 @@ gameModule.config(['$routeProvider', function ($routeProvide) {
                     templateUrl: 'views/gameModule/mail.html',
                     controller: 'mailController'
                 })
+                .when('/lastErrors', {
+                    templateUrl: 'views/gameModule/lastErrors.html',
+                    controller: 'lastErrorsController'
+                })
+                .when('/viewError/:questionId', {
+                    templateUrl: 'views/gameModule/viewError.html',
+                    controller: 'viewErrorController'
+                })
 
                 .otherwise({
                     redirectTo: '/'

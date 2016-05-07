@@ -1,7 +1,11 @@
-<div>
-    <form>
-        <input placeholder="Тема">
-        <textarea placeholder="Сообщение"></textarea>
-        <input type="submit">
+<div class="battle feedback">
+      <div >
+        <a  class="backButton" href="#/setting"><</a><h1>Написать письмо</h1>
+    </div> 
+    <form name="feedbackForm">
+        <label><span class="titleLabel">Тема:</span><div class="feedbackParent" ><input ng-model="feedback.subject"></div></label><br>
+        
+        <label><span class="titleLabel">Сообщение:</span><div class="feedbackParent"><textarea ng-model="feedback.msg" rows="10" ></textarea></div></label>
+        <button class="historyBtn" type="submit" ng-click="sendFeedBack(feedback)">Отправить</button>
     </form>
 </div>

@@ -262,6 +262,7 @@ table {
     text-decoration: none;
     float: left;
     position: static;
+    line-height: 1.5;
 }
 td i{
     color: rgb(0,0,0)!important;
@@ -768,4 +769,42 @@ td{
 }
 .versusList{
     /*display: none;*/
+}
+.feedback form input{
+    /*margin: 20px 0;*/
+    margin: 0 auto;
+    width: 90%;
+}
+.feedback form{
+    text-align: center;
+}
+.feedback label{
+    display: inline-block;
+    font-size: 25px;
+    text-align: left;
+    width: 100%;
+}
+.feedback textarea{
+    width: 90%;
+}
+.feedbackParent{
+    text-align: center;
+}
+.titleLabel{
+    padding: 0 0 0 7%;
+}
+.lastErrorsLi{
+    height: 51px;
+    overflow: hidden;
+    font-size: 25px;
+    border-bottom: 1px solid rgb(88,88,88);
+    padding: 13px 15px;
+    line-height: 1.2;
+}
+.lastErrorsLi span{
+    height: 100%;
+    display: inline-block;
+}
+.battle b{
+    font-weight: 600;
 }
