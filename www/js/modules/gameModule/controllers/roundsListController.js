@@ -347,6 +347,19 @@ function roundsListController($scope, $rootScope, $routeParams, $http) {
 
 //            $scope.apply();
         };
+
     }
     ;
+    $scope.capitulation = function () {
+        $http.get($rootScope.mainUrl + 'multiplayer/capitulation?game=' + $scope.gameId + '&user=' + $rootScope.userData.login)
+                .success(function (result) {
+                    console.log(result);
+                    window.location='#mainmenu';
+                })
+                .error(function (error) {
+                    console.log(error);
+                });
+        console.log('capitulation');
+    };
+
 }

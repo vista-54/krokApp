@@ -188,20 +188,39 @@ function MainMenuController($scope, $http, $rootScope) {
             $scope.successReq = true;
             console.log(data);
             if (data.winner !== null) {
-                if (data.winner.winner === $rootScope.userData.login) {
-                    if ($rootScope.userData.login === data.winner.host) {
-                        alert('Вы победили игрока ' + data.winner.p2);
+                var statistic = 'С этим игроком у вас, ';
+                var Indexwin, Indexlose, IndexDraw;
+                for (var i in data.statistic) {
+                    if (i === $rootScope.userData.login) {
+                        Indexwin = i;
+
                     }
                     else {
-                        alert('Вы победили игрока ' + data.winner.host);
+                        if (i === 'draw') {
+                            IndexDraw = i;
+                        }
+                        else {
+                            Indexlose = i;
+                        }
+                    }
+                }
+                statistic += 'Побед: ' + data.statistic[Indexwin] + ' Поражений: ' + data.statistic[Indexlose] + ' Ничьих: ' + data.statistic[IndexDraw];
+
+
+                if (data.winner.winner === $rootScope.userData.login) {//победитель вы?
+                    if ($rootScope.userData.login === data.winner.host) {//если вы хост, то проигравший п2
+                        alert('Вы победили игрока ' + data.winner.p2 + ' ' + statistic);
+                    }
+                    else {
+                        alert('Вы победили игрока ' + data.winner.host + ' ' + statistic);
                     }
                 }
                 else if (data.winner.winner !== $rootScope.userData.login) {
                     if ($rootScope.userData.login === data.winner.host) {
-                        alert('Вы проиграли игроку ' + data.winner.p2);
+                        alert('Вы проиграли игроку ' + data.winner.p2 + ' ' + statistic);
                     }
                     else {
-                        alert('Вы проиграли игроку ' + data.winner.host);
+                        alert('Вы проиграли игроку ' + data.winner.host + ' ' + statistic);
                     }
                 }
             }

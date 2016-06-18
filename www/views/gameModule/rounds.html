@@ -27,6 +27,11 @@
         <tr class="columScore"><td class="scoreTable">{{checkHost(game.host) ? (game.scoreP1r6 === null ? '-' : game.scoreP1r6) : (game.scoreP2r6 === null ? '-' : game.scoreP2r6)}}_{{checkHost(game.host) ? (game.scoreP2r6 === null ? '-' : (game.scoreP1r6 === null ? '-' : game.scoreP2r6)) : (game.scoreP1r6 === null ? '-' : (game.scoreP2r6 === null ? '-' : game.scoreP1r6))}}</td></tr>
         <!--<i ng-show="CurRoundGet===1||game.waitStepSecondPlayer" class="fa fa-question-circle"></i>-->
     </table>
+    <div>
+        <button class="historyBtn" ng-click="capitulation()">
+            Сдаться
+        </button>
+    </div>
 
     <!--    <ul>
             <li>
